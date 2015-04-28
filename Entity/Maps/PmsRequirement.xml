@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsRequirementMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsRequirement" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsRequirement" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsRequirementResult" class="PmsRequirement">
+      <result property="Serial" column="Serial" type="int" dbType="Int"/>
+      <result property="Vid" column="VID" type="string" dbType="varchar"/>
+      <result property="YearAndMonth" column="YearAndMonth" type="string" dbType="varchar"/>
+      <result property="RequirementPeriod" column="RequirementPeriod" type="string" dbType="varchar"/>
+      <result property="UserDept" column="UserDept" type="string" dbType="varchar"/>
+      <result property="CrId" column="CRId" type="string" dbType="varchar"/>
+      <result property="CrName" column="CRName" type="string" dbType="varchar"/>
+      <result property="Type" column="Type" type="string" dbType="varchar"/>
+      <result property="System" column="System" type="string" dbType="varchar"/>
+      <result property="Pm" column="PM" type="string" dbType="varchar"/>
+      <result property="Sd" column="SD" type="string" dbType="varchar"/>
+      <result property="Se" column="SE" type="string" dbType="varchar"/>
+      <result property="Qa" column="QA" type="string" dbType="varchar"/>
+      <result property="Status" column="Status" type="string" dbType="varchar"/>
+      <result property="Rerver1" column="RERVER1" type="string" dbType="varchar"/>
+      <result property="Rerver2" column="RERVER2" type="string" dbType="varchar"/>
+      <result property="Rerver3" column="RERVER3" type="string" dbType="varchar"/>
+      <result property="Rerver4" column="RERVER4" type="string" dbType="varchar"/>
+      <result property="Rerver5" column="RERVER5" type="string" dbType="varchar"/>
+      <result property="Createdate" column="createdate" type="DateTime" dbType="DateTime"/>
+      <result property="Createuser" column="createuser" type="string" dbType="varchar"/>
+      <result property="Maintaindate" column="maintaindate" type="DateTime" dbType="DateTime"/>
+      <result property="Maintainuser" column="maintainuser" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectPmsRequirement" parameterClass="PmsRequirement" resultClass="PmsRequirement">
+      SELECT Serial AS Serial,VID AS Vid,YearAndMonth AS YearAndMonth,RequirementPeriod AS RequirementPeriod,UserDept AS UserDept,CRId AS CrId,CRName AS CrName,Type AS Type,System AS System,PM AS Pm,SD AS Sd,SE AS Se,QA AS Qa,Status AS Status,RERVER1 AS Rerver1,RERVER2 AS Rerver2,RERVER3 AS Rerver3,RERVER4 AS Rerver4,RERVER5 AS Rerver5,createdate AS Createdate,createuser AS Createuser,maintaindate AS Maintaindate,maintainuser AS Maintainuser
+      FROM pms_requirement
+      WHERE 1=1 AND VID='PM'
+      <isNotEmpty prepend="AND" property="YearAndMonth">YearAndMonth=#YearAndMonth#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="RequirementPeriod">RequirementPeriod=#RequirementPeriod#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="UserDept">UserDept=#UserDept#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="Status">Status=#Status#</isNotEmpty>
+      order by UserDept
+    </select>
+
+    <select id="SelectPmsHeadReleased" parameterClass="PmsRequirement" resultClass="PmsRequirement">
+      SELECT PMSId AS CrId,PMSName AS CrName,Type AS Type,System AS System,PM AS Pm,SD AS Sd
+      FROM  pms_head
+      WHERE 1=1 AND VID='PM'
+      <isNotEmpty prepend="AND" property="RequirementPeriod">
+        ReleaseDate BETWEEN Week2FirstDay(#RequirementPeriod#) and Week2LastDay(#RequirementPeriod#)
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UserDept">
+        pm in (select user_name from view_user WHERE department like #UserDept#)
+      </isNotEmpty>
+    </select>
+    
+    <insert id="InsertPmsRequirement" parameterClass="PmsRequirement">
+      INSERT INTO pms_requirement
+      (VID,YearAndMonth,RequirementPeriod,UserDept,CRId,CRName,Type,System,PM,SD,SE,QA,Status,RERVER1,RERVER2,RERVER3,RERVER4,RERVER5,createdate,createuser,maintaindate,maintainuser)
+      VALUES(#Vid#,#YearAndMonth#,#RequirementPeriod#,#UserDept#,#CrId#,#CrName#,#Type#,#System#,#Pm#,#Sd#,#Se#,#Qa#,#Status#,#Rerver1#,#Rerver2#,#Rerver3#,#Rerver4#,#Rerver5#,#Createdate:DateTime:1/1/0001 12:00:00 AM#,#Createuser#,#Maintaindate:DateTime:1/1/0001 12:00:00 AM#,#Maintainuser#)
+      <selectKey resultClass="int" type="post" property="Serial">
+        SELECT @@IDENTITY as value
+      </selectKey>
+    </insert>
+    <update id="UpdatePmsRequirement" parameterClass="PmsRequirement">
+      UPDATE pms_requirement
+      SET CRId=#CrId#,Status=#Status#,maintaindate=#Maintaindate#,maintainuser=#Maintainuser#
+      WHERE Serial = #Serial#
+    </update>
+    <update id="UpdatePmsRequirementInvalid" parameterClass="PmsRequirement">
+      UPDATE pms_requirement
+      SET VID=#Vid#,maintaindate=#Maintaindate#,maintainuser=#Maintainuser#
+      WHERE Serial = #Serial#
+    </update>
+    <delete id="DeletePmsRequirement" parameterClass="PmsRequirement">
+      DELETE FROM pms_requirement
+      WHERE 1=1 AND VID='PM'
+      <isNotEmpty prepend="AND" property="YearAndMonth">YearAndMonth=#YearAndMonth#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="RequirementPeriod">RequirementPeriod=#RequirementPeriod#</isNotEmpty>
+    </delete>
+  </statements>
+</sqlMap>

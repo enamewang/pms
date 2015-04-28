@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="BfIssueinfoMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="BfIssueinfo" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.BfIssueinfo" />
+  </alias>
+  <resultMaps>
+    <resultMap id="BfIssueinfoResult" class="BfIssueinfo">
+      <result property="Issueid" column="IssueID" type="uint" dbType="uint"/>
+      <result property="Projectid" column="ProjectID" type="ushort" dbType="ushort"/>
+      <result property="ProjectName" column="ProjectName" type="string" dbType="varchar"/>
+      <result property="Moduleid" column="ModuleID" type="uint" dbType="uint"/>
+      <result property="ModulePath" column="ModulePath" type="string" dbType="varchar"/>
+      <result property="IssueTitle" column="IssueTitle" type="string" dbType="varchar"/>
+      <result property="IssueSeverity" column="IssueSeverity" type="sbyte" dbType="sbyte"/>
+      <result property="IssuePriority" column="IssuePriority" type="sbyte" dbType="sbyte"/>
+      <result property="IssueType" column="IssueType" type="string" dbType="varchar"/>
+      <result property="Issueos" column="IssueOS" type="string" dbType="varchar"/>
+      <result property="IssueBrowser" column="IssueBrowser" type="string" dbType="varchar"/>
+      <result property="IssueMachine" column="IssueMachine" type="string" dbType="varchar"/>
+      <result property="HowFound" column="HowFound" type="string" dbType="varchar"/>
+      <result property="ReproSteps" column="ReproSteps" type="string" dbType="varchar"/>
+      <result property="IssueStatus" column="IssueStatus" type="string" dbType="varchar"/>
+      <result property="IssueSubStatus" column="IssueSubStatus" type="string" dbType="varchar"/>
+      <result property="Linkid" column="LinkID" type="string" dbType="varchar"/>
+      <result property="Caseid" column="CaseID" type="string" dbType="varchar"/>
+      <result property="Duplicateid" column="DuplicateID" type="string" dbType="varchar"/>
+      <result property="MailTo" column="MailTo" type="string" dbType="varchar"/>
+      <result property="OpenedBy" column="OpenedBy" type="string" dbType="varchar"/>
+      <result property="OpenedDate" column="OpenedDate" type="DateTime" dbType="DateTime"/>
+      <result property="OpenedBuild" column="OpenedBuild" type="string" dbType="varchar"/>
+      <result property="AssignedTo" column="AssignedTo" type="string" dbType="varchar"/>
+      <result property="AssignedDate" column="AssignedDate" type="DateTime" dbType="DateTime"/>
+      <result property="ResolvedBy" column="ResolvedBy" type="string" dbType="varchar"/>
+      <result property="Resolution" column="Resolution" type="string" dbType="varchar"/>
+      <result property="ResolvedBuild" column="ResolvedBuild" type="string" dbType="varchar"/>
+      <result property="ResolvedDate" column="ResolvedDate" type="DateTime" dbType="DateTime"/>
+      <result property="ClosedBy" column="ClosedBy" type="string" dbType="varchar"/>
+      <result property="ClosedDate" column="ClosedDate" type="DateTime" dbType="DateTime"/>
+      <result property="LastEditedBy" column="LastEditedBy" type="string" dbType="varchar"/>
+      <result property="LastEditedDate" column="LastEditedDate" type="DateTime" dbType="DateTime"/>
+      <result property="ModifiedBy" column="ModifiedBy" type="string" dbType="varchar"/>
+      <result property="IssueKeyword" column="IssueKeyword" type="string" dbType="varchar"/>
+      <result property="Resultid" column="ResultID" type="uint" dbType="uint"/>
+      <result property="CustomField1" column="CustomField1" type="string" dbType="varchar"/>
+      <result property="CustomField2" column="CustomField2" type="string" dbType="varchar"/>
+      <result property="CustomField3" column="CustomField3" type="string" dbType="varchar"/>
+      <result property="IsDroped" column="IsDroped" type="string" dbType="varchar"/>
+      <result property="DutyBy" column="DutyBy" type="string" dbType="varchar"/>
+      <result property="Cause" column="Cause" type="string" dbType="varchar"/>
+      <result property="CauseAnalyze" column="CauseAnalyze" type="string" dbType="varchar"/>
+      <result property="Strategy" column="Strategy" type="string" dbType="varchar"/>
+      <result property="DueDate" column="DueDate" type="DateTime" dbType="DateTime"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectBfIssueinfo" parameterClass="Hashtable" resultClass="BfIssueinfo">
+      SELECT IssueID AS Issueid,IssueTitle AS IssueTitle,
+      IssueStatus AS IssueStatus,OpenedBy AS OpenedBy,AssignedTo AS AssignedTo,
+      IssueMachine AS IssueMachine, CustomField1 AS CustomField1
+      FROM bf_issueinfo
+      WHERE  1 = 1
+      <isNotEmpty prepend="AND" property="CrId"> IssueMachine = #CrId# </isNotEmpty>
+      <isNotEmpty prepend="AND" property="CrId"> CustomField1 = #MnId# </isNotEmpty>
+    </select>
+    
+    <insert id="InsertBfIssueinfo" parameterClass="BfIssueinfo">
+      INSERT INTO
+      (ProjectID,ProjectName,ModuleID,ModulePath,IssueTitle,IssueSeverity,IssuePriority,IssueType,IssueOS,IssueBrowser,IssueMachine,HowFound,ReproSteps,IssueStatus,IssueSubStatus,LinkID,CaseID,DuplicateID,MailTo,OpenedBy,OpenedDate,OpenedBuild,AssignedTo,AssignedDate,ResolvedBy,Resolution,ResolvedBuild,ResolvedDate,ClosedBy,ClosedDate,LastEditedBy,LastEditedDate,ModifiedBy,IssueKeyword,ResultID,CustomField1,CustomField2,CustomField3,IsDroped,DutyBy,Cause,CauseAnalyze,Strategy,DueDate)
+      VALUES(#Projectid#,#ProjectName#,#Moduleid#,#ModulePath#,#IssueTitle#,#IssueSeverity#,#IssuePriority#,#IssueType#,#Issueos#,#IssueBrowser#,#IssueMachine#,#HowFound#,#ReproSteps#,#IssueStatus#,#IssueSubStatus#,#Linkid#,#Caseid#,#Duplicateid#,#MailTo#,#OpenedBy#,#OpenedDate:DateTime:1/1/0001 12:00:00 AM#,#OpenedBuild#,#AssignedTo#,#AssignedDate:DateTime:1/1/0001 12:00:00 AM#,#ResolvedBy#,#Resolution#,#ResolvedBuild#,#ResolvedDate:DateTime:1/1/0001 12:00:00 AM#,#ClosedBy#,#ClosedDate:DateTime:1/1/0001 12:00:00 AM#,#LastEditedBy#,#LastEditedDate:DateTime:1/1/0001 12:00:00 AM#,#ModifiedBy#,#IssueKeyword#,#Resultid#,#CustomField1#,#CustomField2#,#CustomField3#,#IsDroped#,#DutyBy#,#Cause#,#CauseAnalyze#,#Strategy#,#DueDate:DateTime:1/1/0001 12:00:00 AM#)
+      <selectKey resultClass="int" type="post" property="Issueid">
+        SELECT @@IDENTITY as value
+      </selectKey>
+    </insert>
+    <update id="UpdateBfIssueinfo" parameterClass="BfIssueinfo">
+      UPDATE
+      SET ProjectID=#Projectid#,ProjectName=#ProjectName#,ModuleID=#Moduleid#,ModulePath=#ModulePath#,IssueTitle=#IssueTitle#,IssueSeverity=#IssueSeverity#,IssuePriority=#IssuePriority#,IssueType=#IssueType#,IssueOS=#Issueos#,IssueBrowser=#IssueBrowser#,IssueMachine=#IssueMachine#,HowFound=#HowFound#,ReproSteps=#ReproSteps#,IssueStatus=#IssueStatus#,IssueSubStatus=#IssueSubStatus#,LinkID=#Linkid#,CaseID=#Caseid#,DuplicateID=#Duplicateid#,MailTo=#MailTo#,OpenedBy=#OpenedBy#,OpenedDate=#OpenedDate#,OpenedBuild=#OpenedBuild#,AssignedTo=#AssignedTo#,AssignedDate=#AssignedDate#,ResolvedBy=#ResolvedBy#,Resolution=#Resolution#,ResolvedBuild=#ResolvedBuild#,ResolvedDate=#ResolvedDate#,ClosedBy=#ClosedBy#,ClosedDate=#ClosedDate#,LastEditedBy=#LastEditedBy#,LastEditedDate=#LastEditedDate#,ModifiedBy=#ModifiedBy#,IssueKeyword=#IssueKeyword#,ResultID=#Resultid#,CustomField1=#CustomField1#,CustomField2=#CustomField2#,CustomField3=#CustomField3#,IsDroped=#IsDroped#,DutyBy=#DutyBy#,Cause=#Cause#,CauseAnalyze=#CauseAnalyze#,Strategy=#Strategy#,DueDate=#DueDate#
+      WHERE IssueID = #Issueid#
+    </update>
+
+    <update id="UpdateBfIssueinfoIssueMachine" parameterClass="Hashtable">
+      UPDATE bf_issueinfo
+      SET IssueMachine=#NewCrId#
+      WHERE IssueMachine=#OldCrId#
+    </update>
+
+    <delete id="DeleteBfIssueinfo" parameterClass="string">
+      DELETE FROM
+      WHERE IssueID = #value#
+    </delete>
+  </statements>
+</sqlMap>

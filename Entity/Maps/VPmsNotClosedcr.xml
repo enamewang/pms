@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="VPmsNotClosedcrMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="VPmsNotClosedcr" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.VPmsNotClosedcr" />
+  </alias>
+  <resultMaps>
+    <resultMap id="VPmsNotClosedcrResult" class="VPmsNotClosedcr">
+      <result property="Crid" column="crid" type="string" dbType="varchar"/>
+      <result property="Pmsid" column="pmsid" type="string" dbType="varchar"/>
+      <result property="Type" column="type" type="string" dbType="varchar"/>
+      <result property="Pmsname" column="pmsname" type="string" dbType="varchar"/>
+      <result property="Releasedate" column="releasedate" type="string" dbType="varchar"/>
+      <result property="System" column="system" type="string" dbType="varchar"/>
+      <result property="Pm" column="pm" type="string" dbType="varchar"/>
+      <result property="Dept" column="dept" type="string" dbType="varchar"/>
+      <result property="Sd" column="sd" type="string" dbType="varchar"/>
+      <result property="Cost" column="cost" type="single" dbType="Real"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="GetVPmsNotClosedCR" parameterClass="string" resultMap="VPmsNotClosedcrResult">
+      SELECT crid AS Crid,pmsid AS Pmsid,type AS Type,pmsname AS Pmsname,releasedate AS Releasedate,system AS System,pm AS Pm,dept AS Dept,sd AS Sd,cost AS Cost
+      FROM v_PMS_NotClosedCR
+      where pmsid=#value#
+    </select>
+    <select id="GetVPmsNotClosedCRList_bak" parameterClass="hashtable" resultMap="VPmsNotClosedcrResult">
+      SELECT crid AS Crid,pmsid AS Pmsid,type AS Type,pmsname AS Pmsname,releasedate AS Releasedate,system AS System,pm AS Pm,dept AS Dept,sd AS Sd,cost AS Cost
+      FROM v_PMS_NotClosedCR
+      where pm like '%$USERNAME$%' or sd like '%$USERNAME$%'
+      and (DATEDIFF(dd, CONVERT(datetime, Parareleasedate),CONVERT(datetime, #ParamDate#)) >= 28)
+      ORDER BY crid
+    </select>
+    <select id="GetVPmsNotClosedCRList" parameterClass="hashtable" resultMap="VPmsNotClosedcrResult">
+      SELECT crid AS Crid,pmsid AS Pmsid,type AS Type,pmsname AS Pmsname,releasedate AS Releasedate,system AS System,pm AS Pm,dept AS Dept,sd AS Sd,cost AS Cost
+      FROM v_PMS_NotClosedCR
+      where 1=1
+      <isNotEmpty prepend="AND" property="USERNAME">(pm like '%$USERNAME$%' or sd like '%$USERNAME$%')</isNotEmpty>
+      and paraReleaseDate<![CDATA[<=]]>(#ParamDate#- interval 28 day)
+        ORDER BY crid
+      </select>
+    <select id="checkIsPMRole" parameterClass="string" resultClass="long">
+      SELECT  count(*) as rowcount
+      from v_PMS_NotClosedCR
+      WHERE pmsid = #PMSID#
+      AND pm like '%$LOGINNAME$%'
+    </select>
+    <select id="checkIsSDRole" parameterClass="string" resultClass="long">
+      SELECT  count(*) as rowcount
+      from v_PMS_NotClosedCR
+      WHERE pmsid = #PMSID#
+      AND sd like '%$LOGINNAME$%'
+    </select>
+    <insert id="InsertVPmsNotClosedcr" parameterClass="VPmsNotClosedcr">
+      INSERT INTO v_PMS_NotClosedCR
+      (crid,pmsid,type,pmsname,releasedate,system,pm,dept,sd,cost)
+      VALUES(#Crid#,#Pmsid#,#Type#,#Pmsname#,#Releasedate#,#System#,#Pm#,#Dept#,#Sd#,#Cost#)
+    </insert>
+    <update id="UpdateVPmsNotClosedcr" parameterClass="VPmsNotClosedcr">
+      UPDATE v_PMS_NotClosedCR
+      SET crid=#Crid#,pmsid=#Pmsid#,type=#Type#,pmsname=#Pmsname#,releasedate=#Releasedate#,system=#System#,pm=#Pm#,dept=#Dept#,sd=#Sd#,cost=#Cost#
+    </update>
+    <delete id="DeleteVPmsNotClosedcr" parameterClass="string">
+      DELETE FROM v_PMS_NotClosedCR
+    </delete>
+  </statements>
+</sqlMap>

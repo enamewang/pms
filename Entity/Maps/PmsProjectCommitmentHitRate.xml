@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsProjectCommitmentHitRateMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsProjectCommitmentHitRate" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsProjectCommitmentHitRate" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsProjectCommitmentHitRateResult" class="PmsProjectCommitmentHitRate">
+      <result property="Serial" column="serial" type="int" dbType="Int"/>
+      <result property="Month" column="Month" type="string" dbType="varchar"/>
+      <result property="Week" column="Week" type="string" dbType="varchar"/>
+      <result property="UserDept" column="UserDept" type="string" dbType="varchar"/>
+      <result property="PmsId" column="PMSId" type="string" dbType="varchar"/>
+      <result property="CrId" column="CRId" type="string" dbType="varchar"/>
+      <result property="CrName" column="CRName" type="string" dbType="varchar"/>
+      <result property="Type" column="Type" type="string" dbType="varchar"/>
+      <result property="System" column="System" type="string" dbType="varchar"/>
+      <result property="Domain" column="Domain" type="string" dbType="varchar"/>
+      <result property="Priority" column="Priority" type="string" dbType="varchar"/>
+      <result property="Site" column="Site" type="string" dbType="varchar"/>
+      <result property="DueDate" column="DueDate" type="DateTime" dbType="DateTime"/>
+      <result property="ReleaseDate" column="ReleaseDate" type="DateTime" dbType="DateTime"/>
+      <result property="Pm" column="PM" type="string" dbType="varchar"/>
+      <result property="Sd" column="SD" type="string" dbType="varchar"/>
+      <result property="Se" column="SE" type="string" dbType="varchar"/>
+      <result property="Qa" column="QA" type="string" dbType="varchar"/>
+      <result property="Status" column="Status" type="string" dbType="varchar"/>
+      <result property="Rerver1" column="RERVER1" type="string" dbType="varchar"/>
+      <result property="Rerver2" column="RERVER2" type="string" dbType="varchar"/>
+      <result property="Rerver3" column="RERVER3" type="string" dbType="varchar"/>
+      <result property="Rerver4" column="RERVER4" type="string" dbType="varchar"/>
+      <result property="Rerver5" column="RERVER5" type="string" dbType="varchar"/>
+      <result property="Createdate" column="createdate" type="DateTime" dbType="DateTime"/>
+      <result property="Createuser" column="createuser" type="string" dbType="varchar"/>
+      <result property="Maintaindate" column="maintaindate" type="DateTime" dbType="DateTime"/>
+      <result property="Maintainuser" column="maintainuser" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelecProjectCommitmentHitRatePmsHead" parameterClass="PmsProjectCommitmentHitRate" resultClass="PmsProjectCommitmentHitRate">
+	 SELECT ph.PMSId AS PmsId,CRId AS CrId,PMSName AS CrName,Type AS Type,System AS System,Fun_GetTeamDomain(ph.Domain,ph.System,ph.site) as Domain,
+		DueDate AS DueDate,ReleaseDate AS ReleaseDate,ph.Site,
+		PM AS Pm,SD AS Sd,GetDepartmentByUserName(ph.PM) AS UserDept
+		FROM  pms_head ph,pms_itarm_mapping pim
+		WHERE 1=1 AND VID='PM' and ph.PMSId = pim.PMSId
+		and lower(SD) in (select lower(user_name) from view_user WHERE department like 'AIC%')
+		<isNotEmpty prepend="AND" property="Week">
+        ReleaseDate BETWEEN Week2FirstDay(#Week#) and Week2LastDay(#Week#)
+      </isNotEmpty>
+	<isNotEmpty prepend="AND" property="Month">
+		substring(ReleaseDate,1,4) = substring(#Month#,1,4)
+		and substring(ReleaseDate,6,2) = substring(#Month#,6,2)
+	</isNotEmpty>
+      <isNotEmpty prepend="AND" property="UserDept">
+		  lower(pm) in (select lower(user_name) from view_user WHERE department like #UserDept#)
+	  </isNotEmpty>
+		
+    </select>
+
+    <select id="SelectPmsProjectCommitmentHitRate" parameterClass="PmsProjectCommitmentHitRate" resultClass="PmsProjectCommitmentHitRate">
+      SELECT serial AS Serial,Month AS Month,Week AS Week,UserDept AS UserDept,PMSId AS PmsId,CRId AS CrId,CRName AS CrName,Type AS Type,System AS System,Domain AS Domain,Priority AS Priority,Site AS Site,DueDate AS DueDate,ReleaseDate AS ReleaseDate,PM AS Pm,SD AS Sd,SE AS Se,QA AS Qa,Status AS Status,RERVER1 AS Rerver1,RERVER2 AS Rerver2,RERVER3 AS Rerver3,RERVER4 AS Rerver4,RERVER5 AS Rerver5,createdate AS Createdate,createuser AS Createuser,maintaindate AS Maintaindate,maintainuser AS Maintainuser
+      FROM pms_project_commitment_hit_rate
+      WHERE 1=1 AND Type = 'CR'
+      <isNotEmpty prepend="AND" property="Month">Month=#Month#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="Week">Week=#Week#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="UserDept">UserDept=#UserDept#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="Status">Status=#Status#</isNotEmpty>
+      order by UserDept
+    </select>
+    <insert id="InsertPmsProjectCommitmentHitRate" parameterClass="PmsProjectCommitmentHitRate">
+      INSERT INTO pms_project_commitment_hit_rate
+      (Month,Week,UserDept,PMSId,CRId,CRName,Type,System,Domain,Priority,Site,DueDate,ReleaseDate,PM,SD,SE,QA,Status,RERVER1,RERVER2,RERVER3,RERVER4,RERVER5,createdate,createuser,maintaindate,maintainuser)
+      VALUES(#Month#,#Week#,#UserDept#,#PmsId#,#CrId#,#CrName#,#Type#,#System#,#Domain#,#Priority#,#Site#,#DueDate:DateTime:1/1/0001 12:00:00 AM#,#ReleaseDate:DateTime:1/1/0001 12:00:00 AM#,#Pm#,#Sd#,#Se#,#Qa#,#Status#,#Rerver1#,#Rerver2#,#Rerver3#,#Rerver4#,#Rerver5#,#Createdate:DateTime:1/1/0001 12:00:00 AM#,#Createuser#,#Maintaindate:DateTime:1/1/0001 12:00:00 AM#,#Maintainuser#)
+      <selectKey resultClass="int" type="post" property="Serial">
+        SELECT @@IDENTITY as value
+      </selectKey>
+    </insert>
+    <update id="UpdatePmsProjectCommitmentHitRate" parameterClass="PmsProjectCommitmentHitRate">
+      UPDATE
+      SET Month=#Month#,Week=#Week#,UserDept=#UserDept#,PMSId=#PmsId#,CRId=#CrId#,CRName=#CrName#,Type=#Type#,System=#System#,Domain=#Domain#,Priority=#Priority#,Site=#Site#,DueDate=#DueDate#,ReleaseDate=#ReleaseDate#,PM=#Pm#,SD=#Sd#,SE=#Se#,QA=#Qa#,Status=#Status#,RERVER1=#Rerver1#,RERVER2=#Rerver2#,RERVER3=#Rerver3#,RERVER4=#Rerver4#,RERVER5=#Rerver5#,createdate=#Createdate#,createuser=#Createuser#,maintaindate=#Maintaindate#,maintainuser=#Maintainuser#
+      WHERE serial = #Serial#
+    </update>
+    <delete id="DeletePmsProjectCommitmentHitRate" parameterClass="PmsProjectCommitmentHitRate">
+      DELETE FROM pms_project_commitment_hit_rate
+      WHERE 1=1
+      <isNotEmpty prepend="AND" property="Month">Month=#Month#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="Week">Week=#Week#</isNotEmpty>
+    </delete>
+  </statements>
+</sqlMap>

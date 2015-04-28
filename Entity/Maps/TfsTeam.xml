@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="TfsTeamMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="TfsTeam" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.TfsTeam" />
+  </alias>
+  <resultMaps>
+    <resultMap id="TfsTeamResult" class="TfsTeam">
+      <result property="Teamid" column="teamID" type="int" dbType="Int"/>
+      <result property="TeamName" column="teamName" type="string" dbType="varchar"/>
+      <result property="TeamLeaderid" column="teamLeaderID" type="int" dbType="Int"/>
+      <result property="Description" column="description" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="createDate" type="DateTime" dbType="DateTime"/>
+      <result property="CreateUser" column="createUser" type="string" dbType="varchar"/>
+      <result property="MaintainDate" column="maintainDate" type="DateTime" dbType="DateTime"/>
+      <result property="MaintainUser" column="maintainUser" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectTfsTeam" parameterClass="string" resultClass="TfsTeam">
+      SELECT teamID AS Teamid,teamName AS TeamName,teamLeaderID AS TeamLeaderid,description AS Description,createDate AS CreateDate,createUser AS CreateUser,maintainDate AS MaintainDate,maintainUser AS MaintainUser
+      FROM
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          teamID = #value#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+
+    <select id="SelectTfsTeamForTeamid" parameterClass="string" resultClass="string">
+      SELECT teamID AS Teamid
+      FROM TFS_Team where  teamName = #value#
+
+    </select>
+
+
+    <insert id="InsertTfsTeam" parameterClass="TfsTeam">
+      INSERT INTO
+      (teamID,teamName,teamLeaderID,description,createDate,createUser,maintainDate,maintainUser)
+      VALUES(#Teamid#,#TeamName#,#TeamLeaderid#,#Description#,#CreateDate:DateTime:1/1/0001 12:00:00 AM#,#CreateUser#,#MaintainDate:DateTime:1/1/0001 12:00:00 AM#,#MaintainUser#)
+    </insert>
+    <update id="UpdateTfsTeam" parameterClass="TfsTeam">
+      UPDATE
+      SET teamID=#Teamid#,teamName=#TeamName#,teamLeaderID=#TeamLeaderid#,description=#Description#,createDate=#CreateDate#,createUser=#CreateUser#,maintainDate=#MaintainDate#,maintainUser=#MaintainUser#
+      WHERE teamID = #Teamid#
+    </update>
+    <delete id="DeleteTfsTeam" parameterClass="string">
+      DELETE FROM
+      WHERE teamID = #value#
+    </delete>
+  </statements>
+</sqlMap>

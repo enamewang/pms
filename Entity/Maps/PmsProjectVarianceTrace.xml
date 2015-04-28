@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsProjectVarianceTraceMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<alias>
+	<typeAlias alias="PmsProjectVarianceTrace" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsProjectVarianceTrace" />
+</alias>
+<resultMaps>
+		<resultMap id="PmsProjectVarianceTraceResult" class="PmsProjectVarianceTrace"><result property="Vid" column="VID" type="string" dbType="varchar"/><result property="PmsId" column="PMSId" type="string" dbType="varchar"/><result property="CacDate" column="CacDate" type="DateTime" dbType="DateTime"/><result property="Sv" column="SV" type="single" dbType="Real"/><result property="Cv" column="CV" type="single" dbType="Real"/><result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/><result property="Creator" column="Creator" type="string" dbType="varchar"/></resultMap>
+</resultMaps>
+<statements>
+	
+<select id="SelectPmsProjectVarianceTrace" parameterClass="string" resultClass="PmsProjectVarianceTrace">
+SELECT VID AS Vid,PMSId AS PmsId,CacDate AS CacDate,SV AS Sv,CV AS Cv,CreateDate AS CreateDate,Creator AS Creator
+FROM 
+<dynamic prepend="WHERE">
+<isParameterPresent>VID = #value#
+</isParameterPresent>
+</dynamic>
+</select>
+<insert id="InsertPmsProjectVarianceTrace" parameterClass="PmsProjectVarianceTrace">
+	INSERT INTO  
+(VID,PMSId,CacDate,SV,CV,CreateDate,Creator) 
+	VALUES(#Vid#,#PmsId#,#CacDate:DateTime:1/1/0001 12:00:00 AM#,#Sv#,#Cv#,#CreateDate:DateTime:1/1/0001 12:00:00 AM#,#Creator#)
+</insert>
+<update id="UpdatePmsProjectVarianceTrace" parameterClass="PmsProjectVarianceTrace">
+UPDATE  
+ SET VID=#Vid#,PMSId=#PmsId#,CacDate=#CacDate#,SV=#Sv#,CV=#Cv#,CreateDate=#CreateDate#,Creator=#Creator#
+WHERE VID = #Vid#
+</update>
+<delete id="DeletePmsProjectVarianceTrace" parameterClass="string">
+DELETE FROM 
+WHERE VID = #value#
+</delete>
+</statements>
+</sqlMap>

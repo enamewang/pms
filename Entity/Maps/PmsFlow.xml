@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsFlowMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<alias>
+	<typeAlias alias="PmsFlow" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsFlow" />
+</alias>
+<resultMaps>
+		<resultMap id="PmsFlowResult" class="PmsFlow"><result property="FlowId" column="FlowId" type="int" dbType="int"/>
+		<result property="PmsId" column="PMSId" type="string" dbType="varchar"/>
+		<result property="Creator" column="Creator" type="string" dbType="varchar"/>
+		<result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/>
+		</resultMap>
+</resultMaps>
+<statements>
+	
+<select id="SelectPmsFlow" parameterClass="string" resultClass="PmsFlow">
+	SELECT FlowId AS FlowId,PMSId AS PmsId,Creator AS Creator,CreateDate AS CreateDate
+	FROM pms_flow
+	<dynamic prepend="WHERE">
+<isParameterPresent>FlowId = #value#
+</isParameterPresent>
+</dynamic>
+</select>
+
+<!--<select id="SelectPmsFlowByPmsId" parameterClass="string" resultClass="PmsStage">
+	select ps.StageId AS StageId,ps.StageName AS StageName  from   pms_flow_template pt
+	left join  pms_flow pf on pt.flowid=pf.flowid
+	left join  pms_stage ps on ps.StageId = pt.StageID and ps.VID='PM'
+	<dynamic prepend="WHERE">
+		<isParameterPresent>
+			pmsid = #value#
+		</isParameterPresent>
+	</dynamic>
+	order by pt.`Order`
+</select>-->
+
+
+  <select id="SelectPmsFlowByPmsId" parameterClass="string" resultClass="PmsStage">
+    select ps.StageId AS StageId,ps.StageName AS StageName  from   pms_flow_template pt
+    left join  pms_flow pf on pt.flowid=pf.flowid
+    left join  pms_stage ps on ps.StageId = pt.StageID and ps.VID='PM' and ps.StageFlag='N'
+    WHERE ps.StageId is not null
+    <dynamic prepend="and ">
+    <isParameterPresent>
+        pmsid = #value#
+    </isParameterPresent>
+  </dynamic>
+    order by pt.`Order`
+  </select>
+
+
+  <insert id="InsertPmsFlow" parameterClass="PmsFlow">
+	INSERT INTO pms_flow
+	(FlowId,PMSId,Creator,CreateDate)
+	VALUES(#FlowId#,#PmsId#,#Creator#,#CreateDate#)
+</insert>
+<update id="UpdatePmsFlow" parameterClass="PmsFlow">
+  UPDATE  pms_flow
+  SET FlowId=#FlowId#,Creator=#Creator#,CreateDate=#CreateDate#
+  WHERE PMSId=#PmsId#
+</update>
+<delete id="DeletePmsFlow" parameterClass="string">
+	DELETE FROM pms_flow
+	WHERE FlowId = #value#
+</delete>
+</statements>
+</sqlMap>

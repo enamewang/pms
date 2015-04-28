@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="SdpSysMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="SdpSys" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.SdpSys" />
+  </alias>
+  <resultMaps>
+    <resultMap id="SdpSysResult" class="SdpSys">
+      <result property="Systype" column="systype" type="string" dbType="nvarchar"/>
+      <result property="Term" column="term" type="string" dbType="nvarchar"/>
+      <result property="Description" column="description" type="string" dbType="nvarchar"/>
+      <result property="Lmuser" column="lmuser" type="string" dbType="nvarchar"/>
+      <result property="Lmdate" column="lmdate" type="int" dbType="int"/>
+      <result property="Lmtime" column="lmtime" type="int" dbType="int"/>
+      
+      <result property="ItArmDB" column="ItArmDB" type="string" dbType="nvarchar"/>
+      <result property="CrId" column="CrId" type="string" dbType="nvarchar"/>
+      <result property="PM" column="PM" type="string" dbType="nvarchar"/>
+      <result property="SystemName" column="SystemName" type="string" dbType="nvarchar"/>
+      <result property="CRName" column="CRName" type="string" dbType="nvarchar"/>
+      <result property="Site" column="Site" type="string" dbType="nvarchar"/>
+      <result property="ImpactSite" column="ImpactSite" type="string" dbType="nvarchar"/>
+      <result property="CrId_co" column="CrId_co" type="string" dbType="nvarchar"/>
+      <result property="CRName_co" column="CRName_co" type="string" dbType="nvarchar"/>
+      <result property="SystemDomain" column="SystemDomain" type="string" dbType="nvarchar"/>
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="SelectRequirementList" parameterClass="string" resultClass="SdpSys">
+      SELECT  r.serial COLLATE Chinese_PRC_90_CI_AS AS CrId ,
+      ISNULL(u.ACCOUNT, '') COLLATE Chinese_PRC_90_CI_AS AS PM ,
+      r.[SITE] COLLATE Chinese_PRC_90_CI_AS AS Site ,
+      ISNULL(s.SYSTEM_BNAME, '') COLLATE Chinese_PRC_90_CI_AS AS SystemName ,
+      ISNULL(REPLACE(cr_name, '', NULL), statement1) COLLATE Chinese_PRC_90_CI_AS AS CRName ,
+      ISNULL(s.[SITE], '') COLLATE Chinese_PRC_90_CI_AS AS ImpactSite,
+      ISNULL(s.system_domain, '') COLLATE Chinese_PRC_90_CI_AS AS SystemDomain
+      FROM    dbo.REQUIREMENT r
+      LEFT JOIN ITARM_USER u ON r.pm_no = u.emp_no
+      LEFT JOIN ITARM_SYSTEM s ON r.SYS_ID = s.system_id
+      WHERE r.serial = #value#
+    </select>
+
+    <select id="SelectRequirementCoList" parameterClass="string" resultClass="SdpSys">
+      SELECT DISTINCT c.m_SERIAL COLLATE Chinese_PRC_90_CI_AS AS CrId
+      ,c.C_SERIAL COLLATE Chinese_PRC_90_CI_AS AS CrId_co
+      ,ISNULL(u.ACCOUNT,'') COLLATE Chinese_PRC_90_CI_AS AS PM
+      ,c.[SITE] COLLATE Chinese_PRC_90_CI_AS AS Site
+      ,ISNULL(s.SYSTEM_BNAME,'') COLLATE Chinese_PRC_90_CI_AS AS SystemName
+      ,ISNULL(cr_co_name,'') COLLATE Chinese_PRC_90_CI_AS AS CRName_co
+      ,ISNULL(c.cr_name,'') COLLATE Chinese_PRC_90_CI_AS AS CRName
+      ,ISNULL(s.[SITE],'') COLLATE Chinese_PRC_90_CI_AS AS ImpactSite
+      ,ISNULL(s.system_domain, '') COLLATE Chinese_PRC_90_CI_AS AS SystemDomain
+      FROM REQUIREMENT_CO c
+      LEFT JOIN ITARM_USER u
+      ON c.pm_no = u.emp_no
+      LEFT JOIN ITARM_SYSTEM s
+      ON c.SYS_ID = s.system_id
+      LEFT JOIN v_CRCOName n
+      ON c.M_Serial = n.M_Serial
+      WHERE c.C_SERIAL = #value#
+    </select>
+
+
+    <select id="SelectSdpSys" parameterClass="SdpSys" resultClass="SdpSys">
+      SELECT systype AS Systype,term AS Term,description AS Description,lmuser AS Lmuser,
+      lmdate AS Lmdate,lmtime AS Lmtime
+      FROM sdp_sys
+      WHERE 1=1
+      <isNotEmpty prepend="AND" property="Systype">systype=#Systype#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="Term">term=#Term#</isNotEmpty>
+    </select>
+    <select id="GetDBDateTime" resultClass="DateTime">
+      SELECT CURRENT_DATE() AS now
+    </select>
+    <insert id="InsertSdpSys" parameterClass="SdpSys">
+      INSERT INTO  sdp_sys
+      (systype,term,description,lmuser,lmdate,lmtime)
+      VALUES(#Systype#,#Term#,#Description#,#Lmuser#,#Lmdate#,#Lmtime#)
+    </insert>
+
+    <update id="UpdateSdpSys" parameterClass="SdpSys">
+      UPDATE  sdp_sys
+      SET systype=#Systype#,term=#Term#,description=#Description#,lmuser=#Lmuser#,
+      lmdate=#Lmdate#,lmtime=#Lmtime#
+    </update>
+
+    <delete id="DeleteSdpSys" parameterClass="string">
+      DELETE FROM sdp_sys
+    </delete>
+  </statements>
+</sqlMap>

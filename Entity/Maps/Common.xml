@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Qisda.PMS.Entity" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <statements>
+    <select id="SelectSysDateTime" parameterClass="string" resultClass="DateTime">
+      SELECT  CURRENT_TIMESTAMP()
+    </select>
+
+    <select id="SelectToday" parameterClass="string" resultClass="string">
+      SELECT CONVERT(VARCHAR(8),GETDATE(),112) AS today
+      <!--yyyyMMdd-->
+    </select>
+
+    <select id="SelectToday2" parameterClass="string" resultClass="int">
+      SELECT  CONVERT(INT, CONVERT(VARCHAR(8), GETDATE(), 112)) AS today
+    </select>
+  </statements>
+</sqlMap>

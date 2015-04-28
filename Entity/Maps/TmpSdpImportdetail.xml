@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="TmpSdpImportdetailMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="TmpSdpImportdetail" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.TmpSdpImportdetail" />
+  </alias>
+  <resultMaps>
+    <resultMap id="TmpSdpImportdetailResult" class="TmpSdpImportdetail">
+      <result property="Vid" column="vid" type="string" dbType="varchar"/>
+      <result property="Serial" column="serial" type="int" dbType="Int"/>
+      <result property="Pmsid" column="pmsid" type="string" dbType="varchar"/>
+      <result property="Parentno" column="parentno" type="string" dbType="varchar"/>
+      <result property="Wbs" column="wbs" type="string" dbType="varchar"/>
+      <result property="Phase" column="phase" type="string" dbType="varchar"/>
+      <result property="TaskType" column="taskType" type="int" dbType="Int"/>
+      <result property="TaskName" column="taskName" type="string" dbType="varchar"/>
+      <result property="Plancost" column="plancost" type="single" dbType="Real"/>
+      <result property="Planstartday" column="planstartday" type="DateTime" dbType="DateTime"/>
+      <result property="Planendday" column="planendday" type="DateTime" dbType="DateTime"/>
+      <result property="Role" column="role" type="string" dbType="varchar"/>
+      <result property="Resource" column="resource" type="string" dbType="varchar"/>
+      <result property="FunctionType" column="FunctionType" type="int" dbType="Int"/>
+      <result property="OperationType" column="OperationType" type="int" dbType="Int"/>
+      <result property="TaskComplexity" column="TaskComplexity" type="int" dbType="Int"/>
+      <result property="ProgramLanguage" column="ProgramLanguage" type="int" dbType="Int"/>
+      <result property="Flag" column="flag" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <!--modified by Abel Li  on 20140117  -->
+    <select id="SelectTmpSdpDetail" parameterClass="TmpSdpImportdetail" resultClass="TmpSdpImportdetail">
+      SELECT vid as Vid, serial AS Serial,pmsid AS Pmsid,parentno as Parentno,wbs as Wbs,taskName AS TaskName,plancost AS Plancost,
+      planstartday AS Planstartday,planendday AS Planendday,IFNULL(role,'') AS Role, IFNULL(resource,'') AS Resource,
+      TaskType AS TaskType,FunctionType AS FunctionType,OperationType AS OperationType,
+      TaskComplexity AS TaskComplexity,ProgramLanguage AS ProgramLanguage,IFNULL(PHASE,0) AS Phase,
+      IFNULL((select data2 from pms_sys where type='FunctionType' and data1=FunctionType),'') as FunctionTypeDesc,
+      IFNULL((select data2 from pms_sys where type='OperationType' and data1=OperationType),'') as OperationTypeDesc,
+      IFNULL((select data3 from pms_sys where type='TaskType' and data1=Phase and data2=TaskType),'') as TaskTypeDesc,
+      IFNULL((select data2 from pms_sys where type='TaskComplexity' and data1=TaskComplexity),'') as TaskComplexityDesc,
+      IFNULL((select data2 from pms_sys where type='ProgramLanguage' and data1=ProgramLanguage),'') as ProgramLanguageDesc,
+      IFNULL((select data2 from pms_sys where type='Phase' and data1=Phase),'') as PhaseDesc
+      from tmp_sdp_importdetail
+      where 1=1 and flag='N' 
+      <isNotEmpty prepend="AND" property="Pmsid">pmsid=#Pmsid#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="Phase">phase=#Phase#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="TaskName">taskName=#TaskName#</isNotEmpty>      
+      <isNotEmpty prepend="AND" property="Role">role=#Role#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="Resource">resource=#Resource#</isNotEmpty>
+      <isGreaterThan prepend="AND" property="Serial" compareValue="0">serial=#Serial#</isGreaterThan>      
+    </select>
+    <!--end modified-->
+
+
+    <insert id="InsertTmpSdpDetail" parameterClass="TmpSdpImportdetail">
+      INSERT INTO  tmp_sdp_importdetail
+      (vid,pmsid,parentno,wbs,phase,taskType,taskName,plancost,planstartday,
+      planendday,role,resource,FunctionType,OperationType,TaskComplexity,ProgramLanguage,flag)      
+      VALUES(#Vid#,#Pmsid#,#Parentno#,#Wbs#,#Phase#,#TaskType#,#TaskName#,
+      #Plancost#,#Planstartday#,#Planendday#,#Role#,#Resource#,#FunctionType#,#OperationType#,
+      #TaskComplexity#,#ProgramLanguage#,#Flag#)
+      <selectKey resultClass="int" type="post" property="Serial">
+        SELECT @@IDENTITY as value
+      </selectKey>
+    </insert>
+    <update id="UpdateTmpSdpDetailFlag" parameterClass="TmpSdpImportdetail">
+      UPDATE  tmp_sdp_importdetail
+      SET
+      flag='Y'
+      WHERE serial=#Serial#
+    </update>
+    <delete id="DeleteTmpSdpImportDetailByPmsId" parameterClass="Hashtable">
+      DELETE  from tmp_sdp_importdetail WHERE pmsid=#Pmsid#
+    </delete>    
+  </statements>
+</sqlMap>

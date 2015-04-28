@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="TfsUserListMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="TfsUserList" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.TfsUserList" />
+  </alias>
+  <resultMaps>
+    <resultMap id="TfsUserListResult" class="TfsUserList">
+      <result property="Userid" column="userID" type="int" dbType="Int"/>
+      <result property="UserEmpNo" column="userEmpNo" type="string" dbType="varchar"/>
+      <result property="Domain" column="domain" type="string" dbType="varchar"/>
+      <result property="UserName" column="userName" type="string" dbType="varchar"/>
+      <result property="MailAddress" column="mailAddress" type="string" dbType="varchar"/>
+      <result property="Password" column="password" type="string" dbType="varchar"/>
+      <result property="LoginName" column="loginName" type="string" dbType="varchar"/>
+      <result property="Groupid" column="groupID" type="int" dbType="Int"/>
+      <result property="Teamid" column="teamID" type="int" dbType="Int"/>
+      <result property="Active" column="active" type="string" dbType="varchar"/>
+      <result property="NeedDirectiveApproved" column="needDirectiveApproved" type="string" dbType="varchar"/>
+      <result property="Needaic1Approved" column="needAIC1Approved" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="createDate" type="DateTime" dbType="DateTime"/>
+      <result property="CreateUser" column="createUser" type="string" dbType="varchar"/>
+      <result property="MaintainDate" column="maintainDate" type="DateTime" dbType="DateTime"/>
+      <result property="MaintainUser" column="maintainUser" type="string" dbType="varchar"/>
+      <result property="ExtNo" column="EXT_NO" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectTfsUserList" parameterClass="string" resultClass="TfsUserList">
+      SELECT userID AS Userid,userEmpNo AS UserEmpNo,domain AS Domain,userName AS UserName,mailAddress AS MailAddress,password AS Password,loginName AS LoginName,groupID AS Groupid,teamID AS Teamid,active AS Active,needDirectiveApproved AS NeedDirectiveApproved,needAIC1Approved AS Needaic1Approved,createDate AS CreateDate,createUser AS CreateUser,maintainDate AS MaintainDate,maintainUser AS MaintainUser,EXT_NO AS ExtNo
+      FROM
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          userID = #value#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+
+
+    <select id="SelectTfsUserListUserNameCount" parameterClass="string" resultClass="int">
+      SELECT Count(*)   FROM tfs_user_list where UserName = #value#
+    </select>
+
+    <insert id="InsertTfsUserList" parameterClass="TfsUserList">
+      INSERT INTO tfs_user_list
+      (userEmpNo,domain,userName,mailAddress,password,loginName,groupID,teamID,active,needDirectiveApproved,needAIC1Approved,createDate,createUser,maintainDate,maintainUser)
+      VALUES(#UserEmpNo#,#Domain#,#UserName#,#MailAddress#,#Password#,#LoginName#,#Groupid#,#Teamid#,#Active#,#NeedDirectiveApproved#,#Needaic1Approved#,getdate(),#CreateUser#,getdate(),#MaintainUser#)
+      <selectKey resultClass="int" type="post" property="Userid">
+        SELECT @@IDENTITY as value
+      </selectKey>
+    </insert>
+    <update id="UpdateTfsUserList" parameterClass="TfsUserList">
+      UPDATE
+      SET userEmpNo=#UserEmpNo#,domain=#Domain#,userName=#UserName#,mailAddress=#MailAddress#,password=#Password#,loginName=#LoginName#,groupID=#Groupid#,teamID=#Teamid#,active=#Active#,needDirectiveApproved=#NeedDirectiveApproved#,needAIC1Approved=#Needaic1Approved#,createDate=#CreateDate#,createUser=#CreateUser#,maintainDate=#MaintainDate#,maintainUser=#MaintainUser#,EXT_NO=#ExtNo#
+      WHERE userID = #Userid#
+    </update>
+    <delete id="DeleteTfsUserList" parameterClass="string">
+      DELETE FROM
+      WHERE userID = #value#
+    </delete>
+  </statements>
+</sqlMap>

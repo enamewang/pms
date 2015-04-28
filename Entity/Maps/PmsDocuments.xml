@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsDocumentsMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsDocuments" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsDocuments" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsDocumentsResult" class="PmsDocuments">
+      <result property="PmsId" column="PMSId" type="string" dbType="varchar"/>
+      <result property="DocTypeId" column="DocTypeId" type="int" dbType="int"/>
+      <result property="FileName" column="FileName" type="string" dbType="varchar"/>
+      <result property="Path" column="Path" type="string" dbType="varchar"/>
+      <result property="Size" column="Size" type="string" dbType="varchar"/>
+      <result property="Creator" column="Creator" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/>
+      <result property="TypeName" column="TypeName" type="string" dbType="varchar"/>
+    </resultMap>
+
+    <resultMap id="PmsDocumentsDocTypeIdResult" class="PmsDocuments">
+      <result property="DocTypeId" column="DocTypeId" type="int" dbType="int"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+    <!--Modify by Ename Wang,add FileName=#FileName# on 20111124-->
+    <select id="SelectPmsDocuments" parameterClass="PmsDocuments" resultClass="PmsDocuments">
+      SELECT PMSId AS PmsId,DocTypeId AS DocTypeId,FileName AS FileName,Path AS Path,
+      Size AS Size,Creator AS Creator,CreateDate AS CreateDate
+      FROM PMS_Documents
+      WHERE 1=1
+      <isNotEmpty prepend="AND" property="PmsId">PMSId=#PmsId#</isNotEmpty>
+      <isNotEqual compareValue="0" prepend="AND" property="DocTypeId" >DocTypeId=#DocTypeId#</isNotEqual>
+      <isNotEmpty  prepend="AND" property="FileName" >FileName=#FileName#</isNotEmpty>
+      ORDER BY PMSId,DocTypeId
+    </select>
+
+
+    <select id="SelectPmsDocumentsDocTypeId" parameterClass="Hashtable" resultMap="PmsDocumentsDocTypeIdResult">
+      SELECT DISTINCT
+      DocTypeId AS DocTypeId
+      FROM    pms_documents
+      WHERE   PMSId = #PmsId#
+      AND DocTypeId IN ( $DocTypeIds$ )
+    </select>
+    <!--add  AS DocTypeId by Ename Wang on 20111124-->
+    <select id="SelectPmsDocumentsOther" parameterClass="PmsDocuments" resultClass="PmsDocuments">
+      SELECT pd.pmsid AS PMSID,pd.DocTypeId AS DocTypeId,pdt.typename AS TypeName,pd.FileName AS FileName,
+      pd.Path AS Path,pd.creator AS Creator,pd.createdate AS CreateDate
+      FROM pms_documents pd,pms_document_type pdt
+      WHERE pd.doctypeid=pdt.typeid
+      <isNotEmpty prepend="AND" property="PmsId">pd.PMSId=#PmsId#</isNotEmpty>
+      ORDER BY pd.DocTypeId
+    </select>
+
+    <insert id="InsertPmsDocuments" parameterClass="PmsDocuments">
+      INSERT INTO  PMS_Documents
+      (PMSId,DocTypeId,FileName,Path,Size,Creator,CreateDate)
+      VALUES(#PmsId#,#DocTypeId#,#FileName#,#Path#,#Size#,#Creator#,#CreateDate#)
+    </insert>
+
+    <update id="UpdatePmsDocuments" parameterClass="PmsDocuments">
+      UPDATE  PMS_Documents
+      SET FileName=#FileName#,Path=#Path#,
+      Size=#Size#,Creator=#Creator#,CreateDate=#CreateDate#
+      WHERE PMSId=#PmsId# AND DocTypeId=#DocTypeId#
+    </update>
+
+    <delete id="DeletePmsDocuments" parameterClass="string">
+      DELETE FROM PMS_Documents
+      WHERE PMSId=#PmsId# AND DocTypeId=#DocTypeId# AND FileName=#FileName#
+    </delete>
+  </statements>
+</sqlMap>

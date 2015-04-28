@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="BfBuginfoMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="BfBuginfo" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.BfBuginfo" />
+  </alias>
+  <resultMaps>
+
+    <resultMap id="BfBugInfoPartResult" class="BfBuginfo">
+      <result property="BugId" column="BugID" />
+      <result property="BugMachine" column="BugMachine" type="string" dbType="varchar"/>
+      <result property="BugTitle" column="BugTitle" type="string" dbType="varchar"/>
+      <result property="ClosedDate" column="ClosedDate" type="DateTime" dbType="DateTime" />
+      <result property="DutyBy" column="DutyBy" type="string" dbType="varchar"/>
+    </resultMap>
+
+  </resultMaps>
+  <statements>
+
+    <select id="SelectBfBugInfoPart" parameterClass="Hashtable" resultMap="BfBugInfoPartResult">
+      SELECT  BugID AS BugId ,
+      BugTitle AS BugTitle ,
+      CASE WHEN ClosedDate='0000-00-00 00:00:00' THEN '1900-01-01 01:01:01' ELSE ClosedDate END as ClosedDate,
+      BugMachine AS BugMachine,
+      DutyBy AS DutyBy
+      FROM   bf_buginfo
+      WHERE  1 = 1
+
+      <isNotEmpty prepend="AND" property="CrIds"> BugMachine IN ($CrIds$) </isNotEmpty>
+      <isNotEmpty prepend="AND" property="BugOwner"> DutyBy IN ($BugOwner$) </isNotEmpty>
+      <isNotEmpty prepend="AND" property="BugCreator">OpenedBy LIKE CONCAT('%',CONCAT(#BugCreator#,'%')) </isNotEmpty>
+      <dynamic>
+        <isNotEqual prepend="AND" property="CreateDateFrom" compareValue="0001-01-01 0:00:00" >          
+            OpenedDate <![CDATA[>=]]>  #CreateDateFrom#         
+        </isNotEqual>
+        <isNotEqual prepend="AND" property="CreateDateTo" compareValue="0001-01-01 0:00:00" >
+          OpenedDate <![CDATA[<=]]> #CreateDateTo#
+        </isNotEqual>
+        <isNotEqual prepend="AND" property="ResolvedDateFrom" compareValue="0001-01-01 0:00:00" >
+          ResolvedDate <![CDATA[>=]]> #ResolvedDateFrom#
+        </isNotEqual>
+        <isNotEqual prepend="AND" property="ResolvedDateTo" compareValue="0001-01-01 0:00:00" >
+          ResolvedDate <![CDATA[<=]]> #ResolvedDateTo#
+        </isNotEqual>
+        <isNotEqual prepend="AND" property="ClosedDateFrom" compareValue="0001-01-01 0:00:00" >
+          ClosedDate <![CDATA[>=]]> #ClosedDateFrom#
+        </isNotEqual>
+        <isNotEqual prepend="AND" property="ClosedDateTo" compareValue="0001-01-01 0:00:00" >
+          ClosedDate <![CDATA[<=]]> #ClosedDateTo#
+        </isNotEqual>
+      </dynamic>
+
+    </select>
+
+    <update id="UpdateBfResultinfoBugMachine" parameterClass="Hashtable">
+      UPDATE bf_buginfo
+      SET BugMachine=#NewCrId#
+      WHERE BugMachine=#OldCrId#
+    </update>
+
+  </statements>
+</sqlMap>

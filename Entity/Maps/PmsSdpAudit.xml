@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsSdpAuditMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsSdpAudit" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsSdpAudit" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsSdpAuditResult" class="PmsSdpAudit">
+      <result property="Pmsid" column="pmsid" type="string" dbType="varchar"/>
+      <result property="SdpVersion" column="SDPVersion" type="single" dbType="Real"/>
+      <result property="Auditor" column="Auditor" type="string" dbType="varchar"/>
+      <result property="AuditResult" column="AuditResult" type="string" dbType="varchar"/>
+      <result property="AuditComment" column="AuditComment" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/>
+      <result property="Creator" column="Creator" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectPmsSdpAuditByPmsId" parameterClass="Hashtable" resultClass="PmsSdpAudit">
+      SELECT pmsid AS Pmsid,SDPVersion AS SdpVersion,Auditor AS Auditor,AuditResult AS AuditResult,AuditComment AS AuditComment,CreateDate AS CreateDate,Creator AS Creator
+      FROM pms_sdp_audit
+      WHERE pmsid = #Pmsid#
+    </select>
+    <!--<select id="SelectPmsSdpVersionByTaskno" parameterClass="Hashtable" resultClass="PmsSdpVersion">
+      SELECT serial AS Serial,taskno AS Taskno,pmsid AS Pmsid,PlanStartDay AS PlanStartDay,PlanEndDay AS PlanEndDay,PlanCost AS PlanCost,RefCost AS RefCost,version AS Version,CreateDate AS CreateDate,Creator AS Creator
+      FROM pms_sdp_version
+      WHERE taskno=#Taskno#
+    </select>-->
+    <insert id="InsertPmsSdpAudit" parameterClass="PmsSdpAudit">
+      INSERT INTO pms_sdp_audit
+      (pmsid,SDPVersion,Auditor,AuditResult,AuditComment,CreateDate,Creator)
+      VALUES(#Pmsid#,#SdpVersion#,#Auditor#,#AuditResult#,#AuditComment#,#CreateDate#,#Creator#)
+    </insert>
+    <update id="UpdatePmsSdpAudit" parameterClass="PmsSdpAudit">
+      UPDATE
+      SET pmsid=#Pmsid#,SDPVersion=#SdpVersion#,Auditor=#Auditor#,AuditResult=#AuditResult#,AuditComment=#AuditComment#,CreateDate=#CreateDate#,Creator=#Creator#
+      WHERE pmsid = #Pmsid#
+    </update>
+    <delete id="DeletePmsSdpAudit" parameterClass="string">
+      DELETE FROM
+      WHERE pmsid = #value#
+    </delete>
+  </statements>
+</sqlMap>

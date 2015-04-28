@@ -1,0 +1,461 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+	<head>
+		<title>Calendar</title>
+		<META http-equiv="Content-Type" content="text/html; charset=unicode">
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<LINK href="Calendar.css" type="text/css" rel="stylesheet">
+	</head>
+	<body topmargin="0" leftmargin="0" text="#ffffff">
+		<table onselectstart="return false;" id="tblCal" style="FONT-SIZE: 11px; WIDTH: 100%; CURSOR: hand; HEIGHT: 100%; BACKGROUND-COLOR: #ffffff; align: center"
+			cellSpacing="1" cellPadding="0" border="0">
+			<tr>
+				<td style="PADDING-RIGHT: 0px; CURSOR: default" colSpan="7" height="0"></td>
+			</tr>
+			<tr>				
+				<td  id="celMonth" height="20px" style="CURSOR: default" colSpan="4"class="YearMonthSelectTitle" align="right">
+					<table cellSpacing="0" cellPadding="0" align="right" border="0" width="100%" ID="Table1">
+						<tr>
+							<td class="YearMonthSelectTitle" align="right">Month</td>
+							<td align="center">
+								<p><select style="WIDTH: 90px; CURSOR: default" onchange="JavaScript:iCalendar.onYearMonthChange();"
+										size="1" name="selMonth" ID="Select1">
+										<option value="January" selected>January</option>
+										<option value="February">February</option>
+										<option value="March">March</option>
+										<option value="April">April</option>
+										<option value="May">May</option>
+										<option value="June">June</option>
+										<option value="July">July</option>
+										<option value="August">August</option>
+										<option value="September">September</option>
+										<option value="October">October</option>
+										<option value="November">November</option>
+										<option value="December">December</option>
+									</select>
+								</p>
+							</td>
+							<td class="YearMonthSelectTitle" colSpan="1" width="15px" align="left"></td>
+						</tr>
+					</table>
+				</td>
+								
+				<td class="YearMonthSelectTitle" id="celYear" colSpan="3" align="left">
+					<table style="CURSOR: default" cellSpacing="0" cellPadding="0" align="center" border="0" width="100%" ID="Table2">
+						<tr>
+							
+							<td class="YearMonthSelectTitle" align="center" colSpan="1" style="height: 22px">Year</td>
+							<td colSpan="2" align="center" style="height: 22px">
+								<p><select style="WIDTH: 70px; CURSOR: default" onchange="JavaScript:iCalendar.onYearMonthChange();"
+										size="1" name="selYear" ID="Select2"></select>
+								</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<div>
+					<td class="ArrowNormal" id="celBack" align="center" height="26">&lt;</td>
+					<td class="YearAndMonth" id="tdYearMonth" colSpan="5"></td>
+					<td class="ArrowNormal" id="celNext" align="center" height="26">&gt;</td>
+				</div>
+			</tr>
+			<tr>
+				<td class="WeekDay" width="14%">Sun</td>
+				<td class="WeekDay" width="14%">Mon</td>
+				<td class="WeekDay" width="14%">Tue</td>
+				<td class="WeekDay" width="14%">Wed</td>
+				<td class="WeekDay" width="14%">Thu</td>
+				<td class="WeekDay" width="14%">Fri</td>
+				<td class="WeekDay" width="14%">Sat</td>
+			</tr>
+			<tr>
+				<td id="d1" width="14%"></td>
+				<td id="d2" width="14%"></td>
+				<td id="d3" width="14%"></td>
+				<td id="d4" width="14%"></td>
+				<td id="d5" width="14%"></td>
+				<td id="d6" width="14%"></td>
+				<td id="d7" width="14%"></td>
+			</tr>
+			<tr>
+				<td id="d8" width="14%"></td>
+				<td id="d9" width="14%"></td>
+				<td id="d10" width="14%"></td>
+				<td id="d11" width="14%"></td>
+				<td id="d12" width="14%"></td>
+				<td id="d13" width="14%"></td>
+				<td id="d14" width="14%"></td>
+			</tr>
+			<tr>
+				<td id="d15" width="14%"></td>
+				<td id="d16" width="14%"></td>
+				<td id="d17" width="14%"></td>
+				<td id="d18" width="14%"></td>
+				<td id="d19" width="14%"></td>
+				<td id="d20" width="14%"></td>
+				<td id="d21" width="14%"></td>
+			</tr>
+			<tr>
+				<td id="d22" width="14%"></td>
+				<td id="d23" width="14%"></td>
+				<td id="d24" width="14%"></td>
+				<td id="d25" width="14%"></td>
+				<td id="d26" width="14%"></td>
+				<td id="d27" width="14%"></td>
+				<td id="d28" width="14%"></td>
+			</tr>
+			<tr>
+				<td id="d29" width="14%"></td>
+				<td id="d30" width="14%"></td>
+				<td id="d31" width="14%"></td>
+				<td id="d32" width="14%"></td>
+				<td id="d33" width="14%"></td>
+				<td id="d34" width="14%"></td>
+				<td id="d35" width="14%"></td>
+			</tr>
+			<tr>
+				<td id="d36" width="14%"></td>
+				<td id="d37" width="14%"></td>
+				<td id="d38" width="14%"></td>
+				<td id="d39" width="14%"></td>
+				<td id="d40" width="14%"></td>
+				<td id="d41" width="14%"></td>
+				<td id="d42" width="14%"></td>
+			</tr>
+			<tr>
+				<td colSpan="7" height="30" style="cursor:default">
+					<table cellSpacing="2" cellPadding="0" width="100%" border="0" ID="Table3">
+						<tr>
+							<td width="5%"></td>
+							<td align="center"><input class="input" id="btnClear" onclick="JavaScript:window.returnValue='';window.close();"
+									type="button" value="Clear" NAME="btnClear"></td>
+							<td align="center"><input class="input" id="btnClose" onclick="JavaScript:window.close();" type="button" value="Close" NAME="btnClose"></td>
+							<td width="5%"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<script language="javascript" id="Calendar1" type="text/javascript">
+		//*****************************************************
+		// Calendar class define
+		// Creator: Keven Zhang
+		// CreateOn: 2006/11/02(yyyy/mm/dd)
+		// Version: 1.3.0
+		//*****************************************************
+		// Constructor. sDate's formate should be parsed by 'new Date(...)' function correctly.
+		<!--
+		function Calendar(sDate) {
+			this.initialDate = sDate;
+			this.currentDate = "";
+			this.selectedCell = "";	
+			
+			// Display calendar.
+			var dNow = new Date();
+			this.buildYears();
+			this.buildDays(dNow);
+			this.pickYearMonth(dNow);
+			
+			// Initialize Calendar by date-assigned.			
+			this.setDate(this.initialDate);
+		}
+
+		// Create year list depends on BeforeYears and AfterYears.
+		Calendar.prototype.buildYears = function(){
+			var dNow = new Date();
+			var iScrap = dNow.getFullYear() - Calendar.BeforeYears;
+			for (var i = 0; i <= (Calendar.BeforeYears + Calendar.AfterYears); i++)
+			{
+				var objNewOpt = document.createElement("OPTION");
+				objNewOpt.text = (iScrap + i);
+				objNewOpt.value = (iScrap + i);
+				selYear.options.add(objNewOpt);
+			}
+		};
+
+		// Create days number in cells.
+		Calendar.prototype.buildDays = function (dDate) {
+			var iMonth = dDate.getMonth();
+			var iYear = dDate.getFullYear();
+			var iDay = dDate.getDate();
+
+			var dStart = new Date(iYear, iMonth, 1);
+			var dEnd = Calendar.dateAdd("m", 1, dStart);
+
+			var iDays = Calendar.dateDiff("d", dStart, dEnd);
+			var iStartDay = (dStart.getDay() + 1);	
+				
+			var dLastEnd = Calendar.dateAdd("d", -1, dStart);
+			var iLastDays = dLastEnd.getDate();			
+			
+			for ( i = 1; i < 43; i++) {
+				sScrap = "d" + i
+				objItem = document.all[sScrap];				
+				var intCheckWeekend = i%7;
+				if (i < iStartDay)
+				{
+					objItem.innerText = (iLastDays - iStartDay + 1 + i);
+					
+					if (intCheckWeekend == 0 || intCheckWeekend == 1)
+					{
+						objItem.className = "LastMonthDayWeekendMouseNormal";
+					}
+					else
+					{
+						objItem.className = "LastMonthDayWorkMouseNormal";
+					}
+				}				
+				else if ((i - iStartDay + 1) > iDays)
+				{
+					objItem.innerText = (i - iStartDay + 1 - iDays);
+					
+					if (intCheckWeekend == 0 || intCheckWeekend == 1)
+					{
+						objItem.className = "NextMonthDayWeekendMouseNormal";
+					}
+					else
+					{
+						objItem.className = "NextMonthDayWorkMouseNormal";
+					}
+				}
+				else 
+				{
+					objItem.innerText = (i - iStartDay + 1);				
+					if (intCheckWeekend == 0 || intCheckWeekend == 1)
+					{
+						objItem.className = "DayWeekendMouseNormal";
+					}
+					else
+					{
+						objItem.className = "DayWorkNormal";
+					}
+				}
+			}
+
+			if (this.currentDate != "")
+				if ((this.currentDate.getMonth() == dDate.getMonth()) && 
+					(this.currentDate.getFullYear() == dDate.getFullYear()))
+					document.all("d" + (iStartDay - 1 + this.currentDate.getDate())).className = "DayWorkMouseDown";					
+			var dNow = new Date();
+			if ((dNow.getMonth() == dDate.getMonth()) && (dNow.getFullYear() == dDate.getFullYear()))
+			{
+				document.all("d" + (iStartDay - 1 + dNow.getDate())).className = "DayNowMouseUp";
+			}
+		};
+
+		// Pitch on year and month in select element according to date assigned.		
+		Calendar.prototype.pickYearMonth = function (dDate) {
+			var iYear = dDate.getFullYear();
+			selYear.value = iYear;
+			if (selYear.value == "")
+			{
+				var objNewOpt = document.createElement("OPTION");
+				objNewOpt.text = iYear;
+				objNewOpt.value = iYear;
+				if (iYear < parseInt(selYear.options[0].value)) 
+					{iPos = 0;}
+				else 
+					{iPos = selYear.options.length + 1;}
+				selYear.options.add(objNewOpt,iPos);
+				selYear.value = iYear;
+			}
+			selMonth.selectedIndex = dDate.getMonth();
+			tdYearMonth.innerText = selMonth.options[selMonth.selectedIndex].value + " " + iYear;
+		};
+			
+		// Initialize Calendar by date-assigned.		
+		Calendar.prototype.setDate = function(sDate){			
+			this.currentDate = "";
+			this.selectedCell = "";
+			
+			var dNow = new Date(sDate);						
+			this.currentDate = dNow;
+			
+			if (dNow == "NaN") {dNow = new Date(); this.currentDate = dNow;}
+			this.pickYearMonth(dNow);
+			this.buildDays(dNow);
+		};
+
+		// Default date formate is [mm dd, yyyy], Sample: [February 4, 2006].
+		Calendar.prototype.setDateStyle = function(sYear, sMonth, sDay) {
+			return sMonth + " " + sDay + ", " + sYear ;
+		};
+		
+		// Picked one day, then close Calendar.				
+		Calendar.prototype.pickDay = function(sCel) {			
+			var sMonth = selMonth.options[selMonth.selectedIndex].text;	
+			var sYear = selYear.value;		
+			if (sCel.className == "LastMonthDayWorkMouseDown" || sCel.className == "LastMonthDayWeekendMouseDown")
+			{
+				if (selMonth.selectedIndex != "0")
+				{
+				sMonth =selMonth.options[selMonth.selectedIndex - 1].text;
+				}
+				else
+				{
+				sMonth =selMonth.options[selMonth.selectedIndex + 11].text;
+				sYear = parseInt(selYear.value) - 1 ;
+				}
+			}
+			else if (sCel.className == "NextMonthDayWorkMouseDown" || sCel.className == "NextMonthDayWeekendMouseDown")
+			{		
+				if (selMonth.selectedIndex != "11")
+				{
+				sMonth =selMonth.options[selMonth.selectedIndex + 1].text;
+				}
+				else
+				{
+				sMonth =selMonth.options[selMonth.selectedIndex - 11].text;
+				sYear = parseInt(selYear.value) + 1 ;
+				}
+			}
+				
+			window.returnValue = this.setDateStyle(sYear, sMonth, sCel.innerText);
+			window.close();
+		};		
+		
+		// Changed current year or month in dropdownlist.
+		Calendar.prototype.onYearMonthChange = function() {
+			var dDate = new Date(selYear.value, selMonth.selectedIndex, 1);
+			this.buildDays(dDate);
+		};
+
+		// Days cell style change when mouse move.
+		Calendar.prototype.raiseCell = function() {
+			var objItem = window.event.srcElement;
+			if (objItem.className == "DayWorkNormal") objItem.className = "DayWorkMouseUp";
+			if (objItem.className == "ArrowNormal") objItem.className = "ArrowMouseUp";		
+			if (objItem.className == "LastMonthDayWeekendMouseNormal") objItem.className = "LastMonthDayWeekendMouseUp";	
+			if (objItem.className == "LastMonthDayWorkMouseNormal") objItem.className = "LastMonthDayWorkMouseUp";	
+			if (objItem.className == "NextMonthDayWeekendMouseNormal") objItem.className = "NextMonthDayWeekendMouseUp";	
+			if (objItem.className == "NextMonthDayWorkMouseNormal") objItem.className = "NextMonthDayWorkMouseUp";	
+			if (objItem.className == "DayWeekendMouseNormal") objItem.className = "DayWeekendMouseUp";				
+		};
+
+		Calendar.prototype.sinkCell = function() {
+			var objItem = window.event.srcElement;
+			if (objItem.className == "DayWorkMouseUp") objItem.className = "DayWorkNormal";
+			if (objItem.className == "ArrowMouseUp") objItem.className = "ArrowNormal";			
+			if (objItem.className == "LastMonthDayWeekendMouseUp") objItem.className = "LastMonthDayWeekendMouseNormal";	
+			if (objItem.className == "LastMonthDayWorkMouseUp") objItem.className = "LastMonthDayWorkMouseNormal";	
+			if (objItem.className == "NextMonthDayWeekendMouseUp") objItem.className = "NextMonthDayWeekendMouseNormal";	
+			if (objItem.className == "NextMonthDayWorkMouseUp") objItem.className = "NextMonthDayWorkMouseNormal";	
+			if (objItem.className == "DayWeekendMouseUp") objItem.className = "DayWeekendMouseNormal";	
+		};
+
+		Calendar.prototype.downCell = function() {
+			this.selectedCell = "";
+			var sCel = window.event.srcElement;
+			if (sCel.className == "DayWorkMouseUp") {sCel.className = "DayWorkMouseDown"; this.selectedCell = sCel;}
+			if (sCel.className == "DayWU") {sCel.className = "DayWD"; this.selectedCell = sCel;}
+			if (sCel.className == "ArrowMouseUp") sCel.className = "ArrowMouseDown";
+			if (sCel.className == "DayNowMouseUp"){sCel.className = "DayNowMouseDown";this.selectedCell = sCel;}
+			if (sCel.className == "LastMonthDayWeekendMouseUp"){sCel.className = "LastMonthDayWeekendMouseDown";this.selectedCell = sCel;}
+			if (sCel.className == "NextMonthDayWeekendMouseUp"){sCel.className = "NextMonthDayWeekendMouseDown";this.selectedCell = sCel;}
+			if (sCel.className == "LastMonthDayWorkMouseUp"){sCel.className = "LastMonthDayWorkMouseDown";this.selectedCell = sCel;}
+			if (sCel.className == "NextMonthDayWorkMouseUp"){sCel.className = "NextMonthDayWorkMouseDown";this.selectedCell = sCel;}
+			if (sCel.className == "DayWeekendMouseUp"){sCel.className = "DayWeekendMouseDown";this.selectedCell = sCel;}
+			
+		};
+
+		Calendar.prototype.upCell = function() {			
+			var sCel = window.event.srcElement;
+			if (sCel.className == "ArrowMouseDown")
+			{
+				sCel.className = "ArrowMouseUp";
+				if (sCel.id == "celBack")
+				{
+					dDate = Calendar.dateAdd("m", -1, new Date(selYear.value, selMonth.selectedIndex, 1));
+					this.pickYearMonth(dDate);
+					this.buildDays(dDate);
+				}
+				if (sCel.id == "celNext")
+				{
+					dDate = Calendar.dateAdd("m", 1, new Date(selYear.value, selMonth.selectedIndex, 1));
+					this.pickYearMonth(dDate);
+					this.buildDays(dDate);
+				}
+			}
+			if (sCel.className == "DayWorkMouseDown" 
+			|| sCel.className == "DayWeekendMouseDown"
+			|| sCel.className == "DayNowMouseDown"
+			|| sCel.className == "LastMonthDayWeekendMouseDown"
+			|| sCel.className == "NextMonthDayWeekendMouseDown" 
+			|| sCel.className == "LastMonthDayWorkMouseDown" 
+			|| sCel.className == "NextMonthDayWorkMouseDown") 
+			{
+				this.pickDay(sCel);
+			}
+
+			
+		};
+
+		// Class static method definition.
+		Calendar.dateAdd = function(sInterval, iNumber, dDate) {
+			var dTemp = new Date(dDate);
+			if (dTemp == "NaN") dTemp = new Date();
+			switch (sInterval) {
+				case "s" :
+					return new Date(Date.parse(dTemp) + (1000 * iNumber));
+				case "n" :
+					return new Date(Date.parse(dTemp) + (60000 * iNumber));
+				case "h" :
+					return new Date(Date.parse(dTemp) + (3600000 * iNumber));
+				case "d" :
+					return new Date(Date.parse(dTemp) + (86400000 * iNumber));
+				case "w" :
+					return new Date(Date.parse(dTemp) + ((86400000 * 7) * iNumber));
+				case "m" :
+					return new Date(dTemp.getFullYear(), (dTemp.getMonth()) + iNumber, dTemp.getDate());
+				case "y" :
+					return new Date((dTemp.getFullYear() + iNumber), dTemp.getMonth(), dTemp.getDate());
+			}
+		};
+
+		Calendar.dateDiff = function(sInterval, dStart, dEnd) {
+			dStart = new Date(dStart);
+				if (dStart == "NaN") dStart = new Date();
+			dEnd = new Date(dEnd);
+				if (dEnd == "NaN") dEnd = new Date();
+			switch (sInterval) {
+				case "s" :
+					return parseInt((Date.parse(dEnd) - Date.parse(dStart)) / 1000);
+				case "n" :
+					return parseInt((Date.parse(dEnd) - Date.parse(dStart)) / 60000);
+				case "h" :
+					return parseInt((Date.parse(dEnd) - Date.parse(dStart)) / 3600000);
+				case "d" :
+					iScrap = (Date.parse(dEnd) - Date.parse(dStart)) / 86400000
+					iScrap = iScrap + .1
+					return parseInt(iScrap);
+				case "w" :
+					return parseInt((Date.parse(dEnd) - Date.parse(dStart)) / (86400000 * 7));
+				case "m" :
+					return (dEnd.getMonth() - dStart.getMonth());
+				case "y" :
+					return (dEnd.getFullYear() - dStart.getFullYear());
+			}
+		};
+
+		// Class static variable definiton.
+		Calendar.BeforeYears = 2;
+		Calendar.AfterYears = 5;		
+		// -->			
+		</script>
+		<script language="JavaScript" type="text/javascript">
+		<!--			
+			var iCalendar = new Calendar(window.dialogArguments);
+						
+		//window.onload = function() { iCalendar = new Calendar(); };
+			window.onerror = function() { alert(arguments[0]); };
+			window.returnValue = window.dialogArguments;
+			document.onmouseover = function(){ iCalendar.raiseCell(); };
+			document.onmouseout = function(){ iCalendar.sinkCell(); }
+ 			document.onmousedown = function(){ iCalendar.downCell(); }
+			document.onmouseup = function(){ iCalendar.upCell(); }
+		// -->
+		</script>
+	</body>
+</html>

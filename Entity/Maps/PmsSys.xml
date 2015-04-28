@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsSysMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsSys" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsSys" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsSysResult" class="PmsSys">
+      <result property="Serial" column="Serial" type="int" dbType="int"/>
+      <result property="Vid" column="VID" type="string" dbType="varchar"/>
+      <result property="Type" column="Type" type="string" dbType="varchar"/>
+      <result property="Data1" column="Data1" type="string" dbType="varchar"/>
+      <result property="Data2" column="Data2" type="string" dbType="varchar"/>
+      <result property="Data3" column="Data3" type="string" dbType="varchar"/>
+      <result property="Data4" column="Data4" type="string" dbType="varchar"/>
+      <result property="Data5" column="Data5" type="string" dbType="varchar"/>
+      <result property="Creator" column="Creator" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectData1ByType" parameterClass="Hashtable" resultClass="PmsSys">
+      SELECT DISTINCT Serial AS Serial,Data1 AS Data1
+      FROM pms_sys
+      WHERE VID=#Vid# AND Type = #Type#
+      ORDER BY Data1
+    </select>
+
+    <select id="SelectData1Data2ByType" parameterClass="Hashtable" resultClass="PmsSys">
+      SELECT DISTINCT Serial AS Serial,Data1 AS Data1,Data2 AS Data2
+      FROM pms_sys
+      WHERE VID=#Vid# AND Type = #Type#
+      ORDER BY Data1
+    </select>
+    
+    <select id="SelectData2Data3ByType" parameterClass="Hashtable" resultClass="PmsSys">
+      SELECT DISTINCT Serial AS Serial,Data1 AS Data1,Data2 AS Data2,Data3 AS Data3
+      FROM pms_sys
+      WHERE VID=#Vid# AND Type = #Type# AND Data1 = #Data1#
+      ORDER BY Data2
+    </select>
+
+    <select id="SelectData2ByTypeData1" parameterClass="Hashtable" resultClass="PmsSys">
+      SELECT DISTINCT Serial AS Serial,Data2 AS Data2
+      FROM pms_sys
+      WHERE VID=#Vid# AND Type = #Type# AND Data1=#Data1#
+      ORDER BY Serial
+    </select>
+
+    <select id="SelectData1ByTypeData5" parameterClass="Hashtable" resultClass="PmsSys">
+      SELECT DISTINCT Serial AS Serial,Data1 AS Data1
+      FROM pms_sys
+      WHERE VID=#Vid# AND Type = #Type# AND Data5=#Data5#
+      ORDER BY Serial
+    </select>
+
+    <select id="SelectPmsSys" parameterClass="string" resultClass="PmsSys">
+      SELECT Serial AS Serial,VID AS Vid,Type AS Type,Data1 AS Data1,Data2 AS Data2,
+      Data3 AS Data3,Data4 AS Data4,Data5 AS Data5,Creator AS Creator,CreateDate AS CreateDate
+      FROM pms_sys
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          Serial = #value#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+
+    <insert id="InsertPmsSys" parameterClass="PmsSys">
+      INSERT INTO  pms_sys
+      (Serial,VID,Type,Data1,Data2,Data3,Data4,Data5,Creator,CreateDate)
+      VALUES(#Serial#,#Vid#,#Type#,#Data1#,#Data2#,#Data3#,#Data4#,#Data5#,#Creator#,#CreateDate#)
+    </insert>
+
+    <update id="UpdatePmsSys" parameterClass="PmsSys">
+      UPDATE  pms_sys
+      SET Serial=#Serial#,VID=#Vid#,Type=#Type#,Data1=#Data1#,Data2=#Data2#,Data3=#Data3#,
+      Data4=#Data4#,Data5=#Data5#,Creator=#Creator#,CreateDate=#CreateDate#
+      WHERE Serial = #Serial#
+    </update>
+
+    <delete id="DeletePmsSys" parameterClass="string">
+      DELETE FROM pms_sys
+      WHERE Serial = #value#
+    </delete>
+
+  </statements>
+</sqlMap>

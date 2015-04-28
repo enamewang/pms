@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="SdpDetailMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<alias>
+		<typeAlias alias="SdpDetail" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.SdpDetail" />
+		<!--add by ename wang-->
+		<typeAlias alias="MyTaskCondition" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.MyTaskCondition" />
+		<!--end add-->
+	</alias>
+	<resultMaps>
+		<resultMap id="SdpDetailResult" class="SdpDetail">
+			<result property="Serial" column="serial" type="int" dbType="int"/>
+			<result property="Pmsid" column="pmsid" type="string" dbType="varchar"/>
+			<result property="Taskno" column="taskno" type="int" dbType="int"/>
+			<result property="TaskName" column="taskName" type="string" dbType="varchar"/>
+			<result property="Refcost" column="refcost" type="double" dbType="double"/>
+			<result property="Plancost" column="plancost" type="double" dbType="double"/>
+			<result property="Actualcost" column="actualcost" type="double" dbType="double"/>
+			<result property="Planstartday" column="planstartday" type="DateTime" dbType="DateTime"/>
+			<result property="Planendday" column="planendday" type="DateTime" dbType="DateTime"/>
+			<result property="Actualstartday" column="actualstartday" type="DateTime" dbType="DateTime"/>
+			<result property="Actualendday" column="actualendday" type="DateTime" dbType="DateTime"/>
+			<result property="PretaskNo" column="pretaskNo" type="int" dbType="int"/>
+			<result property="Role" column="role" type="string" dbType="varchar"/>
+			<result property="Resource" column="resource" type="string" dbType="varchar"/>
+			<result property="Remark" column="remark" type="string" dbType="varchar"/>
+			<result property="Phase" column="phase" type="string" dbType="varchar"/>
+			<result property="Iseditable" column="iseditable" type="string" dbType="varchar"/>
+			<result property="Deleteflag" column="deleteflag" type="string" dbType="varchar"/>
+			<result property="Createdate" column="createdate" type="DateTime" dbType="DateTime"/>
+			<result property="Createuser" column="createuser" type="string" dbType="varchar"/>
+			<result property="Maintaindate" column="maintaindate" type="DateTime" dbType="DateTime"/>
+			<result property="Maintainuser" column="maintainuser" type="string" dbType="varchar"/>
+			<result property="Completedpercent" column="completedpercent" type="double" dbType="double"/>     
+      <result property="AuditStatusDesc" column="auditstatusdesc" type="string" dbType="varchar"/>
+      <result property="TaskStatusDesc" column="taskstatusdesc" type="string" dbType="varchar"/>
+      <result property="FunctionTypeDesc" column="functiontypedesc" type="string" dbType="varchar"/>
+      <result property="OperationTypeDesc" column="operationtypedesc" type="string" dbType="varchar"/>
+      <result property="TaskTypeDesc" column="tasktypedesc" type="string" dbType="varchar"/>
+      <result property="TaskComplexityDesc" column="taskcomplexitydesc" type="string" dbType="varchar"/>
+      <result property="ProgramLanguageDesc" column="programlanguagedesc" type="string" dbType="varchar"/>
+      <result property="AuditorAgent" column="auditoragent" type="string" dbType="varchar"/>      
+      <result property="LastPlancost" column="lastplancost" type="double" dbType="double"/>
+      <result property="LastRefcost" column="lastrefcost" type="double" dbType="double"/>
+      <result property="LastPlanstartday" column="lastplanstartday" type="DateTime" dbType="DateTime"/>
+      <result property="LastPlanendday" column="lastplanendday" type="DateTime" dbType="DateTime"/>
+      
+		</resultMap>
+		<!--auditstatus,taskstatus,tasktype,functiontype,operationtype,taskcomplexity,
+    programlanguage,scheduleremark)-->
+
+		<!--add by ename wang-->
+		<resultMap id="MyTaskResult" class="MyTaskCondition">
+			<result property="PMSName" column="PMSName" type="string" dbType="varchar"/>
+			<result property="Serial" column="serial" type="int" dbType="Int"/>
+			<result property="PMSId" column="pmsid" type="string" dbType="varchar"/>
+			<result property="TaskNo" column="taskno" type="int" dbType="Int"/>
+			<result property="TaskName" column="taskName" type="string" dbType="varchar"/>
+			<result property="PlanCost" column="plancost" type="double" dbType="double"/>
+			<result property="ActualCost" column="actualcost" type="double" dbType="double"/>
+			<result property="PlanStartDay" column="planstartday" type="DateTime" dbType="DateTime"/>
+			<result property="PlanEndDay" column="planendday" type="DateTime" dbType="DateTime"/>
+			<result property="ActualStartDay" column="actualstartday" type="DateTime" dbType="DateTime"/>
+			<result property="ActualEndDay" column="actualendday" type="DateTime" dbType="DateTime"/>
+			<result property="PreTaskNo" column="pretaskNo" type="int" dbType="Int"/>
+			<result property="Role" column="role" type="string" dbType="varchar"/>
+			<result property="Resource" column="resource" type="string" dbType="varchar"/>
+			<result property="Remark" column="remark" type="string" dbType="varchar"/>
+			<result property="Phase" column="phase" type="string" dbType="varchar"/>
+		</resultMap>
+		<!--end add-->
+	</resultMaps>
+	<statements>
+		<select id="SelectPmsSdpDetailInfo" parameterClass="string" resultClass="SdpDetail">
+			SELECT serial AS Serial,PMSID AS PMSID,taskno AS TaskNo,taskName AS TaskName,
+			CAST(plancost AS DECIMAL) AS PlanCost,CAST(actualcost AS DECIMAL) AS ActualCost,planstartday AS PlanStartDay,
+			planendday AS PlanEndDay,actualstartday AS ActualStartDay,actualendday AS ActualEndDay,
+			pretaskNo AS PreTaskNo,role AS Role,resource AS Resource,remark AS Remark,phase AS Phase,
+			iseditable AS IsEditable,deleteflag AS DeleteFlag,createdate AS CreateDate,
+			createuser AS CreateUser,maintaindate AS MaintainDate,maintainuser AS MaintainUser,CAST(completedPercent AS DECIMAL) AS CompletedPercent
+			FROM sdp_detail
+			WHERE 1=1
+			<dynamic>
+				<isNotEmpty prepend="AND" property="Pmsid">pmsid=#Pmsid#</isNotEmpty>
+				<isNotEmpty prepend="AND" property="Phase">phase=#Phase# </isNotEmpty>
+				<isNotEmpty prepend="AND" property="TaskName">taskName=#TaskName# </isNotEmpty>
+				<isNotEmpty prepend="AND" property="Resource">resource=#Resource# </isNotEmpty>
+				<isNotEmpty prepend="AND" property="Role">role=#Role# </isNotEmpty>
+			</dynamic>
+			order by resource,planstartday,actualstartday  <!--added by hansel on 20101220-->
+		</select>
+		<insert id="InsertSdpDetailByTemplate" parameterClass="SdpDetail">
+			INSERT INTO  SDP_Detail
+			(pmsid,taskno,taskName,plancost,actualcost,planstartday,planendday,actualstartday,
+			actualendday,pretaskNo,role,resource,remark,phase,iseditable,deleteflag,createdate,
+			createuser,maintaindate,maintainuser,completedpercent)
+			SELECT #Pmsid#,taskno,taskName,plancost,actualcost,planstartday,planendday,actualstartday,
+			actualendday,pretaskNo,role,resource,remark,phase,iseditable,deleteflag,createdate,
+			createuser,maintaindate,maintainuser,0 AS completedpercent
+			FROM sdp_detail_template
+			WHERE Type=#Type#
+			<selectKey resultClass="int" type="post" property="Serial">
+				SELECT @@IDENTITY as value
+			</selectKey>
+		</insert>
+
+		<insert id="InsertSdpDetailByTemplateOnTypeChange" parameterClass="Hashtable">
+			INSERT INTO  SDP_Detail
+			(pmsid,taskno,taskName,plancost,actualcost,planstartday,planendday,actualstartday,
+			actualendday,pretaskNo,role,resource,remark,phase,iseditable,deleteflag,createdate,
+			createuser,maintaindate,maintainuser,completedpercent)
+			SELECT #PmsId#,taskno,taskName,plancost,actualcost,planstartday,planendday,actualstartday,
+			actualendday,pretaskNo,role,resource,remark,phase,iseditable,deleteflag,createdate,
+			createuser,maintaindate,maintainuser,0 AS completedpercent
+			from sdp_detail_template where phase in
+			(select phase from sdp_detail_template where type=#NewType# and phase not in
+			(select phase from sdp_detail_template   where type=#OldType# ))
+		</insert>
+
+		<!--modified by Ename Wang on 20131225  -->
+		<select id="SelectSdpDetail" parameterClass="SdpDetail" resultClass="SdpDetail">
+      SELECT serial AS Serial,pmsid AS Pmsid,taskno AS Taskno,taskName AS TaskName,refcost AS Refcost,plancost AS Plancost,
+      actualcost AS Actualcost,planstartday AS Planstartday,planendday AS Planendday,
+      actualstartday AS Actualstartday,actualendday AS Actualendday,IFNULL(pretaskNo,0) AS PretaskNo,
+      IFNULL(role,'') AS Role,IFNULL(resource,'') AS Resource,IFNULL(remark,'') AS Remark,
+      IFNULL(PHASE,0) AS Phase,iseditable AS Iseditable,deleteflag AS Deleteflag,
+      createdate AS Createdate,createuser AS Createuser,maintaindate AS Maintaindate,
+      maintainuser AS Maintainuser,completedpercent AS Completedpercent,
+      auditstatus AS AuditStatus,taskstatus AS TaskStatus,FunctionType AS FunctionType,OperationType AS OperationType,
+      TaskType AS TaskType,TaskComplexity AS TaskComplexity,ProgramLanguage AS ProgramLanguage,
+      Auditor AS Auditor,ScheduleRemark AS ScheduleRemark,ExecuteRemark AS ExecuteRemark,
+      IFNULL((select data2 from pms_sys where type='AuditStatus' and data1=auditstatus),'') as AuditStatusDesc,
+      IFNULL((select data2 from pms_sys where type='TaskStatus' and data1=taskstatus),'') as TaskStatusDesc,
+      IFNULL((select data2 from pms_sys where type='FunctionType' and data1=FunctionType),'') as FunctionTypeDesc,
+      IFNULL((select data2 from pms_sys where type='OperationType' and data1=OperationType),'') as OperationTypeDesc,
+      IFNULL((select data3 from pms_sys where type='TaskType' and data1=Phase and data2=TaskType),'') as TaskTypeDesc,
+      IFNULL((select data2 from pms_sys where type='TaskComplexity' and data1=TaskComplexity),'') as TaskComplexityDesc,
+      IFNULL((select data2 from pms_sys where type='ProgramLanguage' and data1=ProgramLanguage),'') as ProgramLanguageDesc,
+      IFNULL((select data2 from pms_sys where type='AuditAgent' and data1=Auditor),'') as AuditorAgent,
+      (select b.plancost from pms_sdp_version b where b.pmsid = SDP_Detail.pmsid AND b.taskno=sdp_detail.serial order by b.version DESC limit 1) as LastPlancost,
+      (select b.refcost from pms_sdp_version b where b.pmsid = SDP_Detail.pmsid AND b.taskno=sdp_detail.serial order by b.version DESC limit 1) as LastRefcost,
+      (select b.planstartday from pms_sdp_version b where b.pmsid = SDP_Detail.pmsid AND b.taskno=sdp_detail.serial order by b.version DESC limit 1) as LastPlanstartday,
+      (select b.planendday from pms_sdp_version b where b.pmsid = SDP_Detail.pmsid AND b.taskno=sdp_detail.serial order by b.version DESC limit 1) as LastPlanendday
+      FROM SDP_Detail
+      WHERE 1=1
+      <isNotEmpty prepend="AND" property="Pmsid">pmsid=#Pmsid#</isNotEmpty>
+			<isNotEmpty prepend="AND" property="Phase">phase=#Phase#</isNotEmpty>
+			<isNotEmpty prepend="AND" property="TaskName">taskName=#TaskName#</isNotEmpty>
+			<isNotEmpty prepend="AND" property="Phase">phase=#Phase#</isNotEmpty>
+			<isNotEmpty prepend="AND" property="Role">role=#Role#</isNotEmpty>
+			<isNotEmpty prepend="AND" property="Resource">resource=#Resource#</isNotEmpty>
+			<isGreaterThan prepend="AND" property="Serial" compareValue="0">serial=#Serial#</isGreaterThan>
+			<isGreaterThan prepend="AND" property="AuditStatus" compareValue="0">auditstatus=#AuditStatus#</isGreaterThan>
+			order by resource, planstartday,actualstartday
+		</select>
+		<!--end modified-->
+		<select id="SelectMinPlanSDate" parameterClass="Hashtable" resultClass="SdpDetail">
+			SELECT IFNULL( min(planstartday),'1900-01-01 00:00:00') AS Planstartday
+			FROM SDP_Detail
+			WHERE 1=1  AND planstartday <![CDATA[<>]]> '1900-01-01 00:00:00'
+			<isNotEmpty prepend="AND" property="Pmsid">pmsid=#Pmsid#</isNotEmpty>
+			<isNotEmpty prepend="AND" property="Phase">phase=#Phase#</isNotEmpty>
+		</select>
+
+		<select id="SelectMaxPlanEDate" parameterClass="Hashtable" resultClass="SdpDetail">
+			SELECT IFNULL( max(planendday),'1900-01-01 00:00:00') AS Planendday
+			FROM SDP_Detail
+			WHERE 1=1 AND planendday <![CDATA[<>]]> '1900-01-01 00:00:00'
+			<isNotEmpty prepend="AND" property="Pmsid">pmsid=#Pmsid#</isNotEmpty>
+			<isNotEmpty prepend="AND" property="Phase">phase=#Phase#</isNotEmpty>
+		</select>
+
+		<select id="SelectMinActualStartDate" parameterClass="Hashtable" resultClass="SdpDetail">
+			SELECT IFNULL( min(actualstartday),'1900-01-01 00:00:00') AS Actualstartday
+			FROM SDP_Detail
+			WHERE 1=1 AND actualstartday <![CDATA[<>]]> '1900-01-01 00:00:00'
+			<isNotEmpty prepend="AND" property="Pmsid">pmsid=#Pmsid#</isNotEmpty>
+			<isNotEmpty prepend="AND" property="Phase">phase=#Phase#</isNotEmpty>
+		</select>
+
+		<select id="SelectMaxActualEndDate" parameterClass="Hashtable" resultClass="SdpDetail">
+			SELECT IFNULL( max(actualendday),'1900-01-01 00:00:00') AS Actualendday
+			FROM SDP_Detail
+			WHERE 1=1 AND Actualendday <![CDATA[<>]]> '1900-01-01 00:00:00'
+			<isNotEmpty prepend="AND" property="Pmsid">pmsid=#Pmsid#</isNotEmpty>
+			<isNotEmpty prepend="AND" property="Phase">phase=#Phase#</isNotEmpty>
+		</select>
+
+		<select id="SelectPhaseByPmsID" parameterClass="SdpDetail" resultClass="SdpDetail">
+			SELECT DISTINCT phase AS Phase
+			FROM SDP_Detail
+			WHERE 1=1
+			<isNotEmpty prepend="AND" property="Pmsid">pmsid=#Pmsid#</isNotEmpty>
+		</select>
+
+		<!--add by ITO.Abel.Li on 20140108  -->
+		<select id="SelectSdpDetailAndCrIdBySerial" parameterClass="Hashtable" resultClass="SdpDetail">
+			SELECT d.pmsid AS Pmsid,d.createuser AS Createuser,d.auditor AS Auditor,m.crid AS CrId
+			FROM sdp_detail d,pms_itarm_mapping m
+			WHERE d.pmsid=m.PMSId and d.serial=#Serial#
+		</select>
+		<!--end add-->
+
+		<!--modified by ITO.Abel.Li on 20131226  -->
+		<insert id="InsertSdpDetail" parameterClass="SdpDetail">
+			INSERT INTO  SDP_Detail
+			(pmsid,taskno,taskName,refcost,plancost,actualcost,planstartday,planendday,actualstartday,
+			actualendday,pretaskNo,role,resource,remark,phase,iseditable,deleteflag,createdate,
+			createuser,maintaindate,maintainuser,completedpercent,
+			auditstatus,taskstatus,functiontype,operationtype,tasktype,taskcomplexity,
+			programlanguage,auditor,scheduleremark)
+			VALUES(#Pmsid#,#Taskno#,#TaskName#,#Refcost#,#Plancost#,#Actualcost#,#Planstartday#,#Planendday#,
+			#Actualstartday#,#Actualendday#,#PretaskNo#,#Role#,#Resource#,#Remark#,#Phase#,#Iseditable#,
+			#Deleteflag#,#Createdate#,#Createuser#,#Maintaindate#,#Maintainuser#,#Completedpercent#,
+			#AuditStatus#,#TaskStatus#,#FunctionType#,#OperationType#,#TaskType#,#TaskComplexity#,
+			#ProgramLanguage#,#Auditor#,#ScheduleRemark#)
+			<selectKey resultClass="int" type="post" property="Serial">
+				SELECT @@IDENTITY as value
+			</selectKey>
+		</insert>
+		<!--end modified-->
+
+		<update id="DeleteOldCRSDP" parameterClass="string">
+			UPDATE  SDP_Detail
+			SET deleteflag='Y'
+			WHERE  pmsid in
+			(select pmsid from pms_itarm_mapping where crid=#value#)
+
+		</update>
+
+		<!--add by Ename Wang on 20131228  -->
+		<update id="UpdateSdpDetailAuditStatus" parameterClass="SdpDetail">
+			UPDATE  SDP_Detail
+			SET  auditstatus=#AuditStatus#
+			WHERE serial in ($Serials$)
+		</update>
+		<!--end add-->
+
+		<!--modified by ITO.Abel.Li on 20131228  -->
+		<update id="UpdateSdpDetail" parameterClass="SdpDetail">     
+      UPDATE  SDP_Detail
+      SET taskno=#Taskno#,taskName=#TaskName#,refcost=#Refcost#,plancost=#Plancost#,actualcost=#Actualcost#,
+      planstartday=#Planstartday#,planendday=#Planendday#,actualstartday=#Actualstartday#,
+      actualendday=#Actualendday#,pretaskNo=#PretaskNo#,role=#Role#,resource=#Resource#,
+      remark=#Remark#,phase=#Phase#,iseditable=#Iseditable#,deleteflag=#Deleteflag#,createdate=#Createdate#,
+      createuser=#Createuser#,
+      maintaindate=#Maintaindate#,maintainuser=#Maintainuser#,completedpercent=#Completedpercent#,
+      auditstatus=#AuditStatus#,taskstatus=#TaskStatus#,functiontype=#FunctionType#,operationtype=#OperationType#,
+      tasktype=#TaskType#,taskcomplexity=#TaskComplexity#,programlanguage=#ProgramLanguage#,
+      Auditor=#Auditor#,scheduleremark=#ScheduleRemark#,ExecuteRemark=#ExecuteRemark#
+      WHERE serial = #Serial# AND pmsid=#Pmsid#
+    </update>
+		<!--end modified-->
+
+    <!--modified by ITO.Abel.Li on 20140219  -->
+    <update id="UpdateSdpDetailResource" parameterClass="SdpDetail">
+      UPDATE  SDP_Detail
+      SET resource=#Resource#
+      WHERE serial = #Serial# AND pmsid=#Pmsid#
+    </update>
+    <!--end modified-->
+
+		<!--add by Ename Wang on 2011-08-25-->
+		<update id="UpdatePmsSapDesignDetailInfo" parameterClass="SdpDetail">
+
+			UPDATE  SDP_Detail
+			SET taskno=#Taskno#,taskName=#TaskName#,plancost=#Plancost#,actualcost=#Actualcost#,
+			planstartday=#Planstartday#,planendday=#Planendday#,actualstartday=#Actualstartday#,
+			actualendday=#Actualendday#,pretaskNo=#PretaskNo#,role=#Role#,resource=#Resource#,
+			remark=#Remark#,phase=#Phase#,iseditable=#Iseditable#,deleteflag=#Deleteflag#,
+			maintaindate=#Maintaindate#,maintainuser=#Maintainuser#,completedpercent=#Completedpercent#
+			WHERE serial = #Serial#
+
+		</update>
+		<!--end add-->
+		<select id="SelectSdpDetailOther" parameterClass="SdpDetail" resultClass="SdpDetail">
+			SELECT serial AS Serial,pmsid AS Pmsid,taskno AS Taskno,taskName AS TaskName,plancost AS Plancost,
+			actualcost AS Actualcost,planstartday AS Planstartday,planendday AS Planendday,
+			actualstartday AS Actualstartday,actualendday AS Actualendday,IFNULL(pretaskNo,0) AS PretaskNo,
+			IFNULL(role,'') AS Role,IFNULL(resource,'') AS Resource,IFNULL(remark,'') AS Remark,
+			IFNULL(PHASE,0) AS PHASE,iseditable AS Iseditable,deleteflag AS Deleteflag,
+			createdate AS Createdate,createuser AS Createuser,maintaindate AS Maintaindate,
+			maintainuser AS Maintainuser,completedpercent AS Completedpercent
+			FROM SDP_Detail
+			WHERE 1=1
+			<isNotEmpty prepend="AND" property="Pmsid">pmsid=#Pmsid#</isNotEmpty>
+			<isNotEmpty prepend="AND" property="Phase">phase=#Phase#</isNotEmpty>
+			<isNotEmpty prepend="AND" property="TaskName">taskName=#TaskName#</isNotEmpty>
+			<isNotEmpty prepend="AND" property="Phase">phase=#Phase#</isNotEmpty>
+			<isNotEmpty prepend="AND" property="Role">role=#Role#</isNotEmpty>
+			<isNotEmpty prepend="AND" property="Resource">resource=#Resource#</isNotEmpty>
+			<isNotEmpty prepend="AND" property="Serial">serial!=#Serial#</isNotEmpty>
+		</select>
+
+		<delete id="DeleteSdpDetail" parameterClass="string">
+			DELETE FROM SDP_Detail
+			WHERE serial = #value#
+		</delete>
+
+		<select id="SelectMinTaskNo" parameterClass="SdpDetail" resultClass="SdpDetail">
+			SELECT top 1 taskno AS Taskno
+			FROM sdp_detail
+			WHERE 1=1
+			<dynamic>
+				<isNotEmpty prepend="AND" property="Pmsid">pmsid=#Pmsid#</isNotEmpty>
+				<isNotEmpty prepend="AND" property="Phase">phase=#Phase#</isNotEmpty>
+			</dynamic>
+			order by TaskNo asc
+		</select>
+
+		<select id="SelectMaxTaskNo" parameterClass="SdpDetail" resultClass="SdpDetail">
+			SELECT top 1 taskno AS Taskno
+			FROM sdp_detail
+			WHERE 1=1
+			<dynamic>
+				<isNotEmpty prepend="AND" property="Pmsid">pmsid=#Pmsid#</isNotEmpty>
+				<isNotEmpty prepend="AND" property="Phase">phase=#Phase#</isNotEmpty>
+			</dynamic>
+			order by TaskNo desc
+		</select>
+
+		<!--add by Ename Wang on 2011-08-19-->
+
+		<!--modified by ITO.Abel.Li on 2014-01-06 add and auditstatus=3 and taskstatus in(1,2)-->
+		<select id="GetMyTaskPast" parameterClass="SdpDetail" resultClass="MyTaskCondition">
+      SELECT a.PMSName as PMSName,b.serial AS Serial,b.pmsid AS PMSId,b.taskno AS TaskNo,b.taskName AS TaskName,
+      b.plancost  AS PlanCost,b.actualcost AS ActualCost,b.planstartday AS PlanStartDay,
+      b.planendday AS PlanEndDay,b.actualstartday AS ActualStartDay,b.actualendday AS ActualEndDay,
+      b.pretaskNo AS PreTaskNo,b.role AS Role,b.resource AS Resource,b.remark AS Remark,b.phase AS Phase,b.taskstatus AS TaskStatus,
+      iseditable AS IsEditable,b.deleteflag AS DeleteFlag,b.createdate AS CreateDate,
+      b.createuser AS CreateUser,b.maintaindate AS MaintainDate,b.maintainuser AS MaintainUser,b.completedPercent  AS CompletedPercent
+      FROM pms_head a,sdp_detail b
+      WHERE a.PMSId = b.pmsid  and b.deleteflag<![CDATA[<>]]>'Y'and b.completedPercent <![CDATA[<]]> 100
+			and auditstatus=3 and taskstatus in(1,2)
+			and b.planendday <![CDATA[<]]>  current_date()
+			<dynamic>
+				<isNotEmpty prepend="AND" property="Resource">resource=#Resource# </isNotEmpty>
+			</dynamic>
+			order by b.planstartday
+		</select>
+		<!--end modified-->
+
+		<!--modified by ITO.Abel.Li on 2014-01-06 add and auditstatus=3 and taskstatus in(1,2)-->
+		<select id="GetMyTaskByToday" parameterClass="SdpDetail" resultClass="MyTaskCondition">
+      SELECT a.PMSName as PMSName,b.serial AS Serial,b.PMSId AS PMSId,b.taskno AS TaskNo,b.taskName AS TaskName,
+      b.plancost  AS PlanCost,b.actualcost AS ActualCost,b.planstartday AS PlanStartDay,
+      b.planendday AS PlanEndDay,b.actualstartday AS ActualStartDay,b.actualendday AS ActualEndDay,
+      b.pretaskNo AS PreTaskNo,b.role AS Role,b.resource AS Resource,b.remark AS Remark,b.phase AS Phase,taskstatus AS TaskStatus,
+      iseditable AS IsEditable,b.deleteflag AS DeleteFlag,b.createdate AS CreateDate,
+      b.createuser AS CreateUser,b.maintaindate AS MaintainDate,b.maintainuser AS MaintainUser,b.completedPercent  AS CompletedPercent
+      FROM pms_head a,sdp_detail b
+
+      WHERE a.PMSId = b.pmsid  and b.deleteflag<![CDATA[<>]]>'Y' and b.completedPercent <![CDATA[<]]> 100
+			and b.planendday <![CDATA[>=]]> current_date() and b.planstartday <![CDATA[<=]]> current_date()
+			and auditstatus=3 and taskstatus in(1,2)
+			<dynamic>
+				<isNotEmpty prepend="AND" property="Resource">resource=#Resource# </isNotEmpty>
+			</dynamic>
+
+			order by b.planstartday
+		</select>
+		<!--end modified-->
+
+		<!--modified by ITO.Abel.Li on 2014-01-06 add and auditstatus=3 and taskstatus in(1,2)-->
+		<select id="GetMyTaskByFuture" parameterClass="SdpDetail" resultClass="MyTaskCondition">
+      SELECT a.PMSName as PMSName,b.serial AS Serial,b.pmsid AS PMSId,b.taskno AS TaskNo,b.taskName AS TaskName,
+      b.plancost  AS PlanCost,b.actualcost AS ActualCost,b.planstartday AS PlanStartDay,
+      b.planendday AS PlanEndDay,b.actualstartday AS ActualStartDay,b.actualendday AS ActualEndDay,
+      b.pretaskNo AS PreTaskNo,b.role AS Role,b.resource AS Resource,b.remark AS Remark,b.phase AS Phase,taskstatus AS TaskStatus,
+      iseditable AS IsEditable,b.deleteflag AS DeleteFlag,b.createdate AS CreateDate,
+      b.createuser AS CreateUser,b.maintaindate AS MaintainDate,b.maintainuser AS MaintainUser,b.completedPercent  AS CompletedPercent
+      FROM pms_head a,sdp_detail b
+      WHERE a.PMSId = b.pmsid and b.deleteflag<![CDATA[<>]]>'Y'
+			and b.completedPercent <![CDATA[<]]> 100 and b.planstartday > current_date()
+			and auditstatus=3 and taskstatus in(1,2)
+			<dynamic>
+				<isNotEmpty prepend="AND" property="Resource">resource=#Resource# </isNotEmpty>
+			</dynamic>
+
+			order by b.planstartday
+		</select>
+		<!--end modified-->
+		<!--end add on 2011-08-19-->
+
+
+
+	</statements>
+</sqlMap>

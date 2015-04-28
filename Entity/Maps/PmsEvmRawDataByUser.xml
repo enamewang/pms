@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsEvmRawDataByUserMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsEvmRawDataByUser" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsEvmRawDataByUser" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsEvmRawDataByUserResult" class="PmsEvmRawDataByUser">
+      <result property="Vid" column="VID" type="string" dbType="varchar"/>
+      <result property="PmsId" column="PMSId" type="string" dbType="varchar"/>
+      <result property="UserDept" column="UserDept" type="string" dbType="varchar"/>
+      <result property="UserName" column="UserName" type="string" dbType="varchar"/>
+      <result property="CacDate" column="CacDate" type="int" dbType="Int"/>
+      <result property="ReleaseDate" column="ReleaseDate" type="DateTime" dbType="DateTime"/>
+      <result property="Ev" column="EV" type="single" dbType="Real"/>
+      <result property="Pv" column="PV" type="single" dbType="Real"/>
+      <result property="Sv" column="SV" type="single" dbType="Real"/>
+      <result property="Ac" column="AC" type="single" dbType="Real"/>
+      <result property="Cv" column="CV" type="single" dbType="Real"/>
+      <result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/>
+      <result property="Creator" column="Creator" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectPmsEvmRawDataByUser" parameterClass="string" resultClass="PmsEvmRawDataByUser">
+      SELECT VID AS Vid,PMSId AS PmsId,UserDept AS UserDept,UserName AS UserName,CacDate AS CacDate,ReleaseDate AS ReleaseDate,EV AS Ev,PV AS Pv,SV AS Sv,AC AS Ac,CV AS Cv,CreateDate AS CreateDate,Creator AS Creator
+      FROM pms_evm_raw_data_by_user
+      Where VID='PM'
+      <isNotEmpty prepend="AND" property="UserDept">
+        UserDept=#UserDept#
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="UserName">
+        UserName=#UserName#
+      </isNotEmpty>
+    </select>
+    <insert id="InsertPmsEvmRawDataByUser" parameterClass="PmsEvmRawDataByUser">
+      INSERT INTO  pms_evm_raw_data_by_user
+      (VID,PMSId,UserDept,UserName,CacDate,ReleaseDate,EV,PV,SV,AC,CV,CreateDate,Creator)
+      VALUES(#Vid#,#PmsId#,#UserDept#,#UserName#,#CacDate#,#ReleaseDate:DateTime:1/1/0001 12:00:00 AM#,#Ev#,#Pv#,#Sv#,#Ac#,#Cv#,#CreateDate:DateTime:1/1/0001 12:00:00 AM#,#Creator#)
+    </insert>
+    <update id="UpdatePmsEvmRawDataByUser" parameterClass="PmsEvmRawDataByUser">
+      UPDATE  pms_evm_raw_data_by_user
+      SET VID=#Vid#,PMSId=#PmsId#,UserDept=#UserDept#,UserName=#UserName#,CacDate=#CacDate#,ReleaseDate=#ReleaseDate#,EV=#Ev#,PV=#Pv#,SV=#Sv#,AC=#Ac#,CV=#Cv#,CreateDate=#CreateDate#,Creator=#Creator#
+      WHERE VID = #Vid#
+    </update>
+    <delete id="DeletePmsEvmRawDataByUser" parameterClass="string">
+      DELETE FROM pms_evm_raw_data_by_user
+      WHERE VID = #value#
+    </delete>
+  </statements>
+</sqlMap>

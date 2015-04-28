@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsHeadHMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsHeadH" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsHeadH" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsHeadHResult" class="PmsHeadH">
+      <result property="PmsId" column="PMSId" type="string" dbType="varchar"/>
+      <result property="Seq" column="Seq" type="int" dbType="Int"/>
+      <result property="CrId" column="CRId" type="string" dbType="varchar"/>
+      <result property="CrIdNew" column="CRIdNew" type="string" dbType="varchar"/>
+      <result property="System" column="System" type="string" dbType="varchar"/>
+      <result property="SystemNew" column="SystemNew" type="string" dbType="varchar"/>
+      <result property="Type" column="Type" type="string" dbType="varchar"/>
+      <result property="TypeNew" column="TypeNew" type="string" dbType="varchar"/>
+      <result property="DueDate" column="DueDate" type="DateTime" dbType="DateTime"/>
+      <result property="DueDateNew" column="DueDateNew" type="DateTime" dbType="DateTime"/>
+      <result property="Pm" column="PM" type="string" dbType="varchar"/>
+      <result property="PmNew" column="PMNew" type="string" dbType="varchar"/>
+      <result property="Sd" column="SD" type="string" dbType="varchar"/>
+      <result property="SdNew" column="SDNew" type="string" dbType="varchar"/>
+      <result property="Se" column="SE" type="string" dbType="varchar"/>
+      <result property="SeNew" column="SENew" type="string" dbType="varchar"/>
+      <result property="Qa" column="QA" type="string" dbType="varchar"/>
+      <result property="QaNew" column="QANew" type="string" dbType="varchar"/>
+      <result property="ReasonType" column="ReasonType" type="string" dbType="varchar"/>
+      <result property="Reason" column="Reason" type="string" dbType="varchar"/>
+      <result property="Maintaindate" column="maintaindate" type="DateTime" dbType="DateTime"/>
+      <result property="Maintainuser" column="maintainuser" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectPmsHeadH" parameterClass="string" resultClass="PmsHeadH">
+      SELECT PMSId AS PmsId,Seq AS Seq,
+      IFNULL(CRId,'') AS CrId, IFNULL(CRIdNew,'') AS CrIdNew,
+      IFNULL(System,'') AS System, IFNULL(SystemNew,'') AS SystemNew,
+      IFNULL(Type,'') AS Type,IFNULL(TypeNew,'') AS TypeNew,
+      IFNULL(DueDate,'0001-01-01') AS DueDate,IFNULL(DueDateNew,'0001-01-01') AS DueDateNew,
+      IFNULL(PM,'') AS Pm,IFNULL(PMNew,'') AS PmNew,
+      IFNULL(SD,'') AS Sd,IFNULL(SDNew,'') AS SdNew,
+      IFNULL(SE,'') AS Se,IFNULL(SENew,'') AS SeNew,
+      IFNULL(QA,'') AS Qa,IFNULL(QANew,'') AS QaNew,
+      IFNULL(ReasonType,'') AS ReasonType,IFNULL(Reason,'') AS Reason,
+      maintaindate AS Maintaindate,maintainuser AS Maintainuser
+      FROM pms_head_h
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          PMSId = #value#
+        </isParameterPresent>
+      </dynamic>
+      order by Maintaindate desc
+    </select>
+    <insert id="InsertPmsHeadH" parameterClass="PmsHeadH">
+      INSERT INTO pms_head_h
+      (PMSId,Seq,CRId,CRIdNew,System,SystemNew,Type,TypeNew,DueDate,DueDateNew,PM,PMNew,SD,SDNew,SE,SENew,QA,QANew,ReasonType,Reason,maintaindate,maintainuser)
+      VALUES(#PmsId#,#Seq#,#CrId#,#CrIdNew#,#System#,#SystemNew#,#Type#,#TypeNew#,#DueDate:DateTime:1/1/0001 12:00:00 AM#,#DueDateNew:DateTime:1/1/0001 12:00:00 AM#,#Pm#,#PmNew#,#Sd#,#SdNew#,#Se#,#SeNew#,#Qa#,#QaNew#,#ReasonType#,#Reason#,#Maintaindate:DateTime:1/1/0001 12:00:00 AM#,#Maintainuser#)
+    </insert>
+    <update id="UpdatePmsHeadH" parameterClass="PmsHeadH">
+      UPDATE pms_head_h
+      SET ReasonType=#ReasonType#,Reason=#Reason#,maintaindate=#Maintaindate#,maintainuser=#Maintainuser#
+      WHERE PMSId = #PmsId# and Seq=#Seq#
+    </update>
+    <delete id="DeletePmsHeadH" parameterClass="string">
+      DELETE FROM
+      WHERE PMSId = #value#
+    </delete>
+  </statements>
+</sqlMap>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsEvmRawDataByCrMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<alias>
+	<typeAlias alias="PmsEvmRawDataByCr" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsEvmRawDataByCr" />
+</alias>
+<resultMaps>
+		<resultMap id="PmsEvmRawDataByCrResult" class="PmsEvmRawDataByCr"><result property="Vid" column="VID" type="string" dbType="varchar"/><result property="PmsId" column="PMSId" type="string" dbType="varchar"/><result property="CacDate" column="CacDate" type="int" dbType="Int"/><result property="Ev" column="EV" type="single" dbType="Real"/><result property="Pv" column="PV" type="single" dbType="Real"/><result property="Sv" column="SV" type="single" dbType="Real"/><result property="Ac" column="AC" type="single" dbType="Real"/><result property="Cv" column="CV" type="single" dbType="Real"/><result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/><result property="Creator" column="Creator" type="string" dbType="varchar"/></resultMap>
+</resultMaps>
+<statements>
+	
+<select id="SelectPmsEvmRawDataByCr" parameterClass="string" resultClass="PmsEvmRawDataByCr">
+SELECT VID AS Vid,PMSId AS PmsId,CacDate AS CacDate,EV AS Ev,PV AS Pv,SV AS Sv,AC AS Ac,CV AS Cv,CreateDate AS CreateDate,Creator AS Creator
+FROM 
+<dynamic prepend="WHERE">
+<isParameterPresent>VID = #value#
+</isParameterPresent>
+</dynamic>
+</select>
+<insert id="InsertPmsEvmRawDataByCr" parameterClass="PmsEvmRawDataByCr">
+	INSERT INTO  
+(VID,PMSId,CacDate,EV,PV,SV,AC,CV,CreateDate,Creator) 
+	VALUES(#Vid#,#PmsId#,#CacDate#,#Ev#,#Pv#,#Sv#,#Ac#,#Cv#,#CreateDate:DateTime:1/1/0001 12:00:00 AM#,#Creator#)
+</insert>
+<update id="UpdatePmsEvmRawDataByCr" parameterClass="PmsEvmRawDataByCr">
+UPDATE  
+ SET VID=#Vid#,PMSId=#PmsId#,CacDate=#CacDate#,EV=#Ev#,PV=#Pv#,SV=#Sv#,AC=#Ac#,CV=#Cv#,CreateDate=#CreateDate#,Creator=#Creator#
+WHERE VID = #Vid#
+</update>
+<delete id="DeletePmsEvmRawDataByCr" parameterClass="string">
+DELETE FROM 
+WHERE VID = #value#
+</delete>
+</statements>
+</sqlMap>

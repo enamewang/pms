@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsDevelopmentProcessMeasurementMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsDevelopmentProcessMeasurement" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsDevelopmentProcessMeasurement" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsDevelopmentProcessMeasurementResult" class="PmsDevelopmentProcessMeasurement">
+      <result property="Vid" column="VID" type="string" dbType="varchar"/>
+      <result property="UserDept" column="UserDept" type="string" dbType="varchar"/>
+      <result property="UserName" column="UserName" type="string" dbType="varchar"/>
+      <result property="CrCount" column="CRCount" type="int" dbType="Int"/>
+      <result property="LargelyAdvance" column="LargelyAdvance" type="int" dbType="Int"/>
+      <result property="Advance" column="Advance" type="int" dbType="Int"/>
+      <result property="Normal" column="Normal" type="int" dbType="Int"/>
+      <result property="Delay" column="Delay" type="int" dbType="Int"/>
+      <result property="LargelyDelay" column="LargelyDelay" type="int" dbType="Int"/>
+      <result property="LargelySurplus" column="LargelySurplus" type="int" dbType="Int"/>
+      <result property="Surplus" column="Surplus" type="int" dbType="Int"/>
+      <result property="Balance" column="Balance" type="int" dbType="Int"/>
+      <result property="Deficit" column="Deficit" type="int" dbType="Int"/>
+      <result property="LargelyDeficit" column="LargelyDeficit" type="int" dbType="Int"/>
+      <result property="ScheduleEvaluation" column="ScheduleEvaluation" type="string" dbType="varchar"/>
+      <result property="CostEvaluation" column="CostEvaluation" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/>
+      <result property="Creator" column="Creator" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectPmsDevelopmentProcessMeasurement" parameterClass="string" resultClass="PmsDevelopmentProcessMeasurement">
+      SELECT VID AS Vid,UserDept AS UserDept,UserName AS UserName,CRCount AS CrCount,LargelyAdvance AS LargelyAdvance,Advance AS Advance,Normal AS Normal,Delay AS Delay,LargelyDelay AS LargelyDelay,LargelySurplus AS LargelySurplus,Surplus AS Surplus,Balance AS Balance,Deficit AS Deficit,LargelyDeficit AS LargelyDeficit,ScheduleEvaluation AS ScheduleEvaluation,CostEvaluation AS CostEvaluation,CreateDate AS CreateDate,Creator AS Creator
+      FROM
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          VID = #value#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+    <insert id="InsertPmsDevelopmentProcessMeasurement" parameterClass="PmsDevelopmentProcessMeasurement">
+      INSERT INTO  pms_development_process_measurement
+      (VID,UserDept,UserName,CRCount,LargelyAdvance,Advance,Normal,Delay,LargelyDelay,LargelySurplus,Surplus,Balance,Deficit,LargelyDeficit,ScheduleEvaluation,CostEvaluation,CreateDate,Creator)
+      VALUES(#Vid#,#UserDept#,#UserName#,#CrCount#,#LargelyAdvance#,#Advance#,#Normal#,#Delay#,#LargelyDelay#,#LargelySurplus#,#Surplus#,#Balance#,#Deficit#,#LargelyDeficit#,#ScheduleEvaluation#,#CostEvaluation#,#CreateDate:DateTime:1/1/0001 12:00:00 AM#,#Creator#)
+    </insert>
+    <update id="UpdatePmsDevelopmentProcessMeasurement" parameterClass="PmsDevelopmentProcessMeasurement">
+      UPDATE
+      SET VID=#Vid#,UserDept=#UserDept#,UserName=#UserName#,CRCount=#CrCount#,LargelyAdvance=#LargelyAdvance#,Advance=#Advance#,Normal=#Normal#,Delay=#Delay#,LargelyDelay=#LargelyDelay#,LargelySurplus=#LargelySurplus#,Surplus=#Surplus#,Balance=#Balance#,Deficit=#Deficit#,LargelyDeficit=#LargelyDeficit#,ScheduleEvaluation=#ScheduleEvaluation#,CostEvaluation=#CostEvaluation#,CreateDate=#CreateDate#,Creator=#Creator#
+      WHERE VID = #Vid#
+    </update>
+    <delete id="DeletePmsDevelopmentProcessMeasurement" parameterClass="string">
+      DELETE FROM
+      WHERE VID = #value#
+    </delete>
+    <delete id="DeletePmsDevelopmentProcessMeasurementAll" >
+      Truncate Table pms_development_process_measurement
+    </delete>
+  </statements>
+</sqlMap>

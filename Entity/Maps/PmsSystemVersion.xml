@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsSystemVersionMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsSystemVersion" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsSystemVersion" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsSystemVersionResult" class="PmsSystemVersion">
+      <result property="Serial" column="Serial" type="int" dbType="Int"/>
+      <result property="Vid" column="VID" type="string" dbType="varchar"/>
+      <result property="TeamDomain" column="TeamDomain" type="string" dbType="varchar"/>
+      <result property="SystemDomain" column="SystemDomain" type="string" dbType="varchar"/>
+      <result property="Site" column="Site" type="string" dbType="varchar"/>
+      <result property="System" column="System" type="string" dbType="varchar"/>
+      <result property="OldVersion" column="OldVersion" type="string" dbType="varchar"/>
+      <result property="NewVersion" column="NewVersion" type="string" dbType="varchar"/>
+      <result property="BugFreeProject" column="BugFreeProject" type="string" dbType="varchar"/>
+      <result property="BugFreeModule" column="BugFreeModule" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+    <select id="SelectPmsSystemVersionByTeamSystemSite" parameterClass="Hashtable" resultClass="PmsSystemVersion">
+      SELECT Serial AS Serial,VID AS Vid,TeamDomain AS TeamDomain,System AS System,SystemDomain AS SystemDomain,Site AS Site,OldVersion AS OldVersion,NewVersion AS NewVersion,BugFreeProject AS BugFreeProject,BugFreeModule AS BugFreeModule
+      FROM pms_system_version
+      WHERE TeamDomain =#SystemDomain# AND System =#System# AND Site = #Site#
+    </select>
+    
+    <select id="SelectPmsSystemVersionByDomainSystem" parameterClass="Hashtable" resultClass="PmsSystemVersion">
+      SELECT Serial AS Serial,VID AS Vid,TeamDomain AS TeamDomain,System AS System,SystemDomain AS SystemDomain,Site AS Site,OldVersion AS OldVersion,NewVersion AS NewVersion,BugFreeProject AS BugFreeProject,BugFreeModule AS BugFreeModule
+      FROM pms_system_version
+      WHERE SystemDomain =#SystemDomain# AND System =#System# AND Site = #Site#
+    </select>
+    <select id="SelectPmsSystemVersionByTeamDomainSite" parameterClass="Hashtable" resultClass="PmsSystemVersion">
+      SELECT Serial AS Serial,VID AS Vid,TeamDomain AS TeamDomain,System AS System,SystemDomain AS SystemDomain,Site AS Site,OldVersion AS OldVersion,NewVersion AS NewVersion,BugFreeProject AS BugFreeProject,BugFreeModule AS BugFreeModule
+      FROM pms_system_version
+      WHERE TeamDomain =#TeamDomain# AND Site = #Site#
+    </select>
+
+    <select id="SelectPmsSystemVersionByTeamDomain" parameterClass="Hashtable" resultClass="PmsSystemVersion">
+      SELECT Serial AS Serial,VID AS Vid,TeamDomain AS TeamDomain,System AS System,SystemDomain AS SystemDomain,Site AS Site,OldVersion AS OldVersion,NewVersion AS NewVersion,BugFreeProject AS BugFreeProject,BugFreeModule AS BugFreeModule
+      FROM pms_system_version
+      WHERE TeamDomain =#TeamDomain#
+    </select>
+    <select id="SelectPmsSystemVersion" parameterClass="string" resultClass="PmsSystemVersion">
+      SELECT Serial AS Serial,VID AS Vid,TeamDomain AS TeamDomain,SystemDomain AS SystemDomain,Site AS Site,System AS System,OldVersion AS OldVersion,NewVersion AS NewVersion,BugFreeProject AS BugFreeProject,BugFreeModule AS BugFreeModule
+      FROM
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          Serial = #value#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+    
+    <insert id="InsertPmsSystemVersion" parameterClass="PmsSystemVersion">
+      INSERT INTO
+      (VID,TeamDomain,SystemDomain,Site,System,OldVersion,NewVersion,BugFreeProject,BugFreeModule)
+      VALUES(#Vid#,#TeamDomain#,#SystemDomain#,#Site#,#System#,#OldVersion#,#NewVersion#,#BugFreeProject#,#BugFreeModule#)
+      <selectKey resultClass="int" type="post" property="Serial">
+        SELECT @@IDENTITY as value
+      </selectKey>
+    </insert>
+
+    <update id="UpdatePmsSystemVersionOldVersionNewVersion" parameterClass="Hashtable">
+      UPDATE pms_system_version
+      SET OldVersion=#OldVersion#,NewVersion=#NewVersion#
+      WHERE SystemDomain =#SystemDomain# AND System =#System# AND Site = #Site#
+    </update>
+    <update id="UpdatePmsSystemVersion" parameterClass="PmsSystemVersion">
+      UPDATE
+      SET VID=#Vid#,TeamDomain=#TeamDomain#,SystemDomain=#SystemDomain#,Site=#Site#,System=#System#,OldVersion=#OldVersion#,NewVersion=#NewVersion#,BugFreeProject=#BugFreeProject#,BugFreeModule=#BugFreeModule#
+      WHERE Serial = #Serial#
+    </update>
+    
+    <delete id="DeletePmsSystemVersion" parameterClass="string">
+      DELETE FROM
+      WHERE Serial = #value#
+    </delete>
+  </statements>
+</sqlMap>

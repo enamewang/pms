@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="MailMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!--<alias>
+    <typeAlias alias="GcostBomcost" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.GcostBomcost" />
+  </alias>-->
+
+	<parameterMaps>
+		<parameterMap id="HashMail" class ="Hashtable">
+			<parameter property="From"  direction="Input" />
+			<parameter property="To" direction="Input" />
+			<parameter property="Cc"  direction="Input" />
+			<parameter property="Subject"  direction="Input" />
+			<parameter property="Body"  direction="Input" />
+			<parameter property="BodyFormat"  direction="Input" />
+		</parameterMap>
+	</parameterMaps>
+	<statements>
+		<procedure id="SendMail" parameterMap="HashMail" >
+			USP_PMS_SendMail
+		</procedure>
+	</statements>
+</sqlMap>

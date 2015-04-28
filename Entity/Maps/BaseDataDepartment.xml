@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="BaseDataDepartmentMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="BaseDataDepartment" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.BaseDataDepartment" />
+  </alias>
+  <resultMaps>
+    <resultMap id="BaseDataDepartmentResult" class="BaseDataDepartment">
+      <result property="Id" column="id" type="int" dbType="Int"/>
+      <result property="ManagerId" column="manager_id" type="int" dbType="Int"/>
+      <result property="Name" column="name" type="string" dbType="varchar"/>
+      <result property="ParentId" column="parent_id" type="int" dbType="Int"/>
+      <result property="Description" column="description" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="create_date" type="DateTime" dbType="DateTime"/>
+      <result property="CreateUser" column="create_user" type="string" dbType="varchar"/>
+      <result property="MaintainDate" column="maintain_date" type="DateTime" dbType="DateTime"/>
+      <result property="MaintainUser" column="maintain_user" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectBaseDataDepartmentIdByParentId" parameterClass="string" resultClass="BaseDataDepartment">
+      SELECT ID AS Id,PARENT_ID AS ParentId FROM base_data_department WHERE PARENT_ID IN ($value$)
+    </select>
+
+    <select id="SelectBaseDataDepartmentName" parameterClass="string" resultClass="string">
+      select c.name
+      from base_data_user a,base_data_department_user b,base_data_department c
+      where a.id = B.user_id and b.department_id = c.id  and a.login_name=#value# limit 1
+    </select>
+
+    <select id="SelectBaseDataDepartmentNameId" parameterClass="string" resultClass="BaseDataDepartment">
+      SELECT id AS Id,name AS Name
+      FROM base_data_department
+    </select>
+
+    <select id="SelectBaseDataDepartment" parameterClass="string" resultClass="BaseDataDepartment">
+      SELECT id AS Id,manager_id AS ManagerId,name AS Name,parent_id AS ParentId,description AS Description,create_date AS CreateDate,create_user AS CreateUser,maintain_date AS MaintainDate,maintain_user AS MaintainUser
+      FROM
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          id = #value#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+    <insert id="InsertBaseDataDepartment" parameterClass="BaseDataDepartment">
+      INSERT INTO
+      (manager_id,name,parent_id,description,create_date,create_user,maintain_date,maintain_user)
+      VALUES(#ManagerId#,#Name#,#ParentId#,#Description#,#CreateDate:DateTime:1/1/0001 12:00:00 AM#,#CreateUser#,#MaintainDate:DateTime:1/1/0001 12:00:00 AM#,#MaintainUser#)
+      <selectKey resultClass="int" type="post" property="Id">
+        SELECT @@IDENTITY as value
+      </selectKey>
+    </insert>
+    <update id="UpdateBaseDataDepartment" parameterClass="BaseDataDepartment">
+      UPDATE
+      SET manager_id=#ManagerId#,name=#Name#,parent_id=#ParentId#,description=#Description#,create_date=#CreateDate#,create_user=#CreateUser#,maintain_date=#MaintainDate#,maintain_user=#MaintainUser#
+      WHERE id = #Id#
+    </update>
+    <delete id="DeleteBaseDataDepartment" parameterClass="string">
+      DELETE FROM
+      WHERE id = #value#
+    </delete>
+  </statements>
+</sqlMap>

@@ -1,0 +1,1246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4535E18B-91E1-4704-A4A2-D6314F665686}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PMS</RootNamespace>
+    <AssemblyName>PMS</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=1.0.20229.29342, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalDll\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="AJAXExtensionsToolbox, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalDll\AJAXExtensionsToolbox.dll</HintPath>
+    </Reference>
+    <Reference Include="Anthem, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalDll\Anthem.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.DynamicProxy, Version=1.1.5.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalDll\Castle.DynamicProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="DropDownCheckBoxes, Version=1.1.0.27408, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalDll\DropDownCheckBoxes.dll</HintPath>
+    </Reference>
+    <Reference Include="FrameWSCApplication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalDll\FrameWSCApplication.dll</HintPath>
+    </Reference>
+    <Reference Include="FreeTextBox, Version=3.3.0.22838, Culture=neutral, PublicKeyToken=5962a4e684a48b87, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalDll\FreeTextBox.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalDll\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data, Version=2.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalDll\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\WINDOWS\assembly\GAC_MSIL\Microsoft.ReportViewer.WebForms\9.0.0.0__b03f5f7f11d50a3a\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.3.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Qisda.DateTime, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalDll\Qisda.DateTime.dll</HintPath>
+    </Reference>
+    <Reference Include="Qisda.IO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalDll\Qisda.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="Qisda.PMS.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DataAccess\bin\Debug\Qisda.PMS.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Qisda.PMS.Entity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Entity\bin\Debug\Qisda.PMS.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="Qisda.Security.Cryptography, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalDll\Qisda.Security.Cryptography.dll</HintPath>
+    </Reference>
+    <Reference Include="Qisda.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalDll\Qisda.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WebCalendar, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalDll\WebCalendar.dll</HintPath>
+    </Reference>
+    <Reference Include="WSC_Frame, Version=2.1.0.2, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ExternalDll\WSC_Frame.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Default.aspx" />
+    <Content Include="SysFrame\CA_images\btn_calendar.gif" />
+    <Content Include="SysFrame\CA_images\cal_nextMonth.gif" />
+    <Content Include="SysFrame\CA_images\cal_prevMonth.gif" />
+    <Content Include="SysFrame\CA_images\comboItemBg.gif" />
+    <Content Include="SysFrame\CA_images\drop.gif" />
+    <Content Include="SysFrame\CA_images\drop_hover.gif" />
+    <Content Include="SysFrame\CA_images\grid\asc.gif" />
+    <Content Include="SysFrame\CA_images\grid\attachment.gif" />
+    <Content Include="SysFrame\CA_images\grid\desc.gif" />
+    <Content Include="SysFrame\CA_images\grid\drop.gif" />
+    <Content Include="SysFrame\CA_images\grid\drop_hover.gif" />
+    <Content Include="SysFrame\CA_images\grid\flag_blue.gif" />
+    <Content Include="SysFrame\CA_images\grid\flag_green.gif" />
+    <Content Include="SysFrame\CA_images\grid\flag_none.gif" />
+    <Content Include="SysFrame\CA_images\grid\flag_red.gif" />
+    <Content Include="SysFrame\CA_images\grid\grid_headerBg.gif" />
+    <Content Include="SysFrame\CA_images\grid\group_asc.gif" />
+    <Content Include="SysFrame\CA_images\grid\group_desc.gif" />
+    <Content Include="SysFrame\CA_images\grid\header1stCell_bg.gif" />
+    <Content Include="SysFrame\CA_images\grid\header_activeBg.gif" />
+    <Content Include="SysFrame\CA_images\grid\header_bg.gif" />
+    <Content Include="SysFrame\CA_images\grid\header_hoverBg.gif" />
+    <Content Include="SysFrame\CA_images\grid\header_rowBg.gif" />
+    <Content Include="SysFrame\CA_images\grid\icon_attachment.gif" />
+    <Content Include="SysFrame\CA_images\grid\icon_flag.gif" />
+    <Content Include="SysFrame\CA_images\grid\icon_icon.gif" />
+    <Content Include="SysFrame\CA_images\grid\icon_priority.gif" />
+    <Content Include="SysFrame\CA_images\grid\lines\dash.gif" />
+    <Content Include="SysFrame\CA_images\grid\lines\dashminus.gif" />
+    <Content Include="SysFrame\CA_images\grid\lines\dashplus.gif" />
+    <Content Include="SysFrame\CA_images\grid\lines\i.gif" />
+    <Content Include="SysFrame\CA_images\grid\lines\lminus.gif" />
+    <Content Include="SysFrame\CA_images\grid\lines\lplus.gif" />
+    <Content Include="SysFrame\CA_images\grid\lines\rminus.gif" />
+    <Content Include="SysFrame\CA_images\grid\lines\rplus.gif" />
+    <Content Include="SysFrame\CA_images\grid\lines\tminus.gif" />
+    <Content Include="SysFrame\CA_images\grid\lines\tplus.gif" />
+    <Content Include="SysFrame\CA_images\grid\msg_forwarded.gif" />
+    <Content Include="SysFrame\CA_images\grid\msg_read.gif" />
+    <Content Include="SysFrame\CA_images\grid\msg_replied.gif" />
+    <Content Include="SysFrame\CA_images\grid\msg_unread.gif" />
+    <Content Include="SysFrame\CA_images\grid\pager\first.gif" />
+    <Content Include="SysFrame\CA_images\grid\pager\last.gif" />
+    <Content Include="SysFrame\CA_images\grid\pager\next.gif" />
+    <Content Include="SysFrame\CA_images\grid\pager\prev.gif" />
+    <Content Include="SysFrame\CA_images\grid\pager\slider_bg.gif" />
+    <Content Include="SysFrame\CA_images\grid\pager\slider_grip.gif" />
+    <Content Include="SysFrame\CA_images\grid\priority_high.gif" />
+    <Content Include="SysFrame\CA_images\grid\priority_low.gif" />
+    <Content Include="SysFrame\CA_images\grid\reorder.gif" />
+    <Content Include="SysFrame\CA_images\grid\selector.gif" />
+    <Content Include="SysFrame\CA_images\grid\spacer.gif" />
+    <Content Include="SysFrame\CA_images\grid\topItem_col.gif" />
+    <Content Include="SysFrame\CA_images\grid\topItem_exp.gif" />
+    <Content Include="SysFrame\CA_images\spinner.gif" />
+    <Content Include="SysFrame\Controls\Calendar\Calendar.css" />
+    <Content Include="SysFrame\Controls\Calendar\calendar1.htm" />
+    <Content Include="SysFrame\Default.aspx" />
+    <Content Include="SysFrame\Error.aspx" />
+    <Content Include="SysFrame\Footer.aspx" />
+    <Content Include="SysFrame\FrameAbout.aspx" />
+    <Content Include="SysFrame\FrameHead.aspx" />
+    <Content Include="SysFrame\FrameLeft.aspx" />
+    <Content Include="SysFrame\FrameMain.aspx" />
+    <Content Include="SysFrame\FrameMiddle.aspx" />
+    <Content Include="SysFrame\FrameSetup\FrameFunction.aspx" />
+    <Content Include="SysFrame\FrameSetup\FrameHeaderLink.aspx" />
+    <Content Include="SysFrame\FrameSetup\FrameHeaderLinkEdit.aspx" />
+    <Content Include="SysFrame\FrameSetup\FrameLeftMenu.aspx" />
+    <Content Include="SysFrame\FrameSetup\FrameLeftMenuEdit.aspx" />
+    <Content Include="SysFrame\FrameSetup\FrameParameter.aspx" />
+    <Content Include="SysFrame\FrameSetup\FrameParameterEdit.aspx" />
+    <Content Include="SysFrame\FrameSetup\FrameSimulate.aspx" />
+    <Content Include="SysFrame\FrameSetup\FrameUserMaintain.aspx" />
+    <Content Include="SysFrame\FrameSetup\FrameUserMaintainEdit.aspx" />
+    <Content Include="SysFrame\FrameSetup\ValidateConfiguration.aspx" />
+    <Content Include="SysFrame\GridViewPager.ascx" />
+    <Content Include="SysFrame\HeaderImages\blank.gif" />
+    <Content Include="SysFrame\HeaderImages\Header_Left_aa.bmp" />
+    <Content Include="SysFrame\HeaderImages\Header_Left_aaaa.bmp" />
+    <Content Include="SysFrame\HeaderImages\Header_Left_fms.bmp" />
+    <Content Include="SysFrame\HeaderImages\Header_Left_FMSTE.bmp" />
+    <Content Include="SysFrame\HeaderImages\Header_Left_haha.bmp" />
+    <Content Include="SysFrame\HeaderImages\Header_Left_newID.bmp" />
+    <Content Include="SysFrame\HeaderImages\Header_Left_newID2.bmp" />
+    <Content Include="SysFrame\HeaderImages\Header_Left_newID3.bmp" />
+    <Content Include="SysFrame\HeaderImages\Header_Left_newID4.bmp" />
+    <Content Include="SysFrame\HeaderImages\Header_Left_TEST.bmp" />
+    <Content Include="SysFrame\HeaderImages\Header_Title_Template.png" />
+    <Content Include="SysFrame\HeaderImages\Header_Version_.bmp" />
+    <Content Include="SysFrame\HeaderImages\Header_Version_1.0.0.bmp" />
+    <Content Include="SysFrame\HeaderImages\Header_Version_1.1.0.bmp" />
+    <Content Include="SysFrame\HeaderImages\Header_Version_Template.png" />
+    <Content Include="SysFrame\htc\input.htc" />
+    <Content Include="SysFrame\images\bg-down.gif" />
+    <Content Include="SysFrame\images\bg-down_500.gif" />
+    <Content Include="SysFrame\images\bg-middle.gif" />
+    <Content Include="SysFrame\images\bg-middle_500.gif" />
+    <Content Include="SysFrame\images\bg-up.gif" />
+    <Content Include="SysFrame\images\bg-up_500.gif" />
+    <Content Include="SysFrame\images\bg01.jpg" />
+    <Content Include="SysFrame\images\bg02.gif" />
+    <Content Include="SysFrame\images\bgcolor.gif" />
+    <Content Include="SysFrame\images\bg_about.jpg" />
+    <Content Include="SysFrame\images\bg_bottom.gif" />
+    <Content Include="SysFrame\images\bg_grd_title.gif" />
+    <Content Include="SysFrame\images\bg_grd_title_bak.gif" />
+    <Content Include="SysFrame\images\bg_grd_title_blue.gif" />
+    <Content Include="SysFrame\images\bg_grd_title_gray.gif" />
+    <Content Include="SysFrame\images\bg_head.gif" />
+    <Content Include="SysFrame\images\bg_Hello.gif" />
+    <Content Include="SysFrame\images\bg_Input.gif" />
+    <Content Include="SysFrame\images\bg_Input_Readonly.gif" />
+    <Content Include="SysFrame\images\bg_left.jpg" />
+    <Content Include="SysFrame\images\bg_PageTitle.gif" />
+    <Content Include="SysFrame\images\box-line-bl.gif" />
+    <Content Include="SysFrame\images\box-line-br.gif" />
+    <Content Include="SysFrame\images\box-line-tl2.gif" />
+    <Content Include="SysFrame\images\box-line-tr2.gif" />
+    <Content Include="SysFrame\images\box-line-tr2_NoConner.gif" />
+    <Content Include="SysFrame\images\box-line.JPG" />
+    <Content Include="SysFrame\images\ButtonCancel.gif" />
+    <Content Include="SysFrame\images\ButtonClear.GIF" />
+    <Content Include="SysFrame\images\ButtonDelete.gif" />
+    <Content Include="SysFrame\images\ButtonDetail.gif" />
+    <Content Include="SysFrame\images\ButtonEdit_1.gif" />
+    <Content Include="SysFrame\images\ButtonError.gif" />
+    <Content Include="SysFrame\images\ButtonExport.GIF" />
+    <Content Include="SysFrame\images\ButtonImport.GIF" />
+    <Content Include="SysFrame\images\buttonLong.gif" />
+    <Content Include="SysFrame\images\buttonLongSuper.gif" />
+    <Content Include="SysFrame\images\ButtonNo.gif" />
+    <Content Include="SysFrame\images\ButtonSave.gif" />
+    <Content Include="SysFrame\images\ButtonSave_1.GIF" />
+    <Content Include="SysFrame\images\buttonShort.gif" />
+    <Content Include="SysFrame\images\ButtonYes.gif" />
+    <Content Include="SysFrame\images\del_bg_about.jpg" />
+    <Content Include="SysFrame\images\del_bg_left.jpg" />
+    <Content Include="SysFrame\images\Dot.jpg" />
+    <Content Include="SysFrame\images\DotLine.gif" />
+    <Content Include="SysFrame\images\engine.gif" />
+    <Content Include="SysFrame\images\error.gif" />
+    <Content Include="SysFrame\images\export.gif" />
+    <Content Include="SysFrame\images\face1.gif" />
+    <Content Include="SysFrame\images\favicon.ico" />
+    <Content Include="SysFrame\images\f_bg-01.gif" />
+    <Content Include="SysFrame\images\f_bg.gif" />
+    <Content Include="SysFrame\images\f_bottom-bg.gif" />
+    <Content Include="SysFrame\images\f_left-b-corner.gif" />
+    <Content Include="SysFrame\images\f_left-bg.gif" />
+    <Content Include="SysFrame\images\f_left-corner.gif" />
+    <Content Include="SysFrame\images\f_right-b-corner.gif" />
+    <Content Include="SysFrame\images\f_right-bg.gif" />
+    <Content Include="SysFrame\images\f_right-corner.gif" />
+    <Content Include="SysFrame\images\f_top-bg.gif" />
+    <Content Include="SysFrame\images\Header_Background.jpg" />
+    <Content Include="SysFrame\images\Header_Right.JPG" />
+    <Content Include="SysFrame\images\Hello.gif" />
+    <Content Include="SysFrame\images\Hello_2.gif" />
+    <Content Include="SysFrame\images\Icon_appear.gif" />
+    <Content Include="SysFrame\images\Icon_hide.gif" />
+    <Content Include="SysFrame\images\Info_e.jpg" />
+    <Content Include="SysFrame\images\Info_i.jpg" />
+    <Content Include="SysFrame\images\leftnav_divider.gif" />
+    <Content Include="SysFrame\images\loading.gif" />
+    <Content Include="SysFrame\images\Loading_2.gif" />
+    <Content Include="SysFrame\images\Loading_big.gif" />
+    <Content Include="SysFrame\images\loading_small.gif" />
+    <Content Include="SysFrame\images\Logo.gif" />
+    <Content Include="SysFrame\images\Mail_BodyBG.jpg" />
+    <Content Include="SysFrame\images\Mail_bottomLtd.jpg" />
+    <Content Include="SysFrame\images\Mail_DotLine.gif" />
+    <Content Include="SysFrame\images\Mail_Pubdate.jpg" />
+    <Content Include="SysFrame\images\Mail_Publisher.jpg" />
+    <Content Include="SysFrame\images\Mail_Title.jpg" />
+    <Content Include="SysFrame\images\n1.gif" />
+    <Content Include="SysFrame\images\n2.gif" />
+    <Content Include="SysFrame\images\n3.gif" />
+    <Content Include="SysFrame\images\n4.gif" />
+    <Content Include="SysFrame\images\n5.gif" />
+    <Content Include="SysFrame\images\n6.gif" />
+    <Content Include="SysFrame\images\n7.gif" />
+    <Content Include="SysFrame\images\n8.gif" />
+    <Content Include="SysFrame\images\Network.ico" />
+    <Content Include="SysFrame\images\QTYPE_BW_REV.jpg" />
+    <Content Include="SysFrame\images\Refresh.gif" />
+    <Content Include="SysFrame\images\Search.gif" />
+    <Content Include="SysFrame\images\shadow.gif" />
+    <Content Include="SysFrame\images\splitter-left.gif" />
+    <Content Include="SysFrame\images\splitter-right.gif" />
+    <Content Include="SysFrame\images\status-info.gif" />
+    <Content Include="SysFrame\images\Tree_Minus.gif" />
+    <Content Include="SysFrame\images\Tree_plus.gif" />
+    <Content Include="SysFrame\images\Tree_SingleMinus.gif" />
+    <Content Include="SysFrame\images\Tree_SinglePlus.gif" />
+    <Content Include="SysFrame\images\upload.gif" />
+    <Content Include="SysFrame\images\view.gif" />
+    <Content Include="SysFrame\images\Welcome.png" />
+    <Content Include="SysFrame\images\WSC_Dept.gif" />
+    <Content Include="SysFrame\images\WSC_Module.gif" />
+    <Content Include="SysFrame\images\WSC_Role.gif" />
+    <Content Include="SysFrame\images\WSC_User.gif" />
+    <Content Include="SysFrame\images\WSC_User_Unavailable.gif" />
+    <Content Include="SysFrame\JavaScript\Calendar.js" />
+    <Content Include="SysFrame\JavaScript\ForTreeCheckBox.js" />
+    <Content Include="SysFrame\JavaScript\FrameMain.js" />
+    <Content Include="SysFrame\Login.aspx" />
+    <Content Include="SysFrame\PagerImages\first.gif" />
+    <Content Include="SysFrame\PagerImages\first_grey.gif" />
+    <Content Include="SysFrame\PagerImages\go_1.gif" />
+    <Content Include="SysFrame\PagerImages\go_6.gif" />
+    <Content Include="SysFrame\PagerImages\go_7.gif" />
+    <Content Include="SysFrame\PagerImages\last.gif" />
+    <Content Include="SysFrame\PagerImages\last_grey.gif" />
+    <Content Include="SysFrame\PagerImages\next.gif" />
+    <Content Include="SysFrame\PagerImages\next_grey.gif" />
+    <Content Include="SysFrame\PagerImages\nv_First1.gif" />
+    <Content Include="SysFrame\PagerImages\nv_First2.gif" />
+    <Content Include="SysFrame\PagerImages\nv_First3.d.gif" />
+    <Content Include="SysFrame\PagerImages\nv_First3.gif" />
+    <Content Include="SysFrame\PagerImages\nv_First4.d.gif" />
+    <Content Include="SysFrame\PagerImages\nv_First4.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Last1.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Last2.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Last3.d.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Last3.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Last4.d.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Last4.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Next1.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Next2.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Next3.d.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Next3.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Next4.d.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Next4.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Prev1.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Prev2.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Prev3.d.gif" />
+    <Content Include="SysFrame\PagerImages\nv_prev3.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Prev4.d.gif" />
+    <Content Include="SysFrame\PagerImages\nv_Prev4.gif" />
+    <Content Include="SysFrame\PagerImages\nv_SetDispPerPage_1.gif" />
+    <Content Include="SysFrame\PagerImages\prev.gif" />
+    <Content Include="SysFrame\PagerImages\prev_grey.gif" />
+    <Content Include="SysFrame\PagerImages\SecurityController\WSC_Dept_Module.aspx" />
+    <Content Include="SysFrame\PagerImages\SecurityController\WSC_Role.aspx" />
+    <Content Include="SysFrame\PagerImages\SecurityController\WSC_Role_Dept.aspx" />
+    <Content Include="SysFrame\PagerImages\SecurityController\WSC_Role_Module.aspx" />
+    <Content Include="SysFrame\PagerImages\SecurityController\WSC_Role_Role.aspx" />
+    <Content Include="SysFrame\PagerImages\SecurityController\WSC_Role_User.aspx" />
+    <Content Include="SysFrame\PagerImages\SecurityController\WSC_UserRightQry.aspx" />
+    <Content Include="SysFrame\PagerImages\SecurityController\WSC_User_Module.aspx" />
+    <Content Include="SysFrame\styles\CA_ComboBox.css" />
+    <Content Include="SysFrame\styles\CA_Grid.css" />
+    <Content Include="SysFrame\styles\FlowERCss\CSS\FormFooter.css" />
+    <Content Include="SysFrame\styles\FlowERCss\CSS\FormHeader.css" />
+    <Content Include="SysFrame\styles\FlowERCss\CSS\FormPublic.css" />
+    <Content Include="SysFrame\styles\FlowERCss\Image\AttachFolder.gif" />
+    <Content Include="SysFrame\styles\FlowERCss\Image\bgHeader-down.gif" />
+    <Content Include="SysFrame\styles\FlowERCss\Image\bgHeader-middle.gif" />
+    <Content Include="SysFrame\styles\FlowERCss\Image\bgHeader-up.gif" />
+    <Content Include="SysFrame\styles\FlowERCss\Image\buttonAttach.gif" />
+    <Content Include="SysFrame\styles\FlowERCss\Image\buttonDelete.gif" />
+    <Content Include="SysFrame\styles\FlowERCss\Image\buttonLong.gif" />
+    <Content Include="SysFrame\styles\FlowERCss\Image\detail.gif" />
+    <Content Include="SysFrame\styles\FlowERCss\Image\Functiontop.gif" />
+    <Content Include="SysFrame\styles\FlowERCss\Image\line.gif" />
+    <Content Include="SysFrame\styles\FlowERCss\Image\PanelArrow.gif" />
+    <Content Include="SysFrame\styles\FrameStyle.css" />
+    <Content Include="SysFrame\styles\GlobalStyle.css" />
+    <Content Include="SysFrame\styles\MenuTreeStyle.css" />
+    <Content Include="SysFrame\styles\TreeStyle.css" />
+    <Content Include="SysFrame\UploadFile.aspx" />
+    <Content Include="SysFrame\UserSelector.aspx" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_GlobalResources\CultureRes_Caption_EN.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CultureRes_Caption_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\CultureRes_Caption_SC.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CultureRes_Caption_SC.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\CultureRes_Caption_TC.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CultureRes_Caption_TC.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\CultureRes_Message_EN.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CultureRes_Message_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\CultureRes_Message_SC.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CultureRes_Message_SC.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\CultureRes_Message_TC.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CultureRes_Message_TC.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Handler\BatchTaskMaintainHandler.ashx.cs">
+      <DependentUpon>BatchTaskMaintainHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\AddNewTask.aspx.cs">
+      <DependentUpon>AddNewTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\AddNewTask.aspx.designer.cs">
+      <DependentUpon>AddNewTask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\AddUser.aspx.cs">
+      <DependentUpon>AddUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\AddUser.aspx.designer.cs">
+      <DependentUpon>AddUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\AuditComment.aspx.cs">
+      <DependentUpon>AuditComment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\AuditComment.aspx.designer.cs">
+      <DependentUpon>AuditComment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\BatchTaskMaintain.aspx.cs">
+      <DependentUpon>BatchTaskMaintain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\BatchTaskMaintain.aspx.designer.cs">
+      <DependentUpon>BatchTaskMaintain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\BatchTaskMaintain2.aspx.cs">
+      <DependentUpon>BatchTaskMaintain2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\BatchTaskMaintain2.aspx.designer.cs">
+      <DependentUpon>BatchTaskMaintain2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\ChangeHistory.aspx.cs">
+      <DependentUpon>ChangeHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\ChangeHistory.aspx.designer.cs">
+      <DependentUpon>ChangeHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\EditApprovedTask.aspx.cs">
+      <DependentUpon>EditApprovedTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\EditApprovedTask.aspx.designer.cs">
+      <DependentUpon>EditApprovedTask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\EditMeetingMinuteExcessivePage.aspx.cs">
+      <DependentUpon>EditMeetingMinuteExcessivePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\EditMeetingMinuteExcessivePage.aspx.designer.cs">
+      <DependentUpon>EditMeetingMinuteExcessivePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\CreateMeetingMinuteExcessivePage.aspx.cs">
+      <DependentUpon>CreateMeetingMinuteExcessivePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\CreateMeetingMinuteExcessivePage.aspx.designer.cs">
+      <DependentUpon>CreateMeetingMinuteExcessivePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\AppCode\PageBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\AttachFileMaintainService.aspx.cs">
+      <DependentUpon>AttachFileMaintainService.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\AttachFileMaintainService.aspx.designer.cs">
+      <DependentUpon>AttachFileMaintainService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\AttachFileServiceIframe.aspx.cs">
+      <DependentUpon>AttachFileServiceIframe.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\AttachFileServiceIframe.aspx.designer.cs">
+      <DependentUpon>AttachFileServiceIframe.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\BugInquiry.aspx.cs">
+      <DependentUpon>BugInquiry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\BugInquiry.aspx.designer.cs">
+      <DependentUpon>BugInquiry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\CreatCRExcessivePage.aspx.cs">
+      <DependentUpon>CreatCRExcessivePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\CreatCRExcessivePage.aspx.designer.cs">
+      <DependentUpon>CreatCRExcessivePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\CreateMeetingMinute.aspx.cs">
+      <DependentUpon>CreateMeetingMinute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\CreateMeetingMinute.aspx.designer.cs">
+      <DependentUpon>CreateMeetingMinute.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\CreateService.aspx.cs">
+      <DependentUpon>CreateService.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\CreateService.aspx.designer.cs">
+      <DependentUpon>CreateService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\CreateServiceExcessivePage.aspx.cs">
+      <DependentUpon>CreateServiceExcessivePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\CreateServiceExcessivePage.aspx.designer.cs">
+      <DependentUpon>CreateServiceExcessivePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\CRNoInquiry.aspx.cs">
+      <DependentUpon>CRNoInquiry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\CRNoInquiry.aspx.designer.cs">
+      <DependentUpon>CRNoInquiry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\CRNoUpdate.aspx.cs">
+      <DependentUpon>CRNoUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\CRNoUpdate.aspx.designer.cs">
+      <DependentUpon>CRNoUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\EditMeetingMinute.aspx.cs">
+      <DependentUpon>EditMeetingMinute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\EditMeetingMinute.aspx.designer.cs">
+      <DependentUpon>EditMeetingMinute.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\EditWaitingSubmitTask.aspx.cs">
+      <DependentUpon>EditWaitingSubmitTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\EditWaitingSubmitTask.aspx.designer.cs">
+      <DependentUpon>EditWaitingSubmitTask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\MaintainUser.aspx.cs">
+      <DependentUpon>MaintainUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\MaintainUser.aspx.designer.cs">
+      <DependentUpon>MaintainUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\MeetingMinuteMaintain.aspx.cs">
+      <DependentUpon>MeetingMinuteMaintain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\MeetingMinuteMaintain.aspx.designer.cs">
+      <DependentUpon>MeetingMinuteMaintain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\ModifyResource.aspx.cs">
+      <DependentUpon>ModifyResource.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\ModifyResource.aspx.designer.cs">
+      <DependentUpon>ModifyResource.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\MyTask.aspx.cs">
+      <DependentUpon>MyTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\MyTask.aspx.designer.cs">
+      <DependentUpon>MyTask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\MyTaskDetail.aspx.cs">
+      <DependentUpon>MyTaskDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\MyTaskDetail.aspx.designer.cs">
+      <DependentUpon>MyTaskDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\NotCloseCRComments.aspx.cs">
+      <DependentUpon>NotCloseCRComments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\NotCloseCRComments.aspx.designer.cs">
+      <DependentUpon>NotCloseCRComments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\ProjectCommitmentView.aspx.cs">
+      <DependentUpon>ProjectCommitmentView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\ProjectCommitmentView.aspx.designer.cs">
+      <DependentUpon>ProjectCommitmentView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\ProjectsInformation.aspx.cs">
+      <DependentUpon>ProjectsInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\ProjectsInformation.aspx.designer.cs">
+      <DependentUpon>ProjectsInformation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\AttachFileMaintain.aspx.cs">
+      <DependentUpon>AttachFileMaintain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\AttachFileMaintain.aspx.designer.cs">
+      <DependentUpon>AttachFileMaintain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\Create.aspx.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\Create.aspx.designer.cs">
+      <DependentUpon>Create.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\DocumentsMaintain.aspx.cs">
+      <DependentUpon>DocumentsMaintain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\DocumentsMaintain.aspx.designer.cs">
+      <DependentUpon>DocumentsMaintain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\InquiryAndExport.aspx.cs">
+      <DependentUpon>InquiryAndExport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\InquiryAndExport.aspx.designer.cs">
+      <DependentUpon>InquiryAndExport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\RedirectPage.aspx.cs">
+      <DependentUpon>RedirectPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\RedirectPage.aspx.designer.cs">
+      <DependentUpon>RedirectPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\RequirementDataMaintain.aspx.cs">
+      <DependentUpon>RequirementDataMaintain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\RequirementDataMaintain.aspx.designer.cs">
+      <DependentUpon>RequirementDataMaintain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\RequirementDataView.aspx.cs">
+      <DependentUpon>RequirementDataView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\RequirementDataView.aspx.designer.cs">
+      <DependentUpon>RequirementDataView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\ViewTask.aspx.cs">
+      <DependentUpon>ViewTask.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\ViewTask.aspx.designer.cs">
+      <DependentUpon>ViewTask.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Report\DefectRateMandayBugsByDomain.aspx.cs">
+      <DependentUpon>DefectRateMandayBugsByDomain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Report\DefectRateMandayBugsByDomain.aspx.designer.cs">
+      <DependentUpon>DefectRateMandayBugsByDomain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Report\DefectRateMandayBugsByProject.aspx.cs">
+      <DependentUpon>DefectRateMandayBugsByProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Report\DefectRateMandayBugsByProject.aspx.designer.cs">
+      <DependentUpon>DefectRateMandayBugsByProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Report\DefectRatePerHourBugsByDomain.aspx.cs">
+      <DependentUpon>DefectRatePerHourBugsByDomain.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Report\DefectRatePerHourBugsByDomain.aspx.designer.cs">
+      <DependentUpon>DefectRatePerHourBugsByDomain.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Report\DefectRatePerHourBugsByProject.aspx.cs">
+      <DependentUpon>DefectRatePerHourBugsByProject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Report\DefectRatePerHourBugsByProject.aspx.designer.cs">
+      <DependentUpon>DefectRatePerHourBugsByProject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Report\DevelopmentProcessMeasurement.aspx.cs">
+      <DependentUpon>DevelopmentProcessMeasurement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Report\DevelopmentProcessMeasurement.aspx.designer.cs">
+      <DependentUpon>DevelopmentProcessMeasurement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Report\ProjectCommitmentHitRate.aspx.cs">
+      <DependentUpon>ProjectCommitmentHitRate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Report\ProjectCommitmentHitRate.aspx.designer.cs">
+      <DependentUpon>ProjectCommitmentHitRate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Report\ProjectStatisticsByManpower.aspx.cs">
+      <DependentUpon>ProjectStatisticsByManpower.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Report\ProjectStatisticsByManpower.aspx.designer.cs">
+      <DependentUpon>ProjectStatisticsByManpower.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Report\ProjectVarianceTrace.aspx.cs">
+      <DependentUpon>ProjectVarianceTrace.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Report\ProjectVarianceTrace.aspx.designer.cs">
+      <DependentUpon>ProjectVarianceTrace.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Report\RequirementsFulfillmentRate.aspx.cs">
+      <DependentUpon>RequirementsFulfillmentRate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Report\RequirementsFulfillmentRate.aspx.designer.cs">
+      <DependentUpon>RequirementsFulfillmentRate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\SystemListPopUp.aspx.cs">
+      <DependentUpon>SystemListPopUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\SystemListPopUp.aspx.designer.cs">
+      <DependentUpon>SystemListPopUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Maintain\ViewMeetingMinute.aspx.cs">
+      <DependentUpon>ViewMeetingMinute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\ViewMeetingMinute.aspx.designer.cs">
+      <DependentUpon>ViewMeetingMinute.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Report\NotCloseCRList.aspx.cs">
+      <DependentUpon>NotCloseCRList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Report\NotCloseCRList.aspx.designer.cs">
+      <DependentUpon>NotCloseCRList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Report\PMS_TEMPCRList.aspx.cs">
+      <DependentUpon>PMS_TEMPCRList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Report\PMS_TEMPCRList.aspx.designer.cs">
+      <DependentUpon>PMS_TEMPCRList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\Report\DefectRatePerHourBugsSummaryByDeptMent.aspx.cs">
+      <DependentUpon>DefectRatePerHourBugsSummaryByDeptMent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Report\DefectRatePerHourBugsSummaryByDeptMent.aspx.designer.cs">
+      <DependentUpon>DefectRatePerHourBugsSummaryByDeptMent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\UserControls\BasicInformationDetail.ascx.cs">
+      <DependentUpon>BasicInformationDetail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\UserControls\BasicInformationDetail.ascx.designer.cs">
+      <DependentUpon>BasicInformationDetail.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\UserControls\BasicInformationDetailService.ascx.cs">
+      <DependentUpon>BasicInformationDetailService.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\UserControls\BasicInformationDetailService.ascx.designer.cs">
+      <DependentUpon>BasicInformationDetailService.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\UserControls\ExecutePlan.ascx.cs">
+      <DependentUpon>ExecutePlan.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\UserControls\ExecutePlan.ascx.designer.cs">
+      <DependentUpon>ExecutePlan.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\UserControls\ExecutePlanByPhase.ascx.cs">
+      <DependentUpon>ExecutePlanByPhase.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\UserControls\ExecutePlanByPhase.ascx.designer.cs">
+      <DependentUpon>ExecutePlanByPhase.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\UserControls\ListBoxSelect.ascx.cs">
+      <DependentUpon>ListBoxSelect.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\UserControls\ListBoxSelect.ascx.designer.cs">
+      <DependentUpon>ListBoxSelect.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\UserControls\ProjectProgress.ascx.cs">
+      <DependentUpon>ProjectProgress.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\UserControls\ProjectProgress.ascx.designer.cs">
+      <DependentUpon>ProjectProgress.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\UserControls\ProjectsInformationUserControlBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\UserControls\SchedulePlan.ascx.cs">
+      <DependentUpon>SchedulePlan.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\UserControls\SchedulePlan.ascx.designer.cs">
+      <DependentUpon>SchedulePlan.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\UserControls\SchedulePlanByPhase.ascx.cs">
+      <DependentUpon>SchedulePlanByPhase.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\UserControls\SchedulePlanByPhase.ascx.designer.cs">
+      <DependentUpon>SchedulePlanByPhase.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\UserControls\SdpDetailInformation.ascx.cs">
+      <DependentUpon>SdpDetailInformation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\UserControls\SdpDetailInformation.ascx.designer.cs">
+      <DependentUpon>SdpDetailInformation.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="PMS\WebService\AddNewTask.asmx.cs">
+      <DependentUpon>AddNewTask.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PMS\WebService\SchedulePlan.asmx.cs">
+      <DependentUpon>SchedulePlan.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PMS\WebService\SchedulePlanByPhase.asmx.cs">
+      <DependentUpon>SchedulePlanByPhase.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SysFrame\Controls\MyTaskDataList\MyTaskDataList.ascx.cs">
+      <DependentUpon>MyTaskDataList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SysFrame\Controls\MyTaskDataList\MyTaskDataList.ascx.designer.cs">
+      <DependentUpon>MyTaskDataList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SysFrame\Controls\TabControl\TabControl.ascx.cs">
+      <DependentUpon>TabControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\ViewMeetingMinuteExcessivePage.aspx.cs">
+      <DependentUpon>ViewMeetingMinuteExcessivePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PMS\Maintain\ViewMeetingMinuteExcessivePage.aspx.designer.cs">
+      <DependentUpon>ViewMeetingMinuteExcessivePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\RLNWebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\CultureRes_Caption_EN.resx">
+      <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CultureRes_Caption_EN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CultureRes_Caption_SC.resx">
+      <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CultureRes_Caption_SC.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CultureRes_Caption_TC.resx">
+      <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CultureRes_Caption_TC.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CultureRes_Message_EN.resx">
+      <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CultureRes_Message_EN.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CultureRes_Message_SC.resx">
+      <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CultureRes_Message_SC.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CultureRes_Message_TC.resx">
+      <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CultureRes_Message_TC.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Style\myStyle.css" />
+    <Content Include="SysFrame\AspGridViewPager.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\PMSSqlMap.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configuration\providers.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Configuration\WSCSqlMap.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PMS\Maintain\Create.aspx" />
+    <Content Include="PMS\Maintain\InquiryAndExport.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj">
+      <Project>{569642DB-64FE-46D3-B526-A5CF2C725D7B}</Project>
+      <Name>Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{8A23E39C-D67D-4AC9-BEC1-B24AF657EFEC}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{E5B4A9B2-99D0-47D9-82E0-C642A36F1A17}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entity\Entity.csproj">
+      <Project>{3C62B8D4-9F20-4D51-A298-D5042FF99AE5}</Project>
+      <Name>Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\PMSMSSqlMap.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PMS\JavaScript\pms.js" />
+    <Content Include="PMS\JavaScript\PmsCommonJSFuction.js" />
+    <Content Include="PMS\Maintain\AttachFileMaintain.aspx" />
+    <Content Include="PMS\Maintain\DocumentsMaintain.aspx" />
+    <Content Include="Style\CustomTabStyle.css" />
+    <Content Include="SysFrame\Controls\MyTaskDataList\MyTaskDataList.ascx" />
+    <Content Include="SysFrame\Controls\TabControl\TabControl.ascx" />
+    <Content Include="SysFrame\images\left.JPG" />
+    <Content Include="SysFrame\images\left2.JPG" />
+    <Content Include="SysFrame\images\right.JPG" />
+    <Content Include="SysFrame\images\right2.JPG" />
+    <Content Include="SysFrame\images\statusc.JPG" />
+    <None Include="Web References\RLNWebService\rlnswebservice.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://aic0-s1.qcs.qcorp.com/rlns/rlnswebservice.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\RLNWebService\</RelPath>
+      <UpdateFromURL>http://aic0-s1.qcs.qcorp.com/rlns/rlnswebservice.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>PMS_RLNWebService_RLNSWebService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\ITARMSqlMap.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PMS\JavaScript\jquery\jquery.easyui.min-1.3.3.js" />
+    <Content Include="PMS\JavaScript\jquery\jquery.json-2.4.js" />
+    <Content Include="PMS\JavaScript\jquery\jquery.url-1.8.1.js" />
+    <Content Include="PMS\MailTemplate\ApproveTaskMail.htm" />
+    <Content Include="PMS\MailTemplate\CreateMeetingMinuteMail.htm" />
+    <Content Include="PMS\MailTemplate\EditMeetingMinuteMail.htm" />
+    <Content Include="PMS\MailTemplate\RecallTaskMail.htm" />
+    <Content Include="PMS\MailTemplate\RejectTaskMail.htm" />
+    <Content Include="PMS\MailTemplate\SubmitTaskMail.htm" />
+    <Content Include="PMS\Maintain\AddNewTask.aspx" />
+    <Content Include="PMS\Maintain\AddUser.aspx" />
+    <Content Include="PMS\Maintain\AuditComment.aspx" />
+    <Content Include="PMS\Maintain\BatchTaskMaintain.aspx" />
+    <Content Include="PMS\Maintain\BatchTaskMaintain2.aspx" />
+    <Content Include="PMS\Maintain\ChangeHistory.aspx" />
+    <Content Include="PMS\Maintain\EditApprovedTask.aspx" />
+    <Content Include="PMS\Maintain\EditMeetingMinuteExcessivePage.aspx" />
+    <Content Include="PMS\Maintain\CreateMeetingMinuteExcessivePage.aspx" />
+    <Content Include="PMS\JavaScript\DateTimeExt.js" />
+    <Content Include="PMS\JavaScript\jquery\cancel.png" />
+    <Content Include="PMS\JavaScript\jquery\expressInstall.swf" />
+    <Content Include="PMS\JavaScript\jquery\jquery-1.4.2.min.js" />
+    <Content Include="PMS\JavaScript\jquery\jquery.uploadify.v2.1.4.js" />
+    <Content Include="PMS\JavaScript\jquery\jquery.uploadify.v2.1.4.min.js" />
+    <Content Include="PMS\JavaScript\jquery\swfobject.js" />
+    <Content Include="PMS\JavaScript\jquery\uploadify.allglyphs.swf" />
+    <Content Include="PMS\JavaScript\jquery\uploadify.css" />
+    <Content Include="PMS\JavaScript\jquery\uploadify.swf" />
+    <Content Include="PMS\JavaScript\sdp.js" />
+    <Content Include="PMS\MailTemplate\ConfirmSdpTaskMail.htm" />
+    <Content Include="PMS\MailTemplate\CreateMail.htm" />
+    <Content Include="PMS\MailTemplate\CreateServiceMail.htm" />
+    <Content Include="PMS\MailTemplate\InformationChangedMail.htm" />
+    <Content Include="PMS\MailTemplate\ReleaseToWaitingClosedMail.htm" />
+    <Content Include="PMS\Maintain\AttachFileMaintainService.aspx" />
+    <Content Include="PMS\Maintain\AttachFileServiceIframe.aspx" />
+    <Content Include="PMS\Maintain\BugInquiry.aspx" />
+    <Content Include="PMS\Maintain\CreatCRExcessivePage.aspx" />
+    <Content Include="PMS\Maintain\CreateMeetingMinute.aspx" />
+    <Content Include="PMS\Maintain\CreateService.aspx" />
+    <Content Include="PMS\Maintain\CreateServiceExcessivePage.aspx" />
+    <Content Include="PMS\Maintain\CRNoInquiry.aspx" />
+    <Content Include="PMS\Maintain\CRNoUpdate.aspx" />
+    <Content Include="PMS\Maintain\EditMeetingMinute.aspx" />
+    <Content Include="PMS\Maintain\EditWaitingSubmitTask.aspx" />
+    <Content Include="PMS\Maintain\MaintainUser.aspx" />
+    <Content Include="PMS\Maintain\MeetingMinuteMaintain.aspx" />
+    <Content Include="PMS\Maintain\ModifyResource.aspx" />
+    <Content Include="PMS\Maintain\MyTask.aspx" />
+    <Content Include="PMS\Maintain\MyTaskDetail.aspx" />
+    <Content Include="PMS\Maintain\NotCloseCRComments.aspx" />
+    <Content Include="PMS\Maintain\ProjectCommitmentView.aspx" />
+    <Content Include="PMS\Maintain\ProjectsInformation.aspx" />
+    <Content Include="PMS\Maintain\RedirectPage.aspx" />
+    <Content Include="PMS\Maintain\RequirementDataMaintain.aspx" />
+    <Content Include="PMS\Maintain\RequirementDataView.aspx" />
+    <Content Include="PMS\Maintain\ViewTask.aspx" />
+    <Content Include="PMS\Report\DefectRateMandayBugsByDomain.aspx" />
+    <Content Include="PMS\Report\DefectRateMandayBugsByProject.aspx" />
+    <Content Include="PMS\Report\DefectRatePerHourBugsByDomain.aspx" />
+    <Content Include="PMS\Report\DefectRatePerHourBugsByProject.aspx" />
+    <Content Include="PMS\Report\DevelopmentProcessMeasurement.aspx" />
+    <Content Include="PMS\Report\ProjectCommitmentHitRate.aspx" />
+    <Content Include="PMS\Report\ProjectStatisticsByManpower.aspx" />
+    <Content Include="PMS\Report\ProjectVarianceTrace.aspx" />
+    <Content Include="PMS\Report\RequirementsFulfillmentRate.aspx" />
+    <Content Include="PMS\Maintain\SystemListPopUp.aspx" />
+    <Content Include="PMS\Maintain\ViewMeetingMinute.aspx" />
+    <Content Include="PMS\Report\NotCloseCRList.aspx" />
+    <Content Include="PMS\Report\PMS_TEMPCRList.aspx" />
+    <Content Include="PMS\Report\DefectRatePerHourBugsSummaryByDeptMent.aspx" />
+    <Content Include="PMS\UserControls\BasicInformationDetail.ascx" />
+    <Content Include="PMS\UserControls\BasicInformationDetailService.ascx" />
+    <Content Include="PMS\UserControls\ExecutePlan.ascx" />
+    <Content Include="PMS\UserControls\ExecutePlanByPhase.ascx" />
+    <Content Include="PMS\UserControls\ListBoxSelect.ascx" />
+    <Content Include="PMS\UserControls\ProjectProgress.ascx" />
+    <Content Include="PMS\MailTemplate\AssignMemberToPISAndSTPMail.htm" />
+    <Content Include="PMS\MailTemplate\Cancel.htm" />
+    <Content Include="PMS\MailTemplate\DevelopAndTestToReleaseMail.htm" />
+    <Content Include="PMS\MailTemplate\HardClose.htm" />
+    <Content Include="PMS\MailTemplate\Pending.htm" />
+    <Content Include="PMS\MailTemplate\PESToAssignMemberMail.htm" />
+    <Content Include="PMS\MailTemplate\PISAndSTPToDevelopAndTestMail.htm" />
+    <Content Include="PMS\MailTemplate\Reactive.htm" />
+    <Content Include="PMS\MailTemplate\WaitingCloseToCloseMail.htm" />
+    <Content Include="PMS\UserControls\SchedulePlan.ascx" />
+    <Content Include="PMS\UserControls\SchedulePlanByPhase.ascx" />
+    <Content Include="PMS\UserControls\SdpDetailInformation.ascx" />
+    <Content Include="Configuration\BugFreeSqlMap.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PMS\WebService\AddNewTask.asmx" />
+    <Content Include="PMS\WebService\SchedulePlan.asmx" />
+    <Content Include="PMS\WebService\SchedulePlanByPhase.asmx" />
+    <Content Include="Style\easyui.css" />
+    <Content Include="Style\icons\back.png" />
+    <Content Include="Style\icons\blank.gif" />
+    <Content Include="Style\icons\cancel.png" />
+    <Content Include="Style\icons\cut.png" />
+    <Content Include="Style\icons\edit_add.png" />
+    <Content Include="Style\icons\edit_remove.png" />
+    <Content Include="Style\icons\filesave.png" />
+    <Content Include="Style\icons\help.png" />
+    <Content Include="Style\icons\mini_add.png" />
+    <Content Include="Style\icons\mini_edit.png" />
+    <Content Include="Style\icons\mini_refresh.png" />
+    <Content Include="Style\icons\no.png" />
+    <Content Include="Style\icons\ok.png" />
+    <Content Include="Style\icons\pencil.png" />
+    <Content Include="Style\icons\print.png" />
+    <Content Include="Style\icons\redo.png" />
+    <Content Include="Style\icons\reload.png" />
+    <Content Include="Style\icons\search.png" />
+    <Content Include="Style\icons\sum.png" />
+    <Content Include="Style\icons\tip.png" />
+    <Content Include="Style\icons\undo.png" />
+    <Content Include="Style\Images\accordion_arrows.png" />
+    <Content Include="Style\Images\blank.gif" />
+    <Content Include="Style\Images\Bug_Creat.jpg" />
+    <Content Include="Style\Images\calendar_arrows.png" />
+    <Content Include="Style\Images\combo_arrow.png" />
+    <Content Include="Style\Images\CrNoSearch.gif" />
+    <Content Include="Style\Images\datagrid_icons.png" />
+    <Content Include="Style\Images\datebox_arrow.png" />
+    <Content Include="Style\Images\layout_arrows.png" />
+    <Content Include="Style\Images\linkbutton_bg.png" />
+    <Content Include="Style\Images\loading.gif" />
+    <Content Include="Style\Images\menu_arrows.png" />
+    <Content Include="Style\Images\messager_icons.png" />
+    <Content Include="Style\Images\pagination_icons.png" />
+    <Content Include="Style\Images\panel_tools.png" />
+    <Content Include="Style\Images\redflag.gif" />
+    <Content Include="Style\Images\searchbox_button.png" />
+    <Content Include="Style\Images\slider_handle.png" />
+    <Content Include="Style\Images\spinner_arrows.png" />
+    <Content Include="Style\Images\tabs_icons.png" />
+    <Content Include="Style\Images\tree_icons.png" />
+    <Content Include="Style\Images\validatebox_warning.png" />
+    <Content Include="Style\MyTaskStyle.css" />
+    <Content Include="Configuration\TFSSqlMap.config" />
+    <Content Include="PMS\Handler\BatchTaskMaintainHandler.ashx" />
+    <None Include="PMS\JavaScript\jquery\check.php" />
+    <None Include="PMS\JavaScript\jquery\uploadify.fla" />
+    <None Include="PMS\JavaScript\jquery\uploadify.php" />
+    <Content Include="SysFrame\images\appear.gif" />
+    <Content Include="SysFrame\images\checkemp.jpg" />
+    <Content Include="SysFrame\images\chooseemp.jpg" />
+    <Content Include="SysFrame\images\deletefile.gif" />
+    <Content Include="PMS\Maintain\ViewMeetingMinuteExcessivePage.aspx" />
+    <Content Include="SysFrame\images\detail.gif" />
+    <Content Include="SysFrame\images\hide.gif" />
+    <Content Include="SysFrame\images\redflag.gif" />
+    <Content Include="SysFrame\images\save.gif" />
+    <Content Include="SysFrame\images\status.JPG" />
+    <Content Include="SysFrame\images\undo.gif" />
+    <Content Include="SysFrame\images\update.gif" />
+    <None Include="PMS\TemplateFile\APP_BACH2_Plan.mpp" />
+    <None Include="PMS\TemplateFile\BatchTaskImportTemplate.mpp" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\RLNWebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\RLNWebService\rlnswebservice.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="PMS\Maintain\TempFile\" />
+    <Folder Include="PMS\Maintain\UploadFile\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1851</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

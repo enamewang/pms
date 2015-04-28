@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="BfResultinfoMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="BfResultinfo" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.BfResultinfo" />
+  </alias>
+  <resultMaps>
+    <resultMap id="BfResultinfoResult" class="BfResultinfo">
+      <result property="Resultid" column="ResultID" type="uint" dbType="uint"/>
+      <result property="Projectid" column="ProjectID" type="ushort" dbType="ushort"/>
+      <result property="ProjectName" column="ProjectName" type="string" dbType="varchar"/>
+      <result property="Moduleid" column="ModuleID" type="ushort" dbType="ushort"/>
+      <result property="ModulePath" column="ModulePath" type="string" dbType="varchar"/>
+      <result property="Caseid" column="CaseID" type="uint" dbType="uint"/>
+      <result property="ResultTitle" column="ResultTitle" type="string" dbType="varchar"/>
+      <result property="ResultValue" column="ResultValue" type="string" dbType="varchar"/>
+      <result property="ResultStatus" column="ResultStatus" type="string" dbType="varchar"/>
+      <result property="MailTo" column="MailTo" type="string" dbType="varchar"/>
+      <result property="OpenedBy" column="OpenedBy" type="string" dbType="varchar"/>
+      <result property="OpenedDate" column="OpenedDate" type="DateTime" dbType="DateTime"/>
+      <result property="ResultSteps" column="ResultSteps" type="string" dbType="varchar"/>
+      <result property="AssignedTo" column="AssignedTo" type="string" dbType="varchar"/>
+      <result property="AssignedDate" column="AssignedDate" type="DateTime" dbType="DateTime"/>
+      <result property="LastEditedBy" column="LastEditedBy" type="string" dbType="varchar"/>
+      <result property="LastEditedDate" column="LastEditedDate" type="DateTime" dbType="DateTime"/>
+      <result property="ModifiedBy" column="ModifiedBy" type="string" dbType="varchar"/>
+      <result property="Resultos" column="ResultOS" type="string" dbType="varchar"/>
+      <result property="ResultBrowser" column="ResultBrowser" type="string" dbType="varchar"/>
+      <result property="ResultMachine" column="ResultMachine" type="string" dbType="varchar"/>
+      <result property="ResultBuild" column="ResultBuild" type="string" dbType="varchar"/>
+      <result property="ResultKeyword" column="ResultKeyword" type="string" dbType="varchar"/>
+      <result property="Bugid" column="BugID" type="string" dbType="varchar"/>
+      <result property="CustomField1" column="CustomField1" type="string" dbType="varchar"/>
+      <result property="CustomField2" column="CustomField2" type="string" dbType="varchar"/>
+      <result property="CustomField3" column="CustomField3" type="string" dbType="varchar"/>
+      <result property="IsDroped" column="IsDroped" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectBfResultinfo" parameterClass="string" resultClass="BfResultinfo">
+      SELECT ResultID AS Resultid,ProjectID AS Projectid,ProjectName AS ProjectName,ModuleID AS Moduleid,ModulePath AS ModulePath,CaseID AS Caseid,ResultTitle AS ResultTitle,ResultValue AS ResultValue,ResultStatus AS ResultStatus,MailTo AS MailTo,OpenedBy AS OpenedBy,OpenedDate AS OpenedDate,ResultSteps AS ResultSteps,AssignedTo AS AssignedTo,AssignedDate AS AssignedDate,LastEditedBy AS LastEditedBy,LastEditedDate AS LastEditedDate,ModifiedBy AS ModifiedBy,ResultOS AS Resultos,ResultBrowser AS ResultBrowser,ResultMachine AS ResultMachine,ResultBuild AS ResultBuild,ResultKeyword AS ResultKeyword,BugID AS Bugid,CustomField1 AS CustomField1,CustomField2 AS CustomField2,CustomField3 AS CustomField3,IsDroped AS IsDroped
+      FROM
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          ResultID = #value#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+    <insert id="InsertBfResultinfo" parameterClass="BfResultinfo">
+      INSERT INTO
+      (ProjectID,ProjectName,ModuleID,ModulePath,CaseID,ResultTitle,ResultValue,ResultStatus,MailTo,OpenedBy,OpenedDate,ResultSteps,AssignedTo,AssignedDate,LastEditedBy,LastEditedDate,ModifiedBy,ResultOS,ResultBrowser,ResultMachine,ResultBuild,ResultKeyword,BugID,CustomField1,CustomField2,CustomField3,IsDroped)
+      VALUES(#Projectid#,#ProjectName#,#Moduleid#,#ModulePath#,#Caseid#,#ResultTitle#,#ResultValue#,#ResultStatus#,#MailTo#,#OpenedBy#,#OpenedDate:DateTime:1/1/0001 12:00:00 AM#,#ResultSteps#,#AssignedTo#,#AssignedDate:DateTime:1/1/0001 12:00:00 AM#,#LastEditedBy#,#LastEditedDate:DateTime:1/1/0001 12:00:00 AM#,#ModifiedBy#,#Resultos#,#ResultBrowser#,#ResultMachine#,#ResultBuild#,#ResultKeyword#,#Bugid#,#CustomField1#,#CustomField2#,#CustomField3#,#IsDroped#)
+      <selectKey resultClass="int" type="post" property="Resultid">
+        SELECT @@IDENTITY as value
+      </selectKey>
+    </insert>
+    <update id="UpdateBfResultinfo" parameterClass="BfResultinfo">
+      UPDATE
+      SET ProjectID=#Projectid#,ProjectName=#ProjectName#,ModuleID=#Moduleid#,ModulePath=#ModulePath#,CaseID=#Caseid#,ResultTitle=#ResultTitle#,ResultValue=#ResultValue#,ResultStatus=#ResultStatus#,MailTo=#MailTo#,OpenedBy=#OpenedBy#,OpenedDate=#OpenedDate#,ResultSteps=#ResultSteps#,AssignedTo=#AssignedTo#,AssignedDate=#AssignedDate#,LastEditedBy=#LastEditedBy#,LastEditedDate=#LastEditedDate#,ModifiedBy=#ModifiedBy#,ResultOS=#Resultos#,ResultBrowser=#ResultBrowser#,ResultMachine=#ResultMachine#,ResultBuild=#ResultBuild#,ResultKeyword=#ResultKeyword#,BugID=#Bugid#,CustomField1=#CustomField1#,CustomField2=#CustomField2#,CustomField3=#CustomField3#,IsDroped=#IsDroped#
+      WHERE ResultID = #Resultid#
+    </update>
+
+    <update id="UpdateBfResultinfoResultMachine" parameterClass="Hashtable">
+      UPDATE bf_resultinfo
+      SET ResultMachine=#NewCrId#
+      WHERE ResultMachine=#OldCrId#
+    </update>
+    
+    <delete id="DeleteBfResultinfo" parameterClass="string">
+      DELETE FROM
+      WHERE ResultID = #value#
+    </delete>
+  </statements>
+</sqlMap>

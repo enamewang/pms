@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreateRLN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="XML" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateRLNResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateRLNResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTempCrIdToCrId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="oldCrId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="newCrId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTempCrIdToCrIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateTempCrIdToCrIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateRLNSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateRLN" />
+  </wsdl:message>
+  <wsdl:message name="CreateRLNSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateRLNResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTempCrIdToCrIdSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTempCrIdToCrId" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTempCrIdToCrIdSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateTempCrIdToCrIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateRLNHttpGetIn">
+    <wsdl:part name="XML" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateRLNHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTempCrIdToCrIdHttpGetIn">
+    <wsdl:part name="oldCrId" type="s:string" />
+    <wsdl:part name="newCrId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTempCrIdToCrIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateRLNHttpPostIn">
+    <wsdl:part name="XML" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateRLNHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTempCrIdToCrIdHttpPostIn">
+    <wsdl:part name="oldCrId" type="s:string" />
+    <wsdl:part name="newCrId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTempCrIdToCrIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="RLNSWebServiceSoap">
+    <wsdl:operation name="CreateRLN">
+      <wsdl:input message="tns:CreateRLNSoapIn" />
+      <wsdl:output message="tns:CreateRLNSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTempCrIdToCrId">
+      <wsdl:input message="tns:UpdateTempCrIdToCrIdSoapIn" />
+      <wsdl:output message="tns:UpdateTempCrIdToCrIdSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="RLNSWebServiceHttpGet">
+    <wsdl:operation name="CreateRLN">
+      <wsdl:input message="tns:CreateRLNHttpGetIn" />
+      <wsdl:output message="tns:CreateRLNHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTempCrIdToCrId">
+      <wsdl:input message="tns:UpdateTempCrIdToCrIdHttpGetIn" />
+      <wsdl:output message="tns:UpdateTempCrIdToCrIdHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="RLNSWebServiceHttpPost">
+    <wsdl:operation name="CreateRLN">
+      <wsdl:input message="tns:CreateRLNHttpPostIn" />
+      <wsdl:output message="tns:CreateRLNHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTempCrIdToCrId">
+      <wsdl:input message="tns:UpdateTempCrIdToCrIdHttpPostIn" />
+      <wsdl:output message="tns:UpdateTempCrIdToCrIdHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RLNSWebServiceSoap" type="tns:RLNSWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateRLN">
+      <soap:operation soapAction="http://tempuri.org/CreateRLN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTempCrIdToCrId">
+      <soap:operation soapAction="http://tempuri.org/UpdateTempCrIdToCrId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RLNSWebServiceSoap12" type="tns:RLNSWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateRLN">
+      <soap12:operation soapAction="http://tempuri.org/CreateRLN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTempCrIdToCrId">
+      <soap12:operation soapAction="http://tempuri.org/UpdateTempCrIdToCrId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RLNSWebServiceHttpGet" type="tns:RLNSWebServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="CreateRLN">
+      <http:operation location="/CreateRLN" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTempCrIdToCrId">
+      <http:operation location="/UpdateTempCrIdToCrId" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RLNSWebServiceHttpPost" type="tns:RLNSWebServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="CreateRLN">
+      <http:operation location="/CreateRLN" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTempCrIdToCrId">
+      <http:operation location="/UpdateTempCrIdToCrId" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RLNSWebService">
+    <wsdl:port name="RLNSWebServiceSoap" binding="tns:RLNSWebServiceSoap">
+      <soap:address location="http://aic0-s1.qcs.qcorp.com/rlns/rlnswebservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RLNSWebServiceSoap12" binding="tns:RLNSWebServiceSoap12">
+      <soap12:address location="http://aic0-s1.qcs.qcorp.com/rlns/rlnswebservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RLNSWebServiceHttpGet" binding="tns:RLNSWebServiceHttpGet">
+      <http:address location="http://aic0-s1.qcs.qcorp.com/rlns/rlnswebservice.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RLNSWebServiceHttpPost" binding="tns:RLNSWebServiceHttpPost">
+      <http:address location="http://aic0-s1.qcs.qcorp.com/rlns/rlnswebservice.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

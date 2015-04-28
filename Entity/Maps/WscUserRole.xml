@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="WscUserRoleMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="WscUserRole" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.WscUserRole" />
+  </alias>
+  <resultMaps>
+    <resultMap id="WscUserRoleResult" class="WscUserRole">
+      <result property="RoleId" column="ROLE_ID" type="string" dbType="varchar"/>
+      <result property="LoginName" column="LOGIN_NAME" type="string" dbType="varchar"/>
+      <result property="SysId" column="SYS_ID" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectWscUserRoleCount" parameterClass="string" resultClass="int">
+      select count(*) from WSC_USER_ROLE WHERE SYS_ID='TFSSSM' AND replace(replace(LOGIN_NAME,' ',''),'.','') = #value# AND ROLE_ID='User'
+    </select>
+    <insert id="InsertWscUserRole" parameterClass="WscUserRole">
+      INSERT INTO WSC_USER_ROLE
+      (ROLE_ID,LOGIN_NAME,SYS_ID)
+      VALUES(#RoleId#,#LoginName#,#SysId#)
+    </insert>
+    <update id="UpdateWscUserRole" parameterClass="WscUserRole">
+      UPDATE
+      SET ROLE_ID=#RoleId#,LOGIN_NAME=#LoginName#,SYS_ID=#SysId#
+    </update>
+    <delete id="DeleteWscUserRole" parameterClass="string">
+      DELETE FROM
+    </delete>
+  </statements>
+</sqlMap>

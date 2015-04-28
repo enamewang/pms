@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsItarmMappingMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsItarmMapping" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsItarmMapping" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsItarmMappingResult" class="PmsItarmMapping">
+      <result property="PmsId" column="PMSId" type="string" dbType="varchar"/>
+      <result property="CrId" column="CRId" type="string" dbType="varchar"/>
+      <result property="Creator" column="Creator" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/>
+    </resultMap>
+
+    <resultMap id="PmsItarmMappingCoCrNoPmsIdByCrNoResult" class="PmsItarmMapping">
+      <result property="PmsId" column="PMSId" type="string" dbType="varchar"/>
+      <result property="CrId" column="CRId" type="string" dbType="varchar"/>     
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+
+    <select id="SelectPmsItarmMappingCoCrNoPmsIdByCrNo" parameterClass="string" resultMap="PmsItarmMappingCoCrNoPmsIdByCrNoResult">
+
+      select pmsid  AS PmsId,CRId AS CrId from pms_itarm_mapping pms
+      where   exists (
+      select RelatedCRId from (
+      select RelatedCRId from itarm_cr_list_co where CRId in(
+      SELECT CRId FROM itarm_cr_list_co  WHERE RelatedCRId=#value# or CRId=#value#)
+      union
+      SELECT CRId FROM itarm_cr_list_co  WHERE RelatedCRId=#value# or CRId=#value#) itarm
+      where itarm.RelatedCRId=pms.crid
+      )  ORDER BY CrId
+
+    </select>
+
+    <select id="SelectPmsItarmMapping" parameterClass="Hashtable" resultClass="PmsItarmMapping">
+      SELECT PMSId AS PmsId,CRId AS CrId,Creator AS Creator,CreateDate AS CreateDate
+      FROM pms_itarm_mapping
+      WHERE 1=1
+      <isNotEmpty prepend="AND" property="CrId">CRId=#CrId#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="PmsId">PMSId=#PmsId#</isNotEmpty>
+    </select>
+
+
+    <select id="SelectPmsItarmMappingByTempCrIdPart" parameterClass="string" resultClass="PmsItarmMapping">
+      SELECT PMSId AS PmsId,CRId AS CrId,Creator AS Creator,CreateDate AS CreateDate
+      FROM pms_itarm_mapping
+      WHERE 1=1 AND  CRId LIKE CONCAT(#value#,'%')
+    </select>
+
+
+    <!--add by Ename Wang-->
+    <select id="SelectPmsItarmMappingOther" parameterClass="string" resultClass="PmsItarmMapping">
+      SELECT CRId AS CrId
+      FROM pms_itarm_mapping
+      WHERE PMSId=#PmsId#
+    </select>
+    <!--end add-->
+
+    <!--add by Abel Li on 2014-01-16-->
+    <select id="SelectPmsItarmMappingByPmsId" parameterClass="string" resultClass="PmsItarmMapping">
+      SELECT PMSId AS PmsId
+      FROM pms_itarm_mapping
+      WHERE CRId=#CrId#
+    </select>
+    <!--end add-->
+
+    <insert id="InsertPmsItarmMapping" parameterClass="PmsItarmMapping">
+      INSERT INTO  pms_itarm_mapping
+      (PMSId,CRId,Creator,CreateDate)
+      VALUES(#PmsId#,#CrId#,#Creator#,#CreateDate#)
+    </insert>
+
+    <update id="UpdatePmsItarmMapping" parameterClass="PmsItarmMapping">
+      UPDATE  pms_itarm_mapping
+      SET PMSId=#PmsId#,CRId=#CrId#,Creator=#Creator#,CreateDate=#CreateDate#
+    </update>
+
+    <update id="UpdatePmsItarmMappingCrId" parameterClass="Hashtable">
+      UPDATE  pms_itarm_mapping
+      SET CRId=#NewCrId#
+      WHERE CRId=#OldCrId#
+    </update>
+
+    <delete id="DeletePmsItarmMappingCrId" parameterClass="string">
+      DELETE FROM pms_itarm_mapping
+      WHERE CRId=#value#
+    </delete>
+
+    
+
+    <delete id="DeletePmsItarmMapping" parameterClass="string">
+      DELETE FROM pms_itarm_mapping
+      WHERE  PMSId=#value#
+    </delete>
+  </statements>
+</sqlMap>

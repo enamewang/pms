@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3C62B8D4-9F20-4D51-A298-D5042FF99AE5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Qisda.PMS.Entity</RootNamespace>
+    <AssemblyName>Qisda.PMS.Entity</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseDataDepartment.cs" />
+    <Compile Include="BaseDataDepartmentUser.cs" />
+    <Compile Include="BaseDataDomain.cs" />
+    <Compile Include="BaseDataUser.cs" />
+    <Compile Include="BfBuginfo.cs" />
+    <Compile Include="BfCaseinfo.cs" />
+    <Compile Include="BfIssueinfo.cs" />
+    <Compile Include="BfResultinfo.cs" />
+    <Compile Include="PmsEvmRawDataByCr.cs" />
+    <Compile Include="PmsEvmRawDataByUser.cs" />
+    <Compile Include="ItarmCrList.cs" />
+    <Compile Include="ItarmCrListCo.cs" />
+    <Compile Include="ItarmPm.cs" />
+    <Compile Include="ItarmSystem.cs" />
+    <Compile Include="ItarmUser.cs" />
+    <Compile Include="ItLeader.cs" />
+    <Compile Include="MyTaskCondition.cs" />
+    <Compile Include="PmsChangeHistory.cs" />
+    <Compile Include="PmsDevelopmentProcessMeasurement.cs" />
+    <Compile Include="PmsDocuments.cs" />
+    <Compile Include="PmsDocumentType.cs" />
+    <Compile Include="PmsFlow.cs" />
+    <Compile Include="PmsFlowTemplate.cs" />
+    <Compile Include="PmsHead.cs" />
+    <Compile Include="PmsHeadCount.cs" />
+    <Compile Include="PmsHeadCountByContent.cs" />
+    <Compile Include="PmsHeadH.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PmsItarmMapping.cs" />
+    <Compile Include="PmsMinconclution.cs" />
+    <Compile Include="PmsMinHead.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PmsProjectCommitmentHitRate.cs" />
+    <Compile Include="PmsProjectVarianceTrace.cs" />
+    <Compile Include="PmsRequirement.cs" />
+    <Compile Include="PmsSdpAudit.cs" />
+    <Compile Include="PmsSdpRefcost.cs" />
+    <Compile Include="PmsSdpVersion.cs" />
+    <Compile Include="PmsStage.cs" />
+    <Compile Include="PmsSys.cs" />
+    <Compile Include="PmsSystemVersion.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RlnHead.cs" />
+    <Compile Include="SdpDetail.cs" />
+    <Compile Include="SdpDetailTemplate.cs" />
+    <Compile Include="SdpSys.cs" />
+    <Compile Include="CRComments.cs" />
+    <Compile Include="TfsTeam.cs" />
+    <Compile Include="TfsUserList.cs" />
+    <Compile Include="TmpSdpImportdetail.cs" />
+    <Compile Include="VPmsNotClosedcr.cs" />
+    <Compile Include="VTfsDoc.cs" />
+    <Compile Include="WscUserRole.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsSys.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsHead.xml" />
+    <EmbeddedResource Include="Maps\PmsItarmMapping.xml" />
+    <EmbeddedResource Include="Maps\PmsStage.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\BaseDataDomain.xml" />
+    <EmbeddedResource Include="Maps\BaseDataUser.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsDocuments.xml" />
+    <EmbeddedResource Include="Maps\PmsDocumentType.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\SdpDetail.xml" />
+    <EmbeddedResource Include="Maps\SdpDetailTemplate.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsChangeHistory.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\SdpSys.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\ItarmCrList.xml" />
+    <EmbeddedResource Include="Maps\ItarmCrListCo.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsFlow.xml" />
+    <EmbeddedResource Include="Maps\PmsFlowTemplate.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\RlnHead.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\Mail.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\ItarmPm.xml" />
+    <EmbeddedResource Include="Maps\ItarmSystem.xml" />
+    <EmbeddedResource Include="Maps\ItarmUser.xml" />
+    <EmbeddedResource Include="Maps\ItLeader.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\BaseDataDepartment.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\Common.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\BfBuginfo.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsSystemVersion111.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\BfIssueinfo.xml" />
+    <EmbeddedResource Include="Maps\BfResultinfo.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsSystemVersion.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsMinHead.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsMinconclution.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\CRComments.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\VPmsNotClosedcr.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsHeadH.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsRequirement.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsHeadCount.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsProjectCommitmentHitRate.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsHeadCountByContent.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\BaseDataDepartmentUser.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsSdpRefcost.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsSdpAudit.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\PmsSdpVersion.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Maps\TfsTeam.xml" />
+    <EmbeddedResource Include="Maps\TfsUserList.xml" />
+    <EmbeddedResource Include="Maps\WscUserRole.xml" />
+    <EmbeddedResource Include="Maps\TmpSdpImportdetail.xml" />
+    <EmbeddedResource Include="Maps\PmsDevelopmentProcessMeasurement.xml" />
+    <EmbeddedResource Include="Maps\PmsEvmRawDataByUser.xml" />
+    <EmbeddedResource Include="Maps\PmsEvmRawDataByCr.xml" />
+    <EmbeddedResource Include="Maps\PmsProjectVarianceTrace.xml" />
+    <EmbeddedResource Include="Maps\VTfsDoc.xml" />
+    <Content Include="obj\Debug\Entity.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\Qisda.PMS.Entity.dll" />
+    <Content Include="obj\Debug\Qisda.PMS.Entity.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

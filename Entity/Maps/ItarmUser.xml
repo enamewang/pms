@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="ItarmUserMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="ItarmUser" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.ItarmUser" />
+  </alias>
+  <resultMaps>
+    <resultMap id="ItarmUserResult" class="ItarmUser">
+      <result property="EmpNo" column="emp_no" type="string" dbType="varchar"/>
+      <result property="EmpId" column="emp_id" type="string" dbType="varchar"/>
+      <result property="Account" column="account" type="string" dbType="varchar"/>
+      <result property="Domain" column="domain" type="string" dbType="varchar"/>
+      <result property="ChineseName" column="chinese_name" type="string" dbType="varchar"/>
+      <result property="EnglishName" column="english_name" type="string" dbType="varchar"/>
+      <result property="Email" column="email" type="string" dbType="varchar"/>
+      <result property="Extension" column="extension" type="string" dbType="varchar"/>
+      <result property="Department" column="department" type="string" dbType="varchar"/>
+      <result property="Site" column="site" type="string" dbType="varchar"/>
+      <result property="Active" column="active" type="string" dbType="varchar"/>
+      <result property="Updatedate" column="updatedate" type="DateTime" dbType="DateTime"/>
+    </resultMap> 
+  
+
+    <!--<resultMap id="ItarmUserResultNoName" class="ItarmUser">     
+      <result property="EnglishName" column="[english_name]" type="string" dbType="varchar"/>
+      <result property="EmpNo" column="[emp_no]" type="string" dbType="varchar"/>
+    </resultMap>-->
+
+
+
+    </resultMaps>
+  
+    <statements>
+
+      <select id="SelectItarmPmNoName" resultClass="ItarmUser">
+        select distinct b.[english_name] AS EnglishName,Rtrim(b.[emp_no]) as EmpNo from ITARM_PM a, ITARM_USER b where a.[pm_no] = b.[emp_no]
+      </select>
+    
+
+    <select id="SelectItarmUser" parameterClass="string" resultClass="ItarmUser">
+      SELECT emp_no AS EmpNo,emp_id AS EmpId,account AS Account,domain AS Domain,chinese_name AS ChineseName,english_name AS EnglishName,email AS Email,extension AS Extension,department AS Department,site AS Site,active AS Active,updatedate AS Updatedate
+      FROM
+    </select>
+    <insert id="InsertItarmUser" parameterClass="ItarmUser">
+      INSERT INTO
+      (emp_no,emp_id,account,domain,chinese_name,english_name,email,extension,department,site,active,updatedate)
+      VALUES(#EmpNo#,#EmpId#,#Account#,#Domain#,#ChineseName#,#EnglishName#,#Email#,#Extension#,#Department#,#Site#,#Active#,#Updatedate:DateTime:1/1/0001 12:00:00 AM#)
+    </insert>
+    <update id="UpdateItarmUser" parameterClass="ItarmUser">
+      UPDATE
+      SET emp_no=#EmpNo#,emp_id=#EmpId#,account=#Account#,domain=#Domain#,chinese_name=#ChineseName#,english_name=#EnglishName#,email=#Email#,extension=#Extension#,department=#Department#,site=#Site#,active=#Active#,updatedate=#Updatedate#
+    </update>
+    <delete id="DeleteItarmUser" parameterClass="string">
+      DELETE FROM
+    </delete>
+  </statements>
+</sqlMap>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="ItarmSystemMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="ItarmSystem" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.ItarmSystem" />
+  </alias>
+  <resultMaps>
+    <resultMap id="ItarmSystemResult" class="ItarmSystem">
+      <result property="SystemId" column="system_id" type="int" dbType="Int"/>
+      <result property="SystemDomain" column="system_domain" type="string" dbType="varchar"/>
+      <result property="SystemBname" column="system_bname" type="string" dbType="varchar"/>
+      <result property="SystemEname" column="system_ename" type="string" dbType="varchar"/>
+      <result property="SystemCname" column="system_cname" type="string" dbType="varchar"/>
+      <result property="SystemDescription" column="system_description" type="string" dbType="varchar"/>
+      <result property="Active" column="active" type="string" dbType="varchar"/>
+      <result property="Remark" column="remark" type="string" dbType="varchar"/>
+      <result property="Site" column="site" type="string" dbType="varchar"/>
+      <result property="GlobalReviewer" column="Global_reviewer" type="string" dbType="varchar"/>
+      <result property="GlobalAdmin" column="Global_admin" type="string" dbType="varchar"/>
+      <result property="DocumentPath" column="document_path" type="string" dbType="varchar"/>
+      <result property="TypeInPortal" column="type_in_portal" type="string" dbType="varchar"/>
+      <result property="SystemLink" column="system_link" type="string" dbType="varchar"/>
+      <result property="SitePortal" column="site_portal" type="string" dbType="varchar"/>
+    </resultMap>
+
+    <!--<resultMap id="ItarmSystemResultDomain" class="ItarmSystem">
+      <result property="SystemDomain" column="system_domain" type="string" dbType="varchar"/>
+    </resultMap>-->
+
+    <resultMap id="ItarmSystemResultSite" class="ItarmSystem">
+      <result property="Site" column="site" type="string" dbType="varchar"/>
+    </resultMap>
+
+    <resultMap id="ItarmSystemResultSystem" class="ItarmSystem">
+      <result property="SystemId" column="system_id"/>
+      <result property="SystemDomain" column="system_domain" />
+      <result property="SystemBname" column="system_bname" />
+      <result property="SystemEname" column="system_ename" />
+      <result property="SystemCname" column="system_cname" />
+      <result property="Site" column="site" />
+      <result property="EnglishName" column="english_name" />
+      <result property="Extension" column="extension" />
+      <result property="Sequence" column="sequence" />
+      <result property="PmNo" column="pm_no" />
+    </resultMap>
+    
+  </resultMaps>
+  
+  <statements>
+    <procedure id="SelectItarmSystemSystem" parameterMap="ParamItarmSystemSystem"  resultMap="ItarmSystemResultSystem">
+      usp_GetAllSystem_SystemList_Popup
+    </procedure>
+
+    <select id="SelectItarmSystemDomain" resultClass="string">
+      SELECT DISTINCT
+      system_domain AS SystemDomain
+      FROM    ITARM_SYSTEM
+    </select>
+
+    <select id="SelectItarmSystemSite" resultMap="ItarmSystemResultSite">
+      SELECT distinct [site] AS [Site] from ITARM_SYSTEM
+    </select>
+
+    <select id="SelectItarmSystem" parameterClass="string" resultClass="ItarmSystem">
+      SELECT system_id AS SystemId,system_domain AS SystemDomain,system_bname AS SystemBname,system_ename AS SystemEname,system_cname AS SystemCname,system_description AS SystemDescription,active AS Active,remark AS Remark,site AS Site,Global_reviewer AS GlobalReviewer,Global_admin AS GlobalAdmin,document_path AS DocumentPath,type_in_portal AS TypeInPortal,system_link AS SystemLink,site_portal AS SitePortal
+      FROM
+    </select>
+    <insert id="InsertItarmSystem" parameterClass="ItarmSystem">
+      INSERT INTO
+      (system_id,system_domain,system_bname,system_ename,system_cname,system_description,active,remark,site,Global_reviewer,Global_admin,document_path,type_in_portal,system_link,site_portal)
+      VALUES(#SystemId#,#SystemDomain#,#SystemBname#,#SystemEname#,#SystemCname#,#SystemDescription#,#Active#,#Remark#,#Site#,#GlobalReviewer#,#GlobalAdmin#,#DocumentPath#,#TypeInPortal#,#SystemLink#,#SitePortal#)
+    </insert>
+    <update id="UpdateItarmSystem" parameterClass="ItarmSystem">
+      UPDATE
+      SET system_id=#SystemId#,system_domain=#SystemDomain#,system_bname=#SystemBname#,system_ename=#SystemEname#,system_cname=#SystemCname#,system_description=#SystemDescription#,active=#Active#,remark=#Remark#,site=#Site#,Global_reviewer=#GlobalReviewer#,Global_admin=#GlobalAdmin#,document_path=#DocumentPath#,type_in_portal=#TypeInPortal#,system_link=#SystemLink#,site_portal=#SitePortal#
+    </update>
+    <delete id="DeleteItarmSystem" parameterClass="string">
+      DELETE FROM
+    </delete>
+    
+  </statements>
+  
+  <parameterMaps>
+    <parameterMap id="ParamItarmSystemSystem" class ="Hashtable">
+      <parameter property="bname"/>
+      <parameter property="ename"/>
+      <parameter property="cname"/>
+      <parameter property="domain"/>
+      <parameter property="pm"/>
+      <parameter property="site"/> 
+    </parameterMap>    
+  </parameterMaps> 
+  
+  
+</sqlMap>

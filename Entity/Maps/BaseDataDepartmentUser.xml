@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="BaseDataDepartmentUserMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="BaseDataDepartmentUser" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.BaseDataDepartmentUser" />
+  </alias>
+  <resultMaps>
+    <resultMap id="BaseDataDepartmentUserResult" class="BaseDataDepartmentUser">
+      <result property="DepartmentId" column="department_id" type="int" dbType="Int"/>
+      <result property="UserId" column="user_id" type="int" dbType="Int"/>
+      <result property="Type" column="type" type="string" dbType="varchar"/>
+      <result property="Active" column="active" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="create_date" type="DateTime" dbType="DateTime"/>
+      <result property="CreateUser" column="create_user" type="string" dbType="varchar"/>
+      <result property="MaintainDate" column="maintain_date" type="DateTime" dbType="DateTime"/>
+      <result property="MaintainUser" column="maintain_user" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectBaseDataDepartmentUser" parameterClass="string" resultClass="BaseDataDepartmentUser">
+      SELECT department_id AS DepartmentId,user_id AS UserId,type AS Type,active AS Active,create_date AS CreateDate,create_user AS CreateUser,maintain_date AS MaintainDate,maintain_user AS MaintainUser
+      FROM
+    </select>
+    <insert id="InsertBaseDataDepartmentUser" parameterClass="BaseDataDepartmentUser">
+      INSERT INTO base_data_department_user
+      (department_id,user_id,type,active,create_date,create_user,maintain_date,maintain_user)
+      VALUES(#DepartmentId#,#UserId#,#Type#,#Active#,#CreateDate:DateTime:1/1/0001 12:00:00 AM#,#CreateUser#,#MaintainDate:DateTime:1/1/0001 12:00:00 AM#,#MaintainUser#)
+    </insert>
+    <update id="UpdateBaseDataDepartmentUser" parameterClass="string">
+      UPDATE base_data_department_user
+      SET active='N'
+      where user_id=#id#
+    </update>
+    <delete id="DeleteBaseDataDepartmentUser" parameterClass="string">
+      DELETE FROM
+    </delete>
+  </statements>
+</sqlMap>

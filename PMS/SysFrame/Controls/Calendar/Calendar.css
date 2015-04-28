@@ -1,0 +1,67 @@
+﻿/* You can change these class definition to adapt to your system UI. Rename class name is forbidden.*/
+
+/* Work day normal*/
+.DayWorkNormal    { font-family: Arial; font-size: 11px; background-color: #ffffff; color: #000000;  text-align: center; vertical-align: middle;  border: 1px solid #ffffff;  }
+/* Work day on mouse up*/
+.DayWorkMouseUp    { font-family: Arial; font-size: 11px; background-color: #ffffff; color: #000000;  text-align: center; vertical-align: middle;border: 1px outset #86bed1;   }
+/* Work day on mouse down*/
+.DayWorkMouseDown  { font-family: Arial; font-size: 11px; background-color: #076486; color: #ffffff; font-weight:bold; text-align: center; vertical-align: middle; border: 1px inset #ffffff;  }
+
+/*Last Month Day Weekend Mouse Normal*/
+.LastMonthDayWeekendMouseNormal 	{font-family: Arial; font-size: 11px; background-color: #d9f3fc; color:#808080;text-align:center; border: 1px solid #d9f3fc;  }
+/*Last Month Day Weekend Mouse Up*/
+.LastMonthDayWeekendMouseUp	 {font-family: Arial; font-size: 11px; background-color: #d9f3fc; color:#808080;text-align:center; border: 1px outset #86bed1;  }
+/*Last Month Day Weekend Mouse Down*/
+.LastMonthDayWeekendMouseDown		{font-family: Arial; font-size: 11px;font-weight: bold;background-color: #076486;color: #FFFFFF;text-align:center;}
+
+/*Last Month Day Work Mouse Normal*/
+.LastMonthDayWorkMouseNormal 	{font-family: Arial; font-size: 11px;color: #808080; text-align:center; }
+/*Last Month Day Work Mouse Up*/
+.LastMonthDayWorkMouseUp	 {font-family: Arial; font-size: 11px;color: #808080; text-align:center;border: 1px outset #86bed1;  }
+/*Last Month Day Work Mouse Down*/
+.LastMonthDayWorkMouseDown		{font-family: Arial; font-size: 11px;font-weight: bold;background-color: #076486;color: #FFFFFF;text-align:center;}
+
+/*Next Month Day Weekend Mouse Normal*/
+.NextMonthDayWeekendMouseNormal	 {font-family: Arial; font-size: 11px;background-color: #d9f3fc;color: #808080; text-align:center;border: 1px solid #d9f3fc; }
+/*Next Month Day Weekend Mouse Up*/
+.NextMonthDayWeekendMouseUp 	{font-family: Arial; font-size: 11px;background-color: #d9f3fc;color: #808080; text-align:center;border: 1px outset #86bed1; }
+/*Next Month Day Work Mouse Down*/
+.NextMonthDayWorkMouseDown		{font-family: Arial; font-size: 11px;font-weight: bold;background-color: #076486;color: #FFFFFF;text-align:center;}
+
+/*Next Month Day Work Mouse Normal*/
+.NextMonthDayWorkMouseNormal		{font-family: Arial; font-size: 11px;color: #808080; text-align: center;}
+/*Next Month Day Work Mouse Up*/
+.NextMonthDayWorkMouseUp		{font-family: Arial; font-size: 11px;color: #808080; text-align: center;border: 1px outset #86bed1; }
+/*Next Month Day Weekend Mouse Down*/
+.NextMonthDayWeekendMouseDown		{font-family: Arial; font-size: 11px;font-weight: bold;background-color: #076486;color: #FFFFFF;text-align:center;}
+
+/*Day Weekend Mouse Normal*/
+.DayWeekendMouseNormal		{font-family: Arial; font-size: 11px;background-color: #d9f3fc;color: #000000;text-align:center;border: 1px solid #d9f3fc; }
+/*Day Weekend Mouse Up*/
+.DayWeekendMouseUp		{font-family: Arial; font-size: 11px;background-color: #d9f3fc;color: #000000;text-align:center;border: 1px outset #86bed1; }
+/*Day Weekend Mouse Down*/
+.DayWeekendMouseDown		{font-family: Arial; font-size: 11px;font-weight: bold;background-color: #076486;color: #FFFFFF;text-align:center;}
+
+
+/*Day now mouse up*/
+.DayNowMouseUp			{ font-weight: bold; background-color: #CCCCCC; color:#000000; text-align:center;}
+/*Day now mouse down*/
+.DayNowMouseDown		{ font-weight: bold; background-color: #076486; color: #FFFFFF; text-align:center}
+
+/* Work day title*/
+.WeekDay    { font-family: Arial; font-size: 11px; background-color: #d9f3fc; color: #000000; text-align: center; vertical-align: middle; border-top: 0px solid #a272bc; cursor:default; height:25px; }			
+
+/* Arrow normal*/
+.ArrowNormal     { font-family: Arial; font-size: 11px; background-color: #00638E; color: #ffffff; font-weight: bold; text-align: center; vertical-align: middle; border-right: 0px solid #ffffff; border-left: 0px solid #ffffff; }
+/* Arrow on mouse up*/
+.ArrowMouseUp     { font-family: Arial; font-size: 11px; background-color: #86bed1; color: #ffffff; font-weight: bold; text-align: center; vertical-align: middle; border: 2px outset #ffffff; }
+/* Arrow on mouse down*/
+.ArrowMouseDown     { font-family: Arial; font-size: 11px; background-color: #86bed1; color: #ffffff; font-weight: bold; text-align: center; vertical-align: middle; border: 2px inset #ffffff; }
+
+/* Year and Month select title element*/
+.YearMonthSelectTitle 	{font-family: Arial; font-size: 11px; background-color:#dcdcdc; color:#000000; font-weight:bold;cursor:default; }
+/*Year and month show*/
+.YearAndMonth 	{ font-family: Arial; color:#ffffff; font-size: 9pt; font-weight: bold; background-color: #00638E; text-align: center; vertical-align: middle; cursor: default;}
+
+/* Clear and Close button*/
+input		{font-family: Arial;font-size: 8pt; font-weight:bold; width: 120px; height: 20px; cursor: hand; background-color:#ffffff; border-color:#add8e6; }

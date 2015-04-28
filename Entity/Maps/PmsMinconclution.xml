@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsMinconclutionMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsMinconclution" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsMinconclution" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsMinconclutionResult" class="PmsMinconclution">
+      <result property="Serial" column="Serial" type="int" dbType="Int"/>
+      <result property="Mnid" column="MNID" type="string" dbType="varchar"/>
+      <result property="Description" column="Description" type="string" dbType="varchar"/>
+      <result property="Creator" column="Creator" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectPmsMinconclution" parameterClass="string" resultClass="PmsMinconclution">
+      SELECT Serial AS Serial,MNID AS Mnid,Description AS Description,Creator AS Creator,CreateDate AS CreateDate
+      FROM  pms_minconclution
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          MNID = #value#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+    <insert id="InsertPmsMinconclution" parameterClass="PmsMinconclution">
+      INSERT INTO  pms_minconclution
+      (MNID,Description,Creator,CreateDate)
+      VALUES(#Mnid#,#Description#,#Creator#,#CreateDate:DateTime:1/1/0001 12:00:00 AM#)
+      <selectKey resultClass="int" type="post" property="Serial">
+        SELECT @@IDENTITY as value
+      </selectKey>
+    </insert>
+    <update id="UpdatePmsMinconclution" parameterClass="PmsMinconclution">
+      UPDATE pms_minconclution
+      SET Description=#Description#,Creator=#Creator#,CreateDate=#CreateDate#
+      WHERE Serial = #Serial#
+    </update>
+    <delete id="DeletePmsMinconclution" parameterClass="PmsMinconclution">
+      DELETE FROM pms_minconclution
+      WHERE Serial = #Serial#
+    </delete>
+    <delete id="DeletePmsMinconclutionBySerial" parameterClass="string">
+      DELETE FROM pms_minconclution
+      WHERE Serial = #value#
+    </delete>
+    <delete id="DeletePmsMinconclutionByMnId" parameterClass="string">
+      DELETE FROM pms_minconclution
+      WHERE MNID = #value#
+    </delete>
+  </statements>
+</sqlMap>

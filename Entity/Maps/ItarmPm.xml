@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="ItarmPmMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="ItarmPm" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.ItarmPm" />
+  </alias>
+  <resultMaps>
+    <resultMap id="ItarmPmResult" class="ItarmPm">
+      <result property="SystemId" column="system_id" type="int" dbType="Int"/>
+      <result property="PmNo" column="pm_no" type="string" dbType="varchar"/>
+      <result property="Sequence" column="sequence" type="int" dbType="Int"/>
+    </resultMap>
+
+    <!--<resultMap id="ItarmPmResultNoName" class="ItarmPm">
+      <result property="PmNo" column="pm_no" type="string" dbType="varchar"/>
+      <result property="EnglishName" column="english_name" type="string" dbType="varchar"/>
+    </resultMap>-->
+    
+    
+    
+  </resultMaps>
+  <statements>
+    
+    <!--<select id="SelectItarmPmNoName" resultMap="ItarmPmResultNoName">
+      select distinct b.[english_name] AS EnglishName,Rtrim(b.[emp_no]) as PmNo from ITARM_PM a, ITARM_USER b where a.[pm_no] = b.[emp_no]
+    </select>-->
+    
+    
+    <select id="SelectItarmPm" parameterClass="string" resultClass="ItarmPm">
+      SELECT system_id AS SystemId,pm_no AS PmNo,sequence AS Sequence
+      FROM
+    </select>
+    <insert id="InsertItarmPm" parameterClass="ItarmPm">
+      INSERT INTO
+      (system_id,pm_no,sequence)
+      VALUES(#SystemId#,#PmNo#,#Sequence#)
+    </insert>
+    <update id="UpdateItarmPm" parameterClass="ItarmPm">
+      UPDATE
+      SET system_id=#SystemId#,pm_no=#PmNo#,sequence=#Sequence#
+    </update>
+    <delete id="DeleteItarmPm" parameterClass="string">
+      DELETE FROM
+    </delete>
+  </statements>
+</sqlMap>

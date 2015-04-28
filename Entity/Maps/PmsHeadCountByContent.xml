@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsHeadCountByContentMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsHeadCountByContent" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsHeadCountByContent" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsHeadCountByContentResult" class="PmsHeadCountByContent">
+      <result property="Vid" column="VID" type="string" dbType="varchar"/>
+      <result property="YearAndMonth" column="YearAndMonth" type="string" dbType="varchar"/>
+      <result property="RequirementPeriod" column="RequirementPeriod" type="string" dbType="varchar"/>
+      <result property="ContentType" column="ContentType" type="string" dbType="varchar"/>
+      <result property="Role" column="Role" type="string" dbType="varchar"/>
+      <result property="HeadCount" column="HeadCount" type="single" dbType="Real"/>
+      <result property="Createdate" column="createdate" type="DateTime" dbType="DateTime"/>
+      <result property="Createuser" column="createuser" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectPmsHeadCountByContent" parameterClass="string" resultClass="PmsHeadCountByContent">
+      SELECT VID AS Vid,YearAndMonth AS YearAndMonth,RequirementPeriod AS RequirementPeriod,ContentType AS ContentType,Role AS Role,HeadCount AS HeadCount,createdate AS Createdate,createuser AS Createuser
+      FROM
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          VID = #value#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+    <insert id="InsertPmsHeadCountByContent" parameterClass="PmsHeadCountByContent">
+      INSERT INTO pms_head_count_by_content
+      (VID,YearAndMonth,RequirementPeriod,ContentType,Role,HeadCount,createdate,createuser)
+      VALUES(#Vid#,#YearAndMonth#,#RequirementPeriod#,#ContentType#,#Role#,#HeadCount#,#Createdate:DateTime:1/1/0001 12:00:00 AM#,#Createuser#)
+    </insert>
+    <update id="UpdatePmsHeadCountByContent" parameterClass="PmsHeadCountByContent">
+      UPDATE
+      SET VID=#Vid#,YearAndMonth=#YearAndMonth#,RequirementPeriod=#RequirementPeriod#,ContentType=#ContentType#,Role=#Role#,HeadCount=#HeadCount#,createdate=#Createdate#,createuser=#Createuser#
+      WHERE VID = #Vid#
+    </update>
+    <delete id="DeletePmsHeadCountByContent" parameterClass="PmsHeadCountByContent">
+      DELETE FROM pms_head_count_by_content
+      WHERE 1=1 AND VID='PM'
+      <isNotEmpty prepend="AND" property="YearAndMonth">YearAndMonth=#YearAndMonth#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="RequirementPeriod">RequirementPeriod=#RequirementPeriod#</isNotEmpty>
+    </delete>
+  </statements>
+</sqlMap>

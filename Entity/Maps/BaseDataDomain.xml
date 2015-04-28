@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="BaseDataDomainMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<alias>
+	<typeAlias alias="BaseDataDomain" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.BaseDataDomain" />
+</alias>
+<resultMaps>
+		<resultMap id="BaseDataDomainResult" class="BaseDataDomain">
+      <result property="Id" column="id" type="int" dbType="int"/>
+      <result property="Name" column="name" type="string" dbType="varchar"/>
+      <result property="Description" column="description" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="create_date" type="DateTime" dbType="DateTime"/>
+      <result property="CreateUser" column="create_user" type="string" dbType="varchar"/>
+      <result property="MaintainDate" column="maintain_date" type="DateTime" dbType="DateTime"/>
+      <result property="MaintainUser" column="maintain_user" type="string" dbType="varchar"/>
+    </resultMap>
+</resultMaps>
+<statements>
+	
+<select id="SelectBaseDataDomain" parameterClass="string" resultClass="BaseDataDomain">
+  SELECT id AS Id,name AS Name,description AS Description,create_date AS CreateDate,
+  create_user AS CreateUser,maintain_date AS MaintainDate,maintain_user AS MaintainUser
+  FROM base_data_domain
+  <dynamic prepend="WHERE">
+<isParameterPresent>id = #value#
+</isParameterPresent>
+</dynamic>
+  ORDER BY name
+</select>
+  
+<insert id="InsertBaseDataDomain" parameterClass="BaseDataDomain">
+  INSERT INTO  base_data_domain
+  (name,description,create_date,create_user,maintain_date,maintain_user)
+  VALUES(#Name#,#Description#,#CreateDate#,#CreateUser#,#MaintainDate#,#MaintainUser#)
+  <selectKey resultClass="int" type="post" property="Id">
+		SELECT @@IDENTITY as value
+	</selectKey>
+</insert>
+  
+<update id="UpdateBaseDataDomain" parameterClass="BaseDataDomain">
+  UPDATE  base_data_domain
+  SET name=#Name#,description=#Description#,create_date=#CreateDate#,create_user=#CreateUser#,
+  maintain_date=#MaintainDate#,maintain_user=#MaintainUser#
+  WHERE id = #Id#
+</update>
+  
+<delete id="DeleteBaseDataDomain" parameterClass="string">
+  DELETE FROM base_data_domain
+  WHERE id = #value#
+</delete>
+  
+</statements>
+</sqlMap>

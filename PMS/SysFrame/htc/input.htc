@@ -1,0 +1,25 @@
+﻿<public:component>
+<!--添加连接--> 
+<public:property name="link" value="" />
+<!--添加是否在新窗口打开属性--> 
+<public:property name="target" value="" />
+<script language=javascript>
+if(this.onclick==null)
+{
+onclick=function()
+{
+  if (link!="")
+  {
+    if (target=="_blank")
+    {
+      window.open(link);
+    }
+     else
+    {
+      location.href=link;
+    }
+  } 
+};
+};
+</script>
+</public:component>

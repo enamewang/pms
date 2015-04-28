@@ -1,0 +1,14 @@
+E:\Public\PMS_NEW\PMS\Common\bin\Debug\Qisda.PMS.Common.dll
+E:\Public\PMS_NEW\PMS\Common\bin\Debug\Qisda.PMS.Common.pdb
+E:\Public\PMS_NEW\PMS\Common\obj\Debug\ResolveAssemblyReference.cache
+E:\Public\PMS_NEW\PMS\Common\obj\Debug\Qisda.PMS.Common.dll
+E:\Public\PMS_NEW\PMS\Common\obj\Debug\Qisda.PMS.Common.pdb
+E:\MySystem\PMS\PMS\Common\bin\Debug\Qisda.PMS.Common.dll
+E:\MySystem\PMS\PMS\Common\bin\Debug\Qisda.PMS.Common.pdb
+E:\MySystem\PMS\PMS\Common\obj\Debug\Qisda.PMS.Common.dll
+E:\MySystem\PMS\PMS\Common\obj\Debug\Qisda.PMS.Common.pdb
+E:\总结文档\MySystem\PMS\PMS\Common\bin\Debug\Qisda.PMS.Common.dll
+E:\总结文档\MySystem\PMS\PMS\Common\bin\Debug\Qisda.PMS.Common.pdb
+E:\总结文档\MySystem\PMS\PMS\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache
+E:\总结文档\MySystem\PMS\PMS\Common\obj\Debug\Qisda.PMS.Common.dll
+E:\总结文档\MySystem\PMS\PMS\Common\obj\Debug\Qisda.PMS.Common.pdb

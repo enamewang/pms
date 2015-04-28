@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="ItarmCrListMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="ItarmCrList" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.ItarmCrList" />
+  </alias>
+  <resultMaps>
+    <resultMap id="ItarmCrListResult" class="ItarmCrList">
+      <result property="Serial" column="serial" type="int" dbType="int"/>
+      <result property="CrId" column="CRId" type="string" dbType="nvarchar"/>
+      <result property="CrName" column="CRName" type="string" dbType="nvarchar"/>
+      <result property="Site" column="site" type="string" dbType="nvarchar"/>
+      <result property="Creator" column="Creator" type="string" dbType="nvarchar"/>
+      <result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/>
+      <result property="Pm" column="PM" type="string" dbType="varchar"/>
+      <result property="System" column="System" type="string" dbType="varchar"/>
+    </resultMap>
+
+    <resultMap id="ItarmCrListCRIdNamePMSIdSdResult" class="ItarmCrList">
+      <result property="CrId" column="CRId" type="string" dbType="nvarchar"/>
+      <result property="CrName" column="CRName" type="string" dbType="nvarchar"/>
+      <result property="Sd" column="SD" type="string" dbType="nvarchar"/>
+      <result property="PmsId" column="PMSId" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectCrIdItarmcrlistItarmcrlistco" parameterClass="string" resultClass="string">
+      select CRID AS CrId  from   itarm_cr_list where CRID=#value# union select RelatedCRId AS CrId from itarm_cr_list_co where RelatedCRId=#value#
+    </select>
+
+
+    <select id="SelectCRIdNamePMSIdSdByQaSd" parameterClass="Hashtable" resultMap="ItarmCrListCRIdNamePMSIdSdResult">
+      select
+      c.CRId AS CrId ,
+      c.CRName AS CrName ,
+      m.SD AS Sd,m.PMSId AS PmsId
+      from
+      (SELECT DISTINCT
+      itcr.CRId AS CrId ,
+      itcr.CRName AS CrName
+      FROM    itarm_cr_list itcr
+      union
+      SELECT DISTINCT
+      itcrco.RelatedCRId AS CrId ,
+      itcrco.RelatedCRName AS CrName
+      FROM    itarm_cr_list_co itcrco) c,
+      ( SELECT    mapping.CRId ,mapping.PMSId,
+      h.SD
+      FROM      pms_itarm_mapping mapping ,
+      ( SELECT    H.PMSId ,
+      H.SD AS Sd
+      FROM      pms_head H
+      WHERE     VID = 'PM'
+      <isNotEmpty prepend="AND" property="Qa"> QA LIKE CONCAT('%',CONCAT(#Qa#,'%')) </isNotEmpty>
+      <isNotEmpty prepend="AND" property="Sd"> SD LIKE CONCAT('%',CONCAT(#Sd#,'%')) </isNotEmpty>
+      <isNotEqual prepend="AND" property="CloseDateFrom" compareValue="0001-01-01 0:00:00" >
+        H.CloseDate >= #CloseDateFrom#
+      </isNotEqual>
+      <isNotEqual prepend="AND" property="CloseDateTo" compareValue="0001-01-01 0:00:00" >
+        H.CloseDate <![CDATA[<=]]> #CloseDateTo#
+      </isNotEqual>
+      ) h
+      WHERE     mapping.PMSId = h.PMSId
+      ) m
+      WHERE   c.CRId = m.CRId
+      ORDER BY c.CRId
+    </select>
+
+    <select id="SelectCRIdNamePMSIdSdByCrId" parameterClass="Hashtable" resultMap="ItarmCrListCRIdNamePMSIdSdResult">
+      select
+      crlist.CRId AS CrId ,
+      crlist.CRName AS CrName ,
+      m.SD AS Sd,m.PMSId AS PmsId
+      from
+      (
+      SELECT DISTINCT
+      itcr.CRId AS CrId ,
+      itcr.CRName AS CrName
+      FROM    itarm_cr_list itcr
+      WHERE   itcr.CRId = #CrId#
+      union
+      SELECT DISTINCT
+      itcrco.RelatedCRId AS CrId ,
+      itcrco.RelatedCRName AS CrName
+      FROM    itarm_cr_list_co itcrco
+      WHERE   itcrco.RelatedCRId = #CrId#
+      ) crlist,
+      (SELECT    H.PMSId ,
+      H.SD ,
+      mapping.CRId
+      FROM      pms_head H , pms_itarm_mapping mapping
+      WHERE     H.VID = 'PM'  AND H.PMSId = mapping.PMSId  AND mapping.CRId = #CrId#
+      ) m
+      WHERE   crlist.CRId = m.CRId
+      ORDER BY crlist.CRId
+    </select>
+
+
+    <select id="SelectCrIdNamePmSystemSite" parameterClass="Hashtable" resultClass="ItarmCrList">
+      <!--SELECT CRId AS CrId,CRName AS CrName,site AS Site,PM AS Pm,System AS System
+      FROM itarm_cr_list
+      WHERE 1=1
+      <isNotEmpty prepend="AND" property="CrId">
+        CRId LIKE CONCAT('%',CONCAT(#CrId#,'%'))
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="CrName">
+        CRName LIKE CONCAT('%',CONCAT(#CrName#,'%'))
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="Site">
+        site LIKE CONCAT('%',CONCAT(#Site#,'%'))
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="Pm">
+        PM LIKE CONCAT('%',CONCAT(#Pm#,'%'))
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="System">
+        System LIKE CONCAT('%',CONCAT(#System#,'%'))
+      </isNotEmpty>
+      ORDER BY CRId-->
+
+      SELECT CRId AS CrId,CRName AS CrName,site AS Site,PM AS Pm,System AS System
+      FROM itarm_cr_list
+      WHERE 1=1 AND CRId LIKE '%CR%'
+      <isNotEmpty prepend="AND" property="CrId">
+        CRId LIKE CONCAT('%',CONCAT(#CrId#,'%'))
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="CrName">
+        CRName LIKE CONCAT('%',CONCAT(#CrName#,'%'))
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="Site">
+        site LIKE CONCAT('%',CONCAT(#Site#,'%'))
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="Pm">
+        PM LIKE CONCAT('%',CONCAT(#Pm#,'%'))
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="System">
+        System LIKE CONCAT('%',CONCAT(#System#,'%'))
+      </isNotEmpty>
+
+      UNION
+
+      SELECT RelatedCRId AS CrId,RelatedCRName AS CrName,RelatedSite AS Site,PM AS Pm,System AS System
+      FROM itarm_cr_list_co
+      <isNotEmpty prepend="AND" property="CrId">
+        RelatedCRId LIKE CONCAT('%',CONCAT(#CrId#,'%'))
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="CrName">
+        RelatedCRName LIKE CONCAT('%',CONCAT(#CrName#,'%'))
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="Site">
+        RelatedSite LIKE CONCAT('%',CONCAT(#Site#,'%'))
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="Pm">
+        PM LIKE CONCAT('%',CONCAT(#Pm#,'%'))
+      </isNotEmpty>
+      <isNotEmpty prepend="AND" property="System">
+        System LIKE CONCAT('%',CONCAT(#System#,'%'))
+      </isNotEmpty>
+      ORDER BY CrId
+    </select>
+
+    <select id="SelectItarmCrList" parameterClass="string" resultClass="ItarmCrList">
+      SELECT serial AS Serial,CRId AS CrId,CRName AS CrName,site AS Site,Creator AS Creator,CreateDate AS CreateDate,PM AS Pm,System AS System
+      FROM itarm_cr_list
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          CRId = #value#
+        </isParameterPresent>
+      </dynamic>
+      ORDER BY CRId
+    </select>
+
+    <insert id="InsertItarmCrList" parameterClass="ItarmCrList">
+      INSERT INTO  itarm_cr_list
+      (CRId,CRName,site,Creator,CreateDate,PM,System)
+      VALUES(#CrId#,#CrName#,#Site#,#Creator#,#CreateDate#,#Pm#,#System#)
+      <selectKey resultClass="int" type="post" property="Serial">
+        SELECT @@IDENTITY as value
+      </selectKey>
+    </insert>
+
+    <update id="UpdateItarmCrList" parameterClass="ItarmCrList">
+      UPDATE  itarm_cr_list
+      SET serial=#Serial#,CRId=#CrId#,CRName=#CrName#,site=#Site#,Creator=#Creator#,CreateDate=#CreateDate#
+    </update>
+
+    <update id="UpdateItarmCrListPart" parameterClass="Hashtable">
+      UPDATE  itarm_cr_list
+      SET CRName=#CrName#,site=#Site#
+      Where CRId=#NewCrId#
+    </update>
+
+    <delete id="DeleteItarmCrList" parameterClass="string">
+      DELETE FROM itarm_cr_list WHERE CRId=#value#
+    </delete>
+  </statements>
+</sqlMap>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsDocumentTypeMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsDocumentType" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsDocumentType" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsDocumentTypeResult" class="PmsDocumentType">
+      <result property="Vid" column="VID" type="string" dbType="varchar"/>
+      <result property="TypeId" column="TypeId" type="int" dbType="int"/>
+      <result property="TypeName" column="TypeName" type="string" dbType="varchar"/>
+      <result property="Creator" column="Creator" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectPmsDocumentType" parameterClass="PmsDocumentType" resultClass="PmsDocumentType">
+      SELECT VID AS Vid,TypeId AS TypeId,TypeName AS TypeName,Creator AS Creator,CreateDate AS CreateDate
+      FROM PMS_Document_Type
+      WHERE 1=1
+      <isNotEmpty prepend="AND" property="Vid">VID=#Vid#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="TypeName">TypeName=#TypeName#</isNotEmpty>
+    </select>
+
+    <select id="SelectDistinctDocType" parameterClass="PmsDocumentType" resultClass="PmsDocumentType">
+      SELECT DISTINCT TypeId AS TypeId, TypeName AS TypeName
+      FROM PMS_Document_Type
+      WHERE 1=1
+      <isNotEmpty prepend="AND" property="Vid">VID=#Vid#</isNotEmpty>
+      ORDER BY TypeId
+    </select>
+
+    <select id="SelectDistinctDocTypeIdName" parameterClass="Hashtable" resultClass="PmsDocumentType">
+      SELECT t.TypeId AS TypeId,t.TypeName  AS  TypeName
+      FROM pms_stage_document d,pms_document_type t
+      WHERE d.Need='Y'  AND d.DocTypeId=t.TypeId AND t.VID='PM' AND d.StageId=#stage#
+      and d.flowid in
+      ( select pms_flow.flowid from pms_head, pms_flow where pms_head.pmsid = pms_flow.pmsid and pms_head.pmsid=#pmsId#)
+    </select>
+
+    <insert id="InsertPmsDocumentType" parameterClass="PmsDocumentType">
+      INSERT INTO  PMS_Document_Type
+      (VID,TypeId,TypeName,Creator,CreateDate)
+      VALUES(#Vid#,#TypeId#,#TypeName#,#Creator#,#CreateDate#)
+    </insert>
+
+    <update id="UpdatePmsDocumentType" parameterClass="PmsDocumentType">
+      UPDATE  PMS_Document_Type
+      SET VID=#Vid#,TypeId=#TypeId#,TypeName=#TypeName#,Creator=#Creator#,CreateDate=#CreateDate#
+      WHERE TypeId = #TypeId#
+    </update>
+
+    <delete id="DeletePmsDocumentType" parameterClass="string">
+      DELETE FROM PMS_Document_Type
+      WHERE TypeId = #value#
+    </delete>
+  </statements>
+</sqlMap>

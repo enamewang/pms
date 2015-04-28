@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsChangeHistoryMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<alias>
+	<typeAlias alias="PmsChangeHistory" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsChangeHistory" />
+</alias>
+<resultMaps>
+		<resultMap id="PmsChangeHistoryResult" class="PmsChangeHistory">
+      <result property="PmsId" column="PMSId" type="string" dbType="varchar"/>
+      <result property="ChangeContent" column="ChangeContent" type="string" dbType="varchar"/>
+      <result property="Action" column="Action" type="string" dbType="varchar"/>
+      <result property="Creator" column="Creator" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/>
+    </resultMap>
+</resultMaps>
+<statements>
+	
+<select id="SelectPmsChangeHistory" parameterClass="string" resultClass="PmsChangeHistory">
+  SELECT PMSId AS PmsId,ChangeContent AS ChangeContent,Action AS Action,Creator AS Creator,CreateDate AS CreateDate
+  FROM PMS_Change_History
+</select>
+<insert id="InsertPmsChangeHistory" parameterClass="PmsChangeHistory">
+  INSERT INTO  PMS_Change_History
+  (PMSId,ChangeContent,Action,Creator,CreateDate)
+  VALUES(#PmsId#,#ChangeContent#,#Action#,#Creator#,#CreateDate#)
+</insert>
+<update id="UpdatePmsChangeHistory" parameterClass="PmsChangeHistory">
+  UPDATE  PMS_Change_History
+  SET PMSId=#PmsId#,ChangeContent=#ChangeContent#,Action=#Action#,Creator=#Creator#,CreateDate=#CreateDate#
+</update>
+<delete id="DeletePmsChangeHistory" parameterClass="string">
+  DELETE FROM PMS_Change_History
+</delete>
+</statements>
+</sqlMap>

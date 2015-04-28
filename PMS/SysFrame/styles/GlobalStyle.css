@@ -1,0 +1,324 @@
+﻿/*
+Name		: Qisda Web UI Phase II 
+Version		: 1.0
+Modified by	: Fengkan.Ji
+Content		: Qisda Web UI Phase II Web_System_UI_Policy_Phase_II_PES_20090428.doc
+UpDate		: 2009/6/16
+*/
+body 
+{
+	/* Fengkan Add 20090616 */
+	font-family: Arial, Helvetica, sans-serif ;
+    font-weight: normal;
+    font-size: 9pt;
+    color: #000000;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px; 
+    text-align:left; 
+    /* Fengkan Add End 20090616 */
+}
+
+.DropDownListLan
+{
+	font-family: Arial;
+	background-color: #EFEFEF;
+	height:28px;
+	font-size:9pt;
+	width:111px;
+}
+
+.BannerBlue
+{
+	width:100%;
+	background-color:#00638E;
+	height:36px;
+    border:0px;
+    border-spacing:0px;
+    border-collapse:collapse;
+}
+
+.BannerGray
+{
+	width:100%;
+	background-color:#5B5B5B;
+	height:28px;
+    border:0px;
+    border-spacing:0px;
+    border-collapse:collapse;
+}
+
+.BannerTitle
+{
+	font-size:24pt; 
+	font-family:Arial;
+	font-weight:bold; 
+	color:#FFFFFF; 
+	text-align :left;
+	width:0px;
+}
+
+.BannerFullName
+{
+	font-size:10pt; 
+	font-family:Arial;
+	font-weight:bold;  
+	color:#FFFFFF; 
+	text-align :left;
+	width:0px;
+}
+
+.BannerGrayInfo
+{
+    font-size:9pt;
+    font-family:Arial; 
+    color:#FFFFFF; 
+    text-align :left;
+    width:98%;
+}
+
+.BannerLogOut
+{
+    font-family: Arial;
+    font-size: 9pt;
+    color: #D7D7D7;
+    text-decoration: underline;
+}
+
+.Width20
+{
+	width:20px;
+}
+
+.Footer
+{
+	background-color:#000000; 
+	border:0;  
+	height: 25px; 
+	width:100%; 
+	vertical-align: bottom;
+	line-height:25px;
+}
+
+.FooterInfo
+{
+	font-size:9pt; 
+	font-family:Arial; 
+	color:#FFFFFF; 
+	text-align:center; 
+	vertical-align:bottom; 
+	width:100%; 
+	height:100%;
+	
+	
+}
+
+.FooterVersion
+{
+	font-size:9pt; 
+	text-align:center; 
+	vertical-align:middle;
+}
+
+.TableLogin
+{
+	width:400px;
+    border:0px;
+    border-spacing:0px;
+    border-collapse:collapse;
+}
+
+.LoginTitle
+{
+	font-size:24pt; 
+	font-family:Arial; 
+	font-weight:bold;
+	color:#FFFFFF; 
+	text-align :left;
+}
+
+.DropDownListLogLan
+{
+	font-family: Arial;
+	background-color: #EFEFEF;
+	height:28px;
+	font-size:9pt;
+	width:80px;
+}
+
+.LoginLbl
+{
+    font-size:9pt;
+    font-family:Arial; 
+    font-weight:bold;
+    color:#000000; 
+    text-align:right;
+    width:68px;
+}
+
+.LoginTextBox
+{
+    width:150px;
+    height:20px;
+    border-width:1px;
+    border-color:#D5D5D5;
+	font-size:9pt;
+	font-family:Arial;
+    color:#000000;
+    text-align:left;
+}
+
+.LoginButton
+{
+    width:150px;
+    height:20px;
+	font-size:9pt;
+	font-family:Arial;
+	font-weight:bold;
+    color:#000000;
+    text-align:center;
+}
+
+.ButtonPwd
+{
+	width:96px;
+	font-size:9pt;
+	font-family:Arial;
+	font-weight:bold;
+    color:#00638E;
+    border-bottom-width:0px;
+    border-left-width:0px;
+    border-right-width:0px;
+    border-top-width:0px;
+    background-color:#e8e8e8;
+    text-align:left;
+    vertical-align:bottom;
+}
+
+.LoginLine
+{
+    width:400px; 
+    height:1px; 
+    background:#FFFFFF;
+}
+
+.LoginFooter
+{
+    width:400px; 
+    height:25px; 
+    background:#D8D8D8;
+}
+
+
+/* FengKan Add */
+.EmphasizeText
+{
+    font-family :Arial, Helvetica, sans-serif ;
+    font-weight:bold;
+    font-size: 9pt;
+    color: #000000; 
+    text-align:left; 
+}
+.TitleText
+{
+    font-family :Arial, Helvetica, sans-serif ;
+    font-weight:bold;
+    font-size: 12pt;
+    color: #000000; 
+    text-align:center; 
+}
+.TabText
+{
+    font-family :Arial, Helvetica, sans-serif ;
+    font-weight:normal;
+    font-size: 9pt;
+    color: #000000; 
+    text-align:center; 
+    vertical-align:text-bottom;
+}
+.TabLine
+{
+   border-right: black 1px solid;
+   border-top: black 1px solid; 
+   border-left: black 1px solid; 
+   border-bottom: black 1px solid
+}
+.myGV
+{
+	filter: progid:DXImageTransform.Microsoft.Shadow(false, color='gray', Direction=0, Strength=0);
+	font-size: 9pt;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border-right: #DADCDF 1px solid;
+    border-left: #DADCDF 1px solid; 
+    border-bottom: #DADCDF 1px solid;
+    border-style:solid;
+}
+
+.GVHeader
+{
+	font-size: 9pt;
+	color:#000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border-style:solid;
+	border-right: #DADCDF 1px solid;
+    border-left: #DADCDF 1px solid; 
+    border-Top: #DADCDF 1px solid;	
+    border-bottom: #DADCDF 1px solid;
+    background-color:#DADCDF;	
+    text-align:center;
+    vertical-align:middle;
+    height:20px;
+}
+
+
+.GVDataTR
+{
+	font-size: 9pt;
+	color:#000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border-style:solid;
+	border-right: #DADCDF 1px solid;
+    border-left: #DADCDF 1px solid; 
+    border-Top:#DADCDF 1px solid;	
+    border-bottom:#DADCDF 1px solid;
+    background-color:#ffffff;	
+    text-align:left;
+    vertical-align:middle;
+    height:20px;
+}
+
+.GVAlterDataTR
+{
+	font-size: 9pt;
+	color:#000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border-style:solid;
+	border-right: #DADCDF 1px solid;
+    border-left: #DADCDF 1px solid; 
+    border-Top:#DADCDF 1px solid;	
+    border-bottom:#DADCDF 1px solid;
+    background-color:#f1f1f1;	
+    text-align:left;
+    vertical-align:middle;
+    height:20px;
+}
+.GVDataRow
+{
+	font-size: 9pt;
+	color:#000000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border-style:solid;
+	border-right: #DADCDF 1px solid;
+    border-left: #DADCDF 1px solid; 
+    border-Top: #DADCDF 1px solid;	
+    border-bottom: #DADCDF 1px solid;
+    background-color:#FFFFFF;	
+    text-align:left;
+    vertical-align:middle;
+    height:20px;
+}
+A:link{COLOR: #000000; TEXT-DECORATION: underline;}
+A:active {COLOR: #000000; TEXT-DECORATION: underline;}
+A:visited {COLOR: #000000; TEXT-DECORATION: underline;}
+A:hover {COLOR: #000000; TEXT-DECORATION: underline;}

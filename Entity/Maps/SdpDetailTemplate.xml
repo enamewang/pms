@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="SdpDetailTemplateMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<alias>
+	<typeAlias alias="SdpDetailTemplate" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.SdpDetailTemplate" />
+</alias>
+<resultMaps>
+		<resultMap id="SdpDetailTemplateResult" class="SdpDetailTemplate">
+      <result property="Pmsid" column="pmsid" type="string" dbType="varchar"/>
+      <result property="Taskno" column="taskno" type="int" dbType="int"/>
+      <result property="TaskName" column="taskName" type="string" dbType="varchar"/>
+      <result property="Plancost" column="plancost" type="double" dbType="double"/>
+      <result property="Actualcost" column="actualcost" type="double" dbType="double"/>
+      <result property="Planstartday" column="planstartday" type="DateTime" dbType="DateTime"/>
+      <result property="Planendday" column="planendday" type="DateTime" dbType="DateTime"/>
+      <result property="Actualstartday" column="actualstartday" type="DateTime" dbType="DateTime"/>
+      <result property="Actualendday" column="actualendday" type="DateTime" dbType="DateTime"/>
+      <result property="PretaskNo" column="pretaskNo" type="int" dbType="int"/>
+      <result property="Role" column="role" type="string" dbType="varchar"/>
+      <result property="Resource" column="resource" type="string" dbType="varchar"/>
+      <result property="Remark" column="remark" type="string" dbType="varchar"/>
+      <result property="Type" column="type" type="int" dbType="int"/>
+      <result property="Iseditable" column="iseditable" type="string" dbType="varchar"/>
+      <result property="Deleteflag" column="deleteflag" type="string" dbType="varchar"/>
+      <result property="Createdate" column="createdate" type="DateTime" dbType="DateTime"/>
+      <result property="Createuser" column="createuser" type="string" dbType="varchar"/>
+      <result property="Maintaindate" column="maintaindate" type="DateTime" dbType="DateTime"/>
+      <result property="Maintainuser" column="maintainuser" type="string" dbType="varchar"/>
+      <result property="Phase" column="phase" type="string" dbType="varchar"/>
+      <result property="Extension" column="extension" type="string" dbType="varchar"/>
+    </resultMap>
+</resultMaps>
+<statements>
+
+
+  <select id="SelectSdpDetailTemplatePhase" parameterClass="string" resultClass="string">
+    SELECT distinct phase AS Phase FROM sdp_detail_template where type=#value# order by phase 
+  </select>
+  
+  
+<select id="SelectSdpDetailTemplate" parameterClass="string" resultClass="SdpDetailTemplate">
+  SELECT pmsid AS Pmsid,taskno AS Taskno,taskName AS TaskName,plancost AS Plancost,
+  actualcost AS Actualcost,planstartday AS Planstartday,planendday AS Planendday,
+  actualstartday AS Actualstartday,actualendday AS Actualendday,pretaskNo AS PretaskNo,
+  role AS Role,resource AS Resource,remark AS Remark,type AS Type,iseditable AS Iseditable,
+  deleteflag AS Deleteflag,createdate AS Createdate,createuser AS Createuser,
+  maintaindate AS Maintaindate,maintainuser AS Maintainuser,phase AS Phase,extension AS Extension
+  FROM sdp_detail_template
+</select>
+<insert id="InsertSdpDetailTemplate" parameterClass="SdpDetailTemplate">
+  INSERT INTO  sdp_detail_template
+  (pmsid,taskno,taskName,plancost,actualcost,planstartday,planendday,actualstartday,
+  actualendday,pretaskNo,role,resource,remark,type,iseditable,deleteflag,createdate,
+  createuser,maintaindate,maintainuser,phase,extension)
+  VALUES(#Pmsid#,#Taskno#,#TaskName#,#Plancost#,#Actualcost#,#Planstartday#,#Planendday#,
+  #Actualstartday#,#Actualendday#,#PretaskNo#,#Role#,#Resource#,#Remark#,#Type#,#Iseditable#,
+  #Deleteflag#,#Createdate#,#Createuser#,#Maintaindate#,#Maintainuser#,#Phase#,#Extension#)
+</insert>
+<update id="UpdateSdpDetailTemplate" parameterClass="SdpDetailTemplate">
+  UPDATE  sdp_detail_template
+  SET pmsid=#Pmsid#,taskno=#Taskno#,taskName=#TaskName#,plancost=#Plancost#,actualcost=#Actualcost#,planstartday=#Planstartday#,planendday=#Planendday#,actualstartday=#Actualstartday#,actualendday=#Actualendday#,pretaskNo=#PretaskNo#,role=#Role#,resource=#Resource#,remark=#Remark#,type=#Type#,iseditable=#Iseditable#,deleteflag=#Deleteflag#,createdate=#Createdate#,createuser=#Createuser#,maintaindate=#Maintaindate#,maintainuser=#Maintainuser#,phase=#Phase#,extension=#Extension#
+</update>
+<delete id="DeleteSdpDetailTemplate" parameterClass="string">
+  DELETE FROM sdp_detail_template
+</delete>
+</statements>
+</sqlMap>

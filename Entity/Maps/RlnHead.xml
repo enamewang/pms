@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="RlnHeadMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="RlnHead" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.RlnHead" />
+  </alias>
+  <resultMaps>
+    <resultMap id="RlnHeadResult" class="RlnHead">
+      <result property="RlnId" column="RLN_ID" type="string" dbType="varchar"/>
+      <result property="ProjectId" column="PROJECT_ID" type="string" dbType="varchar"/>
+      <result property="CrId" column="CR_ID" type="string" dbType="varchar"/>
+      <result property="ApplySite" column="APPLY_SITE" type="string" dbType="varchar"/>
+      <result property="ProjectName" column="PROJECT_NAME" type="string" dbType="varchar"/>
+      <result property="ProjectUrl" column="PROJECT_URL" type="string" dbType="varchar"/>
+      <result property="Creator" column="CREATOR" type="string" dbType="varchar"/>
+      <result property="Pm" column="PM" type="string" dbType="varchar"/>
+      <result property="Sd" column="SD" type="string" dbType="varchar"/>
+      <result property="Se" column="SE" type="string" dbType="varchar"/>
+      <result property="Qa" column="QA" type="string" dbType="varchar"/>
+      <result property="ProjectType" column="PROJECT_TYPE" type="string" dbType="varchar"/>
+      <result property="DueDate" column="DUE_DATE" type="string" dbType="varchar"/>
+      <result property="ReleaseDate" column="RELEASE_DATE" type="DateTime" dbType="DateTime"/>
+      <result property="ProjectStatus" column="PROJECT_STATUS" type="string" dbType="varchar"/>
+      <result property="Impact" column="IMPACT" type="string" dbType="varchar"/>
+      <result property="Content" column="CONTENT" type="string" dbType="varchar"/>
+      <result property="Contacter" column="CONTACTER" type="string" dbType="varchar"/>
+      <result property="RlnStatus" column="RLN_STATUS" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectRlnHead" parameterClass="string" resultClass="RlnHead">
+		SELECT RLN_ID AS RlnId,PROJECT_ID AS ProjectId,CR_ID AS CrId,APPLY_SITE AS ApplySite,PROJECT_NAME AS ProjectName,PROJECT_URL AS ProjectUrl,CREATOR AS Creator,PM AS Pm,SD AS Sd,SE AS Se,QA AS Qa,PROJECT_TYPE AS ProjectType,DUE_DATE AS DueDate,RELEASE_DATE AS ReleaseDate,PROJECT_STATUS AS ProjectStatus,IMPACT AS Impact,CONTENT AS Content,CONTACTER AS Contacter,RLN_STATUS AS RlnStatus
+		FROM Rln_Head
+	</select>
+    <insert id="InsertRlnHead" parameterClass="RlnHead">
+		INSERT INTO Rln_Head
+		(RLN_ID,PROJECT_ID,CR_ID,APPLY_SITE,PROJECT_NAME,PROJECT_URL,CREATOR,PM,SD,SE,QA,PROJECT_TYPE,DUE_DATE,RELEASE_DATE,PROJECT_STATUS,IMPACT,CONTENT,CONTACTER,RLN_STATUS)
+		VALUES(#RlnId#,#ProjectId#,#CrId#,#ApplySite#,#ProjectName#,#ProjectUrl#,#Creator#,#Pm#,#Sd#,#Se#,#Qa#,#ProjectType#,#DueDate#,#ReleaseDate:DateTime:1/1/0001 12:00:00 AM#,#ProjectStatus#,#Impact#,#Content#,#Contacter#,#RlnStatus#)
+	</insert>
+    <update id="UpdateRlnHead" parameterClass="RlnHead">
+		UPDATE Rln_Head
+		SET RLN_ID=#RlnId#,PROJECT_ID=#ProjectId#,CR_ID=#CrId#,APPLY_SITE=#ApplySite#,PROJECT_NAME=#ProjectName#,PROJECT_URL=#ProjectUrl#,CREATOR=#Creator#,PM=#Pm#,SD=#Sd#,SE=#Se#,QA=#Qa#,PROJECT_TYPE=#ProjectType#,DUE_DATE=#DueDate#,RELEASE_DATE=#ReleaseDate#,PROJECT_STATUS=#ProjectStatus#,IMPACT=#Impact#,CONTENT=#Content#,CONTACTER=#Contacter#,RLN_STATUS=#RlnStatus#
+	</update>
+    <delete id="DeleteRlnHead" parameterClass="string">
+		DELETE FROM Rln_Head
+	</delete>
+
+    <select id="Check_RLN_STATUS" parameterClass="hashtable" resultClass="string">
+      select count(*) from Rln_Head  where PROJECT_ID =#CR_ID# and APPLY_SITE=#SITE# and  RLN_STATUS ='Save'
+    </select>
+
+    <select id="GetRLNID" parameterClass="string" resultClass="string">
+      select RLN_ID from Rln_Head  where PROJECT_ID =#value# and RLN_STATUS = 'Save'
+    </select>
+  </statements>
+</sqlMap>

@@ -1,0 +1,54 @@
+﻿/**//*tab没有激活字体颜色，背景*/
+.CustomTabStyle .ajax__tab_header
+{
+    
+     
+     /*background: url(../SysFrame/images/che_service.gif) repeat-x bottom;*/
+   
+     color:Black;
+     background-color:#e6e6fa;
+     width:339px;
+     border-right-width:thick;
+}
+/**//*可以设置tab背景图片——左；tab内容与tab的填充距离*/
+.CustomTabStyle .ajax__tab_outer
+{  
+	padding-right:20px;
+    padding-left:20px; 
+    
+}
+
+/**//*可以设置tab背景图片——右；tab内容与tab的填充距离*/
+
+.CustomTabStyle .ajax__tab_inner
+{   
+	
+}
+/**//*激活tab的样式——背景，字体颜色*/
+.CustomTabStyle .ajax__tab_active
+{
+    font-family: verdana,tahoma,helvetica;
+    font-size: 11px;
+    /*background: url(../images/b/che_serviced.gif) repeat-x bottom;*/
+    background-color:#ffe4b5;
+    height: 29px;
+    line-height: 29px;
+    color:#185445;
+    font-weight:bold;
+}
+/**//*可以设置tab背景图片——中*/
+.CustomTabStyle .ajax__tab_tab 
+{
+    font-size:12px;
+    margin-right:4px;    
+}
+/**//*tab主体样式——上边无边框*/
+.CustomTabStyle .ajax__tab_body
+{
+   border-bottom :solid 1px #dcdcdc;
+   border-left:solid 1px #dcdcdc;
+   border-right:solid 1px #dcdcdc;
+   border-top:solid 1px #dcdcdc;
+   height:50%;
+   width:100%;
+}

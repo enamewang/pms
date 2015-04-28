@@ -1,0 +1,447 @@
+﻿/* Element class */
+@import url(FormHeader.css);
+@import url(FormFooter.css);
+
+body
+{
+	margin-left: 1px;
+	margin-bottom: 1px;
+	margin-right: 1px;
+	margin-top: 2px;
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+	background-color: #FFFFFF;
+}
+
+span
+{
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+}
+
+table
+{
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+}
+
+td
+{
+	height: 20px;
+}
+
+
+/* Form Title*/
+.pub_clsTDFormTitle
+{
+	font-family: Arial, sans-serif;
+	font-size: 14pt;
+	color: #00638E;
+	position: relative;
+	font-weight: bold;
+	text-align: center;
+}
+
+
+/* Input class (used in Chinese-Only forms)*/
+.pub_clsInputViewHigh
+{
+	border-bottom: solid 1px #C9C9C9;
+	border-left: 0px;
+	border-right: 0px;
+	border-top: 0px;
+	background-color: #FFFFFF;
+	width: 235px;
+	text-align: left;
+	font-family: Arial, sans-serif;
+	font-size: 9pt; 
+	color: #FE9715;
+}
+
+.pub_clsInputView
+{
+	border-bottom: solid 1px #C9C9C9;
+	border-left: 0px;
+	border-right: 0px;
+	border-top: 0px;
+	background-color: #FFFFFF;
+	width: 235px;
+	text-align: left;
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+	color: #464646;
+}
+
+.pub_clsInputEdit
+{
+	border-bottom: 1px solid #C9C9C9;
+	border-left: 1px solid #C9C9C9;
+	border-right: solid 1px #C9C9C9;
+	border-top: solid 1px #C9C9C9;
+	background-color: #FFFFFF;
+	text-align: left;
+	height: 20px;
+	width: 235px;
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+}
+
+.pub_clsInputEditLong
+{
+	border-bottom: 1px solid #C9C9C9;
+	border-left: 1px solid #C9C9C9;
+	border-right: solid 1px #C9C9C9;
+	border-top: solid 1px #C9C9C9;
+	background-color: #FFFFFF;
+	text-align: left;
+	height: 20px;
+	width: 593px;
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+}
+
+.pub_clsTextBoxRemark
+{
+	border-bottom: 1px Solid #C9C9C9;
+	border-left: 1px Solid #C9C9C9;
+	border-right: Solid 1px #C9C9C9;
+	border-top: Solid 1px #C9C9C9;
+	font-size: 9pt;
+	font-family: Arial, sans-serif;
+	width: 235px;
+}
+
+
+/* Input class (used in Multilingual forms)*/
+.pub_clsInputViewHigh_En
+{
+	border-bottom: solid 1px #C9C9C9;
+	border-left: 0px;
+	border-right: 0px;
+	border-top: 0px;
+	background-color: #FFFFFF;
+	width: 218px;
+	text-align: left;
+	font-family: Arial, sans-serif;
+	font-size: 9pt; 
+	color: #FE9715;
+}
+
+.pub_clsInputView_En
+{
+	border-bottom: solid 1px #C9C9C9;
+	border-left: 0px;
+	border-right: 0px;
+	border-top: 0px;
+	background-color: #FFFFFF;
+	width: 218px;
+	text-align: left;
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+	color: #464646;
+}
+
+.pub_clsInputEdit_En
+{
+	border-bottom: 1px solid #C9C9C9;
+	border-left: 1px solid #C9C9C9;
+	border-right: solid 1px #C9C9C9;
+	border-top: solid 1px #C9C9C9;
+	background-color: #FFFFFF;
+	text-align: left;
+	height: 20px;
+	width: 218px;
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+}
+
+.pub_clsInputEditLong_En
+{
+	border-bottom: 1px solid #C9C9C9;
+	border-left: 1px solid #C9C9C9;
+	border-right: solid 1px #C9C9C9;
+	border-top: solid 1px #C9C9C9;
+	background-color: #FFFFFF;
+	text-align: left;
+	height: 20px;
+	width: 560px;
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+}
+
+.pub_clsTextBoxRemark_En
+{
+	border-bottom: 1px Solid #C9C9C9;
+	border-left: 1px Solid #C9C9C9;
+	border-right: Solid 1px #C9C9C9;
+	border-top: Solid 1px #C9C9C9;
+	font-size: 9pt;
+	font-family: Arial, sans-serif;
+	width: 218px;
+}
+
+
+/* Grid button class */
+.pub_clsButtonEdit
+{
+	background-image: url(../Image/buttonEdit.gif);
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+	width: 20px;
+	height: 20px;
+	border-style: none;
+	cursor: hand;
+	text-align: center;
+	color: #005693;
+}
+
+.pub_clsButtonDelete
+{
+	background-image: url(../Image/buttonDelete.gif);
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+	width: 20px;
+	height: 20px;
+	border-style: none;
+	cursor: hand;
+	text-align: center;
+	color: #005693;
+}
+
+.pub_clsButtonUpdate
+{
+	background-image: url(../Image/buttonUpdate.gif);
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+	width: 20px;
+	height: 20px;
+	border-style: none;
+	cursor: hand;
+	text-align: center;
+	color: #005693;
+}
+
+.pub_clsButtonCancel
+{
+	background-image: url(../Image/buttonCancel.gif);
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+	width: 20px;
+	height: 20px;
+	border-style: none;
+	cursor: hand;
+}
+
+
+/* common button class */
+.pub_clsButtonSearch
+{
+	background-repeat: no-repeat;
+	background-image: url(../Image/buttonSearch.gif);
+	background-color: #FFFFFF;
+	border: 0;
+	border-style: none;
+	width: 20px;
+	height: 17px;
+	text-align: center;
+	color: #005693;
+	cursor: hand;
+}
+
+.pub_clsButtonCommon
+{
+	width: 71px;
+	height: 20px;
+	cursor: hand;
+	font-size: 9pt;
+	font-family: Arial, sans-serif;
+	background-repeat: no-repeat;
+	background: url(../Image/buttonCommon.gif);	
+	border-bottom: 0px solid buttonshadow ;
+	border-left: 0px solid buttonshadow ;
+	border-right: 0px solid buttonshadow ;
+	border-top: 0px solid buttonshadow;
+	text-align: center;
+	color: #822C9A;
+}
+
+.pub_clsButtonLong
+{
+	width: 100px;
+	height: 20px;
+	cursor: hand;
+	font-size: 9pt;
+	font-family: Arial, sans-serif;
+	background-repeat: no-repeat;
+	background-image: url(../Image/buttonLong.gif);
+	border-bottom: 0px solid buttonshadow ;
+	border-left: 0px solid buttonshadow ;
+	border-right: 0px solid buttonshadow ;
+	border-top: 0px solid buttonshadow;
+	text-align: center;
+	color: #822C9A;
+}
+
+
+/* check button class */
+.pub_clsButtonChecked
+{
+	background-image: url(../Image/buttonChecked.gif);
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+	width: 20px;
+	height: 20px;
+	border-style: none;
+	cursor: hand;
+}
+
+.pub_clsButtonUnchecked
+{
+	background-image: url(../Image/buttonUnchecked.gif);
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+	width: 20px;
+	height: 20px;
+	border-style: none;
+	cursor: hand;
+}
+
+
+/* radio button class */
+.pub_clsButtonSelected
+{
+	background-image: url(../Image/RadioSelected.JPG);
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+	width: 18px;
+	height: 18px;
+	border-style: none;
+	cursor: hand;
+	text-align: center;
+	color: #005693;			
+}
+
+.pub_clsButtonUnselected
+{
+	background-image: url(../Image/RadioUnSelected.JPG);
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+	width: 18px;
+	height: 18px;
+	border-style: none;
+	cursor: hand;
+	text-align: center;
+	color: #005693;			
+}
+
+/* Main page class */
+.pub_clsHeaderTableUp
+{
+	background-repeat: no-repeat;
+	background-image: url(../Image/bgHeader-up.gif);
+	font-size: 9pt;
+	height: 15px;
+	font-family: Arial, sans-serif;
+}
+
+.pub_clsHeaderTableMiddle
+{
+	background-repeat: repeat-y;	
+	background-image: url(../Image/bgHeader-middle.gif);
+	font-size: 9pt;
+	height: 22px;
+	font-family: Arial, sans-serif;
+}
+
+.pub_clsHeaderTableDown
+{
+	background-repeat: no-repeat;
+	background-image: url(../Image/bgHeader-down.gif);
+	font-size: 9pt;
+	height: 15px;
+	font-family: Arial, sans-serif;
+}
+
+.pub_clsTableLine
+{
+	background-image: url(../Image/line.gif);
+	height: 1px;
+	background-repeat: repeat-x;
+}
+
+
+/* Dialog page Class */
+/* header*/
+.DialogTDHeaderLeft
+{
+	background: url(../Image/FunctionHeadLeft.gif);
+	width: 29px;
+	height: 24px;
+}
+
+.DialogTDHeaderCenter
+{
+	background: url(../Image/FunctionHeadCenter.gif);
+	height: 24px;
+}
+
+.DialogTDHeaderRight
+{
+	background: url(../Image/FunctionHeadRight.gif);
+	width: 29px;
+	height: 24px;
+}
+
+/*content*/
+.DialogTDContentLeft
+{
+	background: url(../Image/FunctionContentLeft.gif);
+	width: 29px;
+}
+
+.DialogTDContentRight
+{
+	background: url(../Image/FunctionContentRight.gif);
+	width: 29px;
+}
+
+/*footer*/
+.DialogTDFooterLeft
+{
+	background: url(../Image/FunctionFootLeft.gif);
+	width: 29px;
+	height: 23px;
+}
+
+.DialogTDFooterCenter
+{
+	background: url(../Image/FunctionFootCenter.gif);
+	height: 23px;
+}
+
+.DialogTDFooterRight
+{
+	background: url(../Image/FunctionFootRight.gif);
+	width: 29px;
+	height: 23px;
+}
+
+
+/*Select Human Class*/
+.pub_clsSelectHuman
+{
+	width: 22px;
+	height: 21px;
+	cursor: hand;
+	vertical-align: bottom;
+}
+
+.pub_clsBreakWord
+{
+	word-break: break-all;
+}
+
+select 
+{
+	behavior: url(../Public/Utility/Select.htc), url(../../Public/Utility/Select.htc);
+}

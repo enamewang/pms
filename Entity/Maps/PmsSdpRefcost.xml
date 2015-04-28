@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsSdpRefcostMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsSdpRefcost" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsSdpRefcost" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsSdpRefcostResult" class="PmsSdpRefcost">
+      <result property="Vid" column="VID" type="string" dbType="varchar"/>
+      <result property="Tasktype" column="tasktype" type="int" dbType="Int"/>
+      <result property="Functiontype" column="functiontype" type="int" dbType="Int"/>
+      <result property="TaskComplexity" column="TaskComplexity" type="int" dbType="Int"/>
+      <result property="Programlanguage" column="programlanguage" type="int" dbType="Int"/>
+      <result property="Refcost" column="refcost" type="single" dbType="Real"/>
+      <result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/>
+      <result property="Creator" column="Creator" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>   
+    <!-- add by Abel Li on 2014-01-17-->
+    <select id="SelectPmsSdpRefcost" parameterClass="PmsSdpRefcost" resultClass="PmsSdpRefcost">
+      SELECT refcost AS Refcost
+      FROM pms_sdp_refcost
+      WHERE OperationType=#OperationType# AND tasktype=#Tasktype# AND functiontype=#Functiontype#
+      AND TaskComplexity=#TaskComplexity# AND programlanguage=#Programlanguage#
+    </select>
+    <!--end add-->
+  </statements>
+</sqlMap>

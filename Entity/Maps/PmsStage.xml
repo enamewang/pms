@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsStageMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<alias>
+	<typeAlias alias="PmsStage" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsStage" />
+</alias>
+<resultMaps>
+		<resultMap id="PmsStageResult" class="PmsStage">
+      <result property="Vid" column="VID" type="string" dbType="varchar"/>
+      <result property="StageId" column="StageId" type="int" dbType="int"/>
+      <result property="StageName" column="StageName" type="string" dbType="varchar"/>
+      <result property="StageFlag" column="StageFlag" type="string" dbType="varchar"/>
+      <result property="Creator" column="Creator" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/>
+    </resultMap>
+</resultMaps>
+<statements>
+
+<select id="SelectStageNameByVID" parameterClass="string" resultClass="PmsStage">
+  SELECT DISTINCT StageId AS StageId,StageName AS StageName
+  From PMS_Stage
+  <dynamic prepend="WHERE">
+    <isParameterPresent>
+      VID = #value#
+    </isParameterPresent>
+  </dynamic>
+  ORDER BY StageId
+</select>
+	
+<select id="SelectPmsStage" parameterClass="Hashtable" resultClass="PmsStage">
+  SELECT VID AS Vid,StageId AS StageId,StageName AS StageName,
+  StageFlag AS StageFlag,Creator AS Creator,CreateDate AS CreateDate
+  FROM pms_stage
+  WHERE 1=1
+  <isNotEmpty prepend="AND" property="StageId">StageId=#StageId#</isNotEmpty>
+  <isNotEmpty prepend="AND" property="Vid">VID=#Vid#</isNotEmpty>
+</select>
+  
+<insert id="InsertPmsStage" parameterClass="PmsStage">
+  INSERT INTO  pms_stage
+  (VID,StageId,StageName,StageFlag,Creator,CreateDate)
+  VALUES(#Vid#,#StageId#,#StageName#,#StageFlag#,#Creator#,#CreateDate#)
+</insert>
+  
+<update id="UpdatePmsStage" parameterClass="PmsStage">
+  UPDATE  pms_stage
+  SET VID=#Vid#,StageId=#StageId#,StageName=#StageName#,StageFlag=#StageFlag#,Creator=#Creator#,CreateDate=#CreateDate#
+  WHERE StageId = #StageId#
+</update>
+  
+<delete id="DeletePmsStage" parameterClass="string">
+  DELETE FROM pms_stage
+  WHERE StageId = #value#
+</delete>
+  
+</statements>
+</sqlMap>

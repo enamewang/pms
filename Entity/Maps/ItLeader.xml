@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="ItLeaderMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="ItLeader" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.ItLeader" />
+  </alias>
+  <resultMaps>
+    <resultMap id="ItLeaderResult" class="ItLeader">
+      <result property="PmNo" column="pm_no" type="string" dbType="varchar"/>
+      <result property="LeaderNo" column="leader_no" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectItLeader" parameterClass="string" resultClass="ItLeader">
+      SELECT pm_no AS PmNo,leader_no AS LeaderNo
+      FROM
+    </select>
+    <insert id="InsertItLeader" parameterClass="ItLeader">
+      INSERT INTO
+      (pm_no,leader_no)
+      VALUES(#PmNo#,#LeaderNo#)
+    </insert>
+    <update id="UpdateItLeader" parameterClass="ItLeader">
+      UPDATE
+      SET pm_no=#PmNo#,leader_no=#LeaderNo#
+    </update>
+    <delete id="DeleteItLeader" parameterClass="string">
+      DELETE FROM
+    </delete>
+  </statements>
+</sqlMap>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsMinheadMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsMinHead" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsMinHead" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsMinHeadResult" class="PmsMinHead">
+      <result property="Vid" column="VID" type="string" dbType="varchar"/>
+      <result property="PmsId" column="PMSId" type="string" dbType="varchar"/>
+      <result property="Mnid" column="MNID" type="string" dbType="varchar"/>
+      <result property="MeetingType" column="MeetingType" type="int" dbType="Int"/>
+      <result property="Host" column="Host" type="string" dbType="varchar"/>
+      <result property="Venue" column="Venue" type="string" dbType="varchar"/>
+      <result property="Recorder" column="Recorder" type="string" dbType="varchar"/>
+      <result property="StartTime" column="StartTime" type="DateTime" dbType="DateTime"/>
+      <result property="EndTime" column="EndTime" type="DateTime" dbType="DateTime"/>
+      <result property="Subject" column="Subject" type="string" dbType="varchar"/>
+      <result property="Attendee" column="Attendee" type="string" dbType="varchar"/>
+      <result property="Creator" column="Creator" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/>
+      <result property="CrId" column="CRId" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectPmsMinHead" parameterClass="Hashtable" resultMap="PmsMinHeadResult">
+      SELECT M.VID AS Vid, M.PMSId AS PmsId,M.MNID AS Mnid,M.MeetingType AS MeetingType,M.Host AS Host,
+      M.Venue AS Venue,M.Recorder AS Recorder,M.StartTime AS StartTime,M.EndTime AS EndTime,
+      M.Subject AS Subject,M.Attendee AS Attendee,M.Creator AS Creator,M.CreateDate AS CreateDate,
+      I.CRId AS CRId
+      FROM Pms_Minhead M,pms_itarm_mapping I
+      where 1 = 1
+     <isNotEmpty prepend="AND" property="PmsId">M.PMSId=#PmsId# AND I.PMSId=#PmsId#</isNotEmpty>
+    </select>
+
+    <select id="SelectPmsMinHeadByMinId" parameterClass="string" resultClass="PmsMinHead">
+      SELECT VID AS Vid,PMSId AS PmsId,MNID AS Mnid,MeetingType AS MeetingType,Host AS Host,Venue AS Venue,Recorder AS Recorder,StartTime AS StartTime,EndTime AS EndTime,Subject AS Subject,Attendee AS Attendee,Creator AS Creator,CreateDate AS CreateDate
+      FROM Pms_Minhead
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          MNID like #value#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+
+    <select id="SelectPmsMinHeadByPmsIdMinId" parameterClass="Hashtable" resultClass="PmsMinHead">
+      SELECT VID AS Vid,PMSId AS PmsId,MNID AS Mnid,MeetingType AS MeetingType,Host AS Host,Venue AS Venue,Recorder AS Recorder,StartTime AS StartTime,EndTime AS EndTime,Subject AS Subject,Attendee AS Attendee,Creator AS Creator,CreateDate AS CreateDate
+      FROM Pms_Minhead
+      <dynamic prepend="WHERE">
+      <isParameterPresent>
+        PMSId=#PmsId# and MNID = #MnId#
+      </isParameterPresent>
+    </dynamic>
+    </select>
+    
+    <insert id="InsertPmsMinHead" parameterClass="PmsMinHead">
+      INSERT INTO Pms_Minhead
+      (VID,PMSId,MNID,MeetingType,Host,Venue,Recorder,StartTime,EndTime,Subject,Attendee,Creator,CreateDate)
+      VALUES(#Vid#,#PmsId#,#Mnid#,#MeetingType#,#Host#,#Venue#,#Recorder#,#StartTime#,#EndTime#,#Subject#,#Attendee#,#Creator#,#CreateDate#)
+    </insert>
+    
+    <update id="UpdatePmsMinHead" parameterClass="PmsMinHead">
+      UPDATE Pms_Minhead
+      SET MeetingType=#MeetingType#,Host=#Host#,Venue=#Venue#,Recorder=#Recorder#,StartTime=#StartTime#,EndTime=#EndTime#,Subject=#Subject#,Attendee=#Attendee#,Creator=#Creator#,CreateDate=#CreateDate#
+      WHERE MNID = #Mnid# and PMSId=#PmsId#
+    </update>
+    
+    <delete id="DeletePmsMinHead" parameterClass="Hashtable">
+      DELETE FROM Pms_Minhead
+      WHERE PMSId=#PmsId# and MNID = #MnId#
+    </delete>
+  </statements>
+
+ 
+</sqlMap>

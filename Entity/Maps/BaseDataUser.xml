@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="BaseDataUserMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="BaseDataUser" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.BaseDataUser" />
+  </alias>
+  <resultMaps>
+    <resultMap id="BaseDataUserResult" class="BaseDataUser">
+      <result property="Id" column="id" type="int" dbType="int"/>
+      <result property="UserEmployeeNo" column="user_employee_no" type="string" dbType="varchar"/>
+      <result property="Ntdomain" column="ntdomain" type="string" dbType="varchar"/>
+      <result property="UserName" column="user_name" type="string" dbType="varchar"/>
+      <result property="MailAddress" column="mail_address" type="string" dbType="varchar"/>
+      <result property="Password" column="password" type="string" dbType="varchar"/>
+      <result property="LoginName" column="login_name" type="string" dbType="varchar"/>
+      <result property="DomainId" column="domain_id" type="int" dbType="int"/>
+      <result property="Active" column="active" type="string" dbType="char"/>
+      <result property="CreateDate" column="create_date" type="DateTime" dbType="DateTime"/>
+      <result property="CreateUser" column="create_user" type="string" dbType="varchar"/>
+      <result property="MaintainDate" column="maintain_date" type="DateTime" dbType="DateTime"/>
+      <result property="MaintainUser" column="maintain_user" type="string" dbType="varchar"/>
+      <result property="Extention" column="extention" type="string" dbType="varchar"/>
+      <result property="Role" column="Role" type="string" dbType="varchar"/>
+      <result property="DoMainName" column="DoMainName" type="string" dbType="varchar"/>
+    </resultMap>
+
+    <resultMap id="BaseDataUserResult2" class="BaseDataUser">
+      <result property="Id" column="id" type="int" dbType="int"/>
+      <result property="UserEmployeeNo" column="useremployeeno" type="string" dbType="varchar"/>
+      <result property="Ntdomain" column="ntdomain" type="string" dbType="varchar"/>
+      <result property="UserName" column="username" type="string" dbType="varchar"/>
+      <result property="MailAddress" column="mailaddress" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="createdate" type="DateTime" dbType="DateTime"/>
+      <result property="CreateUser" column="createuser" type="string" dbType="varchar"/>
+      <result property="MaintainDate" column="maintaindate" type="DateTime" dbType="DateTime"/>
+      <result property="MaintainUser" column="maintainuser" type="string" dbType="varchar"/>
+      <result property="Extention" column="extention" type="string" dbType="varchar"/>
+      <result property="Role" column="Role" type="string" dbType="varchar"/>
+      <result property="DoMainName" column="DoMainName" type="string" dbType="varchar"/>
+      <result property="DepartMentName" column="DepartMentName" type="string" dbType="varchar"/>
+      <result property="Departmentid" column="Departmentid" type="string" dbType="varchar"/>
+      <result property="DomainId" column="Domainid" type="int" dbType="int"/>
+      
+    </resultMap>
+
+  </resultMaps>
+  <statements>
+
+    <select id="SelectDoMainNameByLoginName"  parameterClass="string" resultClass="BaseDataUser">
+      SELECT bdd.Name AS DoMainName
+      FROM base_data_user bdu,base_data_domain bdd
+      WHERE bdu.login_name=#value# AND bdu.domain_id=bdd.id
+    </select>
+
+    <select id="SelectUserDepartmentByLoginName"  parameterClass="string" resultClass="string">
+      select name  from  base_data_department where id =
+      (SELECT department_id from base_data_department_user where user_id =
+      (SELECT id from base_data_user where user_name = #value# ))
+    </select>
+
+    <select id="SelectUserName"  resultClass="BaseDataUser">
+      SELECT  USER_NAME AS UserName
+      FROM    base_data_user
+      WHERE   ACTIVE='Y'
+      ORDER BY USER_NAME
+    </select>
+
+    <!--Add by Abel Li 20140102 -->
+    <select id="SelectLeaderByLoginName" parameterClass="string" resultClass="string">
+      SELECT user_name FROM base_data_user
+      WHERE id =
+      (SELECT a.manager_id FROM base_data_department a ,base_data_department_user b,base_data_user c
+      WHERE   b.user_id=c.id and a.id=b.department_id and c.user_name = #value# limit 1 )
+    </select>
+    
+    <select id="SelectUserId"  resultClass="int">
+      SELECT  id
+      FROM    base_data_user
+      WHERE   ACTIVE='Y' and user_employee_no=#value#
+    </select>
+    
+    <select id="SelectBaseDataUserUserNameByTeam"  parameterClass="Hashtable" resultClass="BaseDataUser">
+      SELECT  USER_NAME AS UserName
+      FROM    base_data_user
+      WHERE   id IN ( SELECT  USER_ID
+      FROM    base_data_department_user
+      <isNotEmpty prepend="WHERE" property="DepartmentId">department_id IN ($DepartmentId$)</isNotEmpty>
+      )
+    </select>
+
+    <select id="SelectBaseDataUser" parameterClass="Hashtable" resultClass="BaseDataUser">
+      SELECT id AS Id,user_employee_no AS UserEmployeeNo,ntdomain AS Ntdomain,user_name AS UserName,
+      mail_address AS MailAddress,password AS Password,login_name AS LoginName,domain_id AS DomainId,
+      active AS Active,create_date AS CreateDate,create_user AS CreateUser,maintain_date AS MaintainDate,
+      maintain_user AS MaintainUser,extention AS Extention,Role AS Role
+      FROM base_data_user
+      WHERE 1=1
+      <isNotEmpty prepend="AND" property="LoginName">login_name=#LoginName#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="Role">Role=#Role#</isNotEmpty>
+      ORDER BY user_name
+    </select>
+
+
+    <select id="SelectBaseDataUserByMainTainUser" parameterClass="Hashtable" resultMap="BaseDataUserResult2">
+      select a.id AS Id,a.User_employee_no AS UserEmployeeNo ,a.ntdomain AS Ntdomain,a.user_name AS UserName,a.mail_address AS MailAddress,
+      (select name from base_data_domain where id=a.domain_id  limit 1) as DoMainName,
+      a.role AS Role,a.Create_user AS CreateUser,a.create_date AS CreateDate,a.Maintain_date AS MaintainDate,
+      a.Maintain_user AS MaintainUser,a.extention AS Extention,
+      (select name from base_data_department WHERE id=b.department_id limit 1)
+      as DepartMentName,b.department_id as Departmentid,a.domain_id as Domainid
+      from base_data_user a ,base_data_department_user b
+      where a.id=b.User_id and a.active='Y'
+
+      <isNotEmpty prepend="AND" property="Department">b.department_id=#Department#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="EnglishName">a.user_name=#EnglishName#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="NTDomain">a.ntdomain=#NTDomain#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="Domain">a.domain_id=#Domain#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="EmpNo">a.User_employee_no=#EmpNo#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="Extention">a.extention=#Extention#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="Role">a.role=#Role#</isNotEmpty>
+    </select>
+
+    <select id="CheckIsLeader"  parameterClass="string" resultClass="long">
+      select count(*) as conut
+      from base_data_user
+      where role='RD LEADER'
+      and user_name=#value#
+    </select>
+
+
+    <select id="CheckUserIsExit"  parameterClass="string" resultClass="int">
+      select count(*) as conut
+      from base_data_user
+      where user_employee_no =#value# and active='Y'
+    </select>
+    
+    
+    <insert id="InsertBaseDataUser" parameterClass="BaseDataUser">
+      INSERT INTO  base_data_user
+      (user_employee_no,ntdomain,user_name,mail_address,password,login_name,domain_id,active,create_date,create_user,maintain_date,maintain_user,extention,Role)
+      VALUES(#UserEmployeeNo#,#Ntdomain#,#UserName#,#MailAddress#,#Password#,#LoginName#,#DomainId#,#Active#,#CreateDate#,#CreateUser#,#MaintainDate#,#MaintainUser#,#Extention#,#Role#)
+      <selectKey resultClass="int" type="post" property="Id">
+        SELECT @@IDENTITY as value
+      </selectKey>
+    </insert>
+    <update id="UpdateBaseDataUserById" parameterClass="string">
+      UPDATE  base_data_user
+      SET active='N'
+      WHERE id = #value#
+    </update>
+
+    <update id="UpdateBaseDataUserByMainTainId" parameterClass ="hashtable">
+      UPDATE  base_data_user
+      SET ntdomain=#Ntdomain#,user_name=#UserName#,mail_address=#MailAddress#,domain_id=#DomainId#,maintain_date=#MaintainDate#,maintain_user=#MaintainUser#,extention=#Extention#,Role=#Role#
+      WHERE id = #id#
+    </update>
+    
+    <update id="UpdateBaseDataUser" parameterClass="BaseDataUser">
+      UPDATE  base_data_user
+      SET user_employee_no=#UserEmployeeNo#,ntdomain=#Ntdomain#,user_name=#UserName#,mail_address=#MailAddress#,password=#Password#,login_name=#LoginName#,domain_id=#DomainId#,active=#Active#,create_date=#CreateDate#,create_user=#CreateUser#,maintain_date=#MaintainDate#,maintain_user=#MaintainUser#,extention=#Extention#,Role=#Role#
+      WHERE id = #Id#
+    </update>
+
+    <delete id="DeleteBaseDataUser" parameterClass="string">
+      DELETE FROM base_data_user
+      WHERE id = #value#
+    </delete>
+  </statements>
+</sqlMap>

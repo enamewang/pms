@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="CRCommentsMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="CRComments" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.CRComments" />
+  </alias>
+  <resultMaps>
+    <resultMap id="CRCommentsResult" class="CRComments">
+      <result property="PMSID" column="pmsid" type="string" dbType="varchar"/>
+      <result property="CRID" column="crid" type="string" dbType="varchar"/>
+      <result property="PMComments" column="pmcomments" type="string" dbType="varchar"/>
+      <result property="SDComments" column="sdcomments" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+
+  <statements>
+    <select id="getCRComments" parameterClass="string" resultClass="CRComments">
+      SELECT  pmsid AS PMSID,crid AS CRID,pmcomments AS PMComments,sdcomments AS SDComments
+      from cr_comments
+      WHERE pmsid = #value#
+    </select>
+
+    <select id="getCRCommentsCount" parameterClass="string" resultClass="long">
+      SELECT  count(*) as rowcount
+      from cr_comments
+      WHERE pmsid = #value#
+    </select>
+    <select id="getMySQLDate" parameterClass="string" resultClass="string">
+      select date_format(now(),'%Y-%m-%d') as testdate;
+    </select>
+    <update id="UpdatePMComments" parameterClass="Hashtable">
+      UPDATE  cr_comments
+      SET pmcomments=#PMComments#
+      WHERE pmsid = #PMSID#
+    </update>
+    
+    <update id="UpdateSDComments" parameterClass="Hashtable">
+      UPDATE  cr_comments
+      SET sdcomments=#SDComments#
+      WHERE pmsid = #PMSID#
+    </update>
+    <update id="UpdateComments" parameterClass="Hashtable">
+      UPDATE  cr_comments
+      SET pmcomments=#PMComments#,sdcomments=#SDComments#
+      WHERE pmsid = #PMSID#
+    </update>
+
+    <insert id="InsertSDComments" parameterClass="CRComments">
+      INSERT INTO cr_comments
+      (pmsid,crid,pmcomments,sdcomments)
+      VALUES(#PMSID#,#CRID#,#PMComments#,#SDComments#)
+    </insert>
+    
+    <delete id="DeleteSDComments" parameterClass="string">
+      DELETE FROM cr_comments
+      WHERE pmsid = #PMSID#
+    </delete>
+  </statements>
+</sqlMap>

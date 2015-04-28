@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="VTfsDocMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="VTfsDoc" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.VTfsDoc" />
+  </alias>
+  <resultMaps>
+    <resultMap id="VTfsDocResult" class="VTfsDoc">
+      <result property="User" column="user" type="string" dbType="varchar"/>
+      <result property="Dirname" column="dirname" type="string" dbType="varchar"/>
+      <result property="FileName" column="file_name" type="string" dbType="varchar"/>
+      <result property="FileUrl" column="file_url" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectVTfsDoc" parameterClass="Hashtable" resultClass="VTfsDoc">
+      SELECT file_name AS FileName,file_url AS FileUrl
+      FROM v_tfs_doc
+      WHERE 1=1 AND  FILE_NAME  LIKE '$CrNo$%'
+    </select>
+    <insert id="InsertVTfsDoc" parameterClass="VTfsDoc">
+      INSERT INTO v_tfs_doc
+      (user,dirname,file_name,file_url)
+      VALUES(#User#,#Dirname#,#FileName#,#FileUrl#)
+    </insert>
+    <update id="UpdateVTfsDoc" parameterClass="VTfsDoc">
+      UPDATE v_tfs_doc
+      SET user=#User#,dirname=#Dirname#,file_name=#FileName#,file_url=#FileUrl#
+    </update>
+    <delete id="DeleteVTfsDoc" parameterClass="string">
+      DELETE FROM v_tfs_doc
+    </delete>
+  </statements>
+</sqlMap>

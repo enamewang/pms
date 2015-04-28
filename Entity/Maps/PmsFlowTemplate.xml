@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsFlowTemplateMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<alias>
+	<typeAlias alias="PmsFlowTemplate" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsFlowTemplate" />
+</alias>
+<resultMaps>
+		<resultMap id="PmsFlowTemplateResult" class="PmsFlowTemplate">
+			<result property="FlowId" column="FlowId" type="int" dbType="int"/>
+			<result property="Stageid" column="StageID" type="int" dbType="int"/>
+			<result property="Typeid" column="TypeID" type="int" dbType="int"/>
+			<result property="Order" column="Order" type="int" dbType="int"/>
+			<result property="Creator" column="Creator" type="string" dbType="varchar"/>
+			<result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/></resultMap>
+</resultMaps>
+<statements>
+	
+<select id="SelectPmsFlowTemplate" parameterClass="string" resultClass="PmsFlowTemplate">
+	SELECT FlowId AS FlowId,StageID AS Stageid,TypeID AS Typeid,Order AS Order,Creator AS Creator,CreateDate AS CreateDate
+	FROM pms_flow_template
+	<dynamic prepend="WHERE">
+<isParameterPresent>FlowId = #value#
+</isParameterPresent>
+</dynamic>
+</select>
+
+<select id="SelectPmsFlowTemplateByTypeId" parameterClass="string" resultClass="PmsFlowTemplate">
+	SELECT FlowId AS FlowId,StageID AS Stageid,TypeID AS Typeid,`Order`,Creator AS Creator,CreateDate AS CreateDate
+	FROM pms_flow_template
+	<dynamic prepend="WHERE">
+		<isParameterPresent>
+			TypeID = #value#
+		</isParameterPresent>
+	</dynamic>
+	order by `order`
+</select>
+
+  <select id="SelectPmsFlowTemplateType" resultClass="PmsFlowTemplate">
+    SELECT FlowId AS FlowId,StageID AS Stageid,TypeID AS Typeid,`Order`
+    FROM pms_flow_template order by `order`
+  </select>
+
+
+  
+
+  <insert id="InsertPmsFlowTemplate" parameterClass="PmsFlowTemplate">
+	INSERT INTO  pms_flow_template
+	(FlowId,StageID,TypeID,Order,Creator,CreateDate)
+	VALUES(#FlowId#,#Stageid#,#Typeid#,#Order#,#Creator#,#CreateDate#)
+</insert>
+	
+<update id="UpdatePmsFlowTemplate" parameterClass="PmsFlowTemplate">
+	UPDATE  pms_flow_template
+	SET FlowId=#FlowId#,StageID=#Stageid#,TypeID=#Typeid#,Order=#Order#,Creator=#Creator#,CreateDate=#CreateDate#
+	WHERE FlowId = #FlowId#
+</update>
+	
+<delete id="DeletePmsFlowTemplate" parameterClass="string">
+	DELETE FROM pms_flow_template
+	WHERE FlowId = #value#
+</delete>
+	
+</statements>
+</sqlMap>

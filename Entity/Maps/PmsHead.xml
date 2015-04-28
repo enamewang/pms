@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsHeadMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsHead" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsHead" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsHeadResult" class="PmsHead">
+      <result property="Vid" column="VID" type="string" dbType="varchar"/>
+      <result property="PmsId" column="PMSId" type="string" dbType="varchar"/>
+      <result property="PmsName" column="PMSName" type="string" dbType="varchar"/>
+      <result property="Type" column="Type" type="string" dbType="varchar"/>
+      <result property="Description" column="Description" type="string" dbType="varchar"/>
+      <result property="ResolveDescription" column="ResolveDescription" type="string" dbType="varchar"/>
+      <result property="System" column="System" type="string" dbType="varchar"/>
+      <result property="Domain" column="Domain" type="string" dbType="varchar"/>
+      <result property="Priority" column="Priority" type="string" dbType="varchar"/>
+      <result property="Site" column="Site" type="string" dbType="varchar"/>
+      <result property="ImpactSite" column="ImpactSite" type="string" dbType="varchar"/>
+      <result property="NewVersion" column="NewVersion" type="string" dbType="varchar"/>
+      <result property="OldVersion" column="OldVersion" type="string" dbType="varchar"/>
+      <result property="DueDate" column="DueDate" type="DateTime" dbType="DateTime"/>
+      <result property="PlanStartDate" column="PlanStartDate" type="DateTime" dbType="DateTime"/>
+      <result property="ActualStartDate" column="ActualStartDate" type="DateTime" dbType="DateTime"/>
+      <result property="ReleaseDate" column="ReleaseDate" type="DateTime" dbType="DateTime"/>
+      <result property="CloseDate" column="CloseDate" type="DateTime" dbType="DateTime"/>
+      <result property="SDPConfirmDate" column="SDPConfirmDate" type="DateTime" dbType="DateTime"/>
+
+      <result property="Stage" column="Stage" type="int" dbType="int"/>
+      <result property="Pm" column="PM" type="string" dbType="varchar"/>
+      <result property="Sd" column="SD" type="string" dbType="varchar"/>
+      <result property="Se" column="SE" type="string" dbType="varchar"/>
+      <result property="Qa" column="QA" type="string" dbType="varchar"/>
+      <result property="AbnormalStage" column="AbnormalStage" type="int" dbType="int"/>
+      <result property="Rerver1" column="RERVER1" type="string" dbType="varchar"/>
+      <result property="Rerver2" column="RERVER2" type="string" dbType="varchar"/>
+      <result property="Rerver3" column="RERVER3" type="string" dbType="varchar"/>
+      <result property="Rerver4" column="RERVER4" type="string" dbType="varchar"/>
+      <result property="Rerver5" column="RERVER5" type="string" dbType="varchar"/>
+      <result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/>
+      <result property="Creator" column="Creator" type="string" dbType="varchar"/>
+      <result property="MaintainDate" column="MaintainDate" type="DateTime" dbType="DateTime"/>
+      <result property="MaintainUser" column="MaintainUser" type="string" dbType="varchar"/>
+      <result property="NeedSTP" column="NeedSTP" type="string" dbType="varchar"/>
+      <result property="NeedSTC" column="NeedSTC" type="string" dbType="varchar"/>
+      <result property="Category" column="Category" type="string" dbType="varchar"/>
+      <result property="CodeReview" column="CodeReview" type="string" dbType="varchar"/>
+      <result property="SelfTesting" column="SelfTesting" type="string" dbType="varchar"/>
+      <result property="OwnerDept" column="OwnerDept" type="string" dbType="varchar"/>
+      <result property="RelatedCrNo" column="RelatedCrNo" type="string" dbType="varchar"/>
+
+      <result property="CrId" column="CRId" type="string" dbType="varchar"/>
+      <result property="CreateDateFrom" column="CreateDateFrom" type="DateTime" dbType="DateTime"/>
+      <result property="CreateDateTo" column="CreateDateTo" type="DateTime" dbType="DateTime"/>
+      <result property="ReleaseDateFrom" column="ReleaseDateFrom" type="DateTime" dbType="DateTime"/>
+      <result property="ReleaseDateTo" column="ReleaseDateTo" type="DateTime" dbType="DateTime"/>
+      <result property="DueDateFrom" column="DueDateFrom" type="DateTime" dbType="DateTime"/>
+      <result property="DueDateTo" column="DueDateTo" type="DateTime" dbType="DateTime"/>
+      <result property="StageName" column="StageName" type="string" dbType="varchar"/>
+      <result property="UserName" column="UserName" type="string" dbType="varchar"/>
+      <result property="NoStageName" column="NoStageName" type="string" dbType="varchar"/>
+      <result property="Progress" column="Progress" type="string" dbType="varchar"/>
+      <result property="TotalManpower" column="TotalManpower" type="string" dbType="varchar"/>
+    </resultMap>
+
+  </resultMaps>
+  <statements>
+
+    <select id="SelectPmsHead" parameterClass="Hashtable" resultClass="PmsHead">
+      <!--SELECT VID AS Vid,PMSId AS PmsId,PMSName AS PmsName,Type AS Type,Description AS Description,
+      System AS System,Domain AS Domain,Priority AS Priority,Site AS Site,ImpactSite AS ImpactSite,
+      NewVersion AS NewVersion,OldVersion AS OldVersion,DueDate AS DueDate,PlanStartDate AS PlanStartDate,
+      ActualStartDate AS ActualStartDate,ReleaseDate AS ReleaseDate,CloseDate AS CloseDate,Stage AS Stage,
+      PM AS Pm,SD AS Sd,SE AS Se,QA AS Qa,AbnormalStage AS AbnormalStage,RERVER1 AS Rerver1,RERVER2 AS Rerver2,
+      RERVER3 AS Rerver3,RERVER4 AS Rerver4,RERVER5 AS Rerver5,CreateDate AS CreateDate,Creator AS Creator,
+      MaintainDate AS MaintainDate,MaintainUser AS MaintainUser,NeedSTP AS NeedSTP,NeedSTC AS NeedSTC,
+      OwnerDept AS OwnerDept,RelatedCrNo AS RelatedCrNo
+      FROM pms_head
+      WHERE 1=1-->
+
+      SELECT  h.VID AS Vid ,
+      h.PMSId AS PmsId ,
+      h.PMSName AS PmsName ,
+      h.Type AS Type ,
+      h.Description AS Description ,
+      h.ResolveDescription AS ResolveDescription,
+      h.System AS System ,
+      h.Domain AS Domain ,
+      h.Priority AS Priority ,
+      h.Site AS Site ,
+      h.ImpactSite AS ImpactSite ,
+      h.NewVersion AS NewVersion ,
+      h.OldVersion AS OldVersion ,
+      h.DueDate AS DueDate ,
+      h.PlanStartDate AS PlanStartDate ,
+      h.ActualStartDate AS ActualStartDate ,
+      h.ReleaseDate AS ReleaseDate ,
+      h.CloseDate AS CloseDate ,
+      h.Stage AS Stage ,
+      h.PM AS Pm ,
+      h.SD AS Sd ,
+      h.SE AS Se ,
+      h.QA AS Qa ,
+      h.AbnormalStage AS AbnormalStage ,
+      h.RERVER1 AS Rerver1 ,
+      h.RERVER2 AS Rerver2 ,
+      h.RERVER3 AS Rerver3 ,
+      h.RERVER4 AS Rerver4 ,
+      h.RERVER5 AS Rerver5 ,
+      h.CreateDate AS CreateDate ,
+      h.Creator AS Creator ,
+      h.SDPConfirmDate AS SDPConfirmDate,
+      h.MaintainDate AS MaintainDate ,
+      h.MaintainUser AS MaintainUser ,
+      h.NeedSTP AS NeedSTP ,
+      h.NeedSTC AS NeedSTC ,
+      h.OwnerDept AS OwnerDept ,
+      h.RelatedCrNo AS RelatedCrNo ,
+      m.CRId AS CrId
+      FROM    pms_head h ,
+      pms_itarm_mapping m
+      WHERE   1 = 1 AND h.VID='PM'
+      <isNotEmpty prepend="AND" property="PmsId">h.PMSId=#PmsId# AND m.PMSId=#PmsId#</isNotEmpty>
+
+      <!--<isNotEmpty prepend="AND" property="UserName">
+        (SD=#UserName#  OR SE=#UserName# OR QA=#UserName#)
+      </isNotEmpty>-->
+
+      <!--Modified by Kite 20110819 -->
+      <!--<isNotEmpty prepend="AND" property="UserName">        
+        (PM=#UserName# OR SD=#UserName#  OR SE=#UserName# OR QA=#UserName#)
+      </isNotEmpty>-->
+
+      <isNotEmpty prepend="AND" property="UserName">
+        (  PM LIKE CONCAT('%',CONCAT(#UserName#,'%'))
+        OR SD LIKE CONCAT('%',CONCAT(#UserName#,'%'))
+        OR SE LIKE CONCAT('%',CONCAT(#UserName#,'%'))
+        OR QA LIKE CONCAT('%',CONCAT(#UserName#,'%')))
+      </isNotEmpty>
+
+      <!--Modified end -->
+      ORDER BY PMSId DESC
+    </select>
+
+    <select id="SelectPmsHeadForCheckNewVersion" parameterClass="PmsHead" resultClass="PmsHead">
+
+      SELECT  h.VID AS Vid ,
+      h.PMSId AS PmsId ,
+      h.PMSName AS PmsName ,
+      h.Type AS Type ,
+      h.Description AS Description ,
+      h.ResolveDescription AS ResolveDescription,
+      h.System AS System ,
+      h.Domain AS Domain ,
+      h.Priority AS Priority ,
+      h.Site AS Site ,
+      h.ImpactSite AS ImpactSite ,
+      h.NewVersion AS NewVersion ,
+      h.OldVersion AS OldVersion ,
+      h.DueDate AS DueDate ,
+      h.PlanStartDate AS PlanStartDate ,
+      h.ActualStartDate AS ActualStartDate ,
+      h.ReleaseDate AS ReleaseDate ,
+      h.CloseDate AS CloseDate ,
+      h.Stage AS Stage ,
+      h.PM AS Pm ,
+      h.SD AS Sd ,
+      h.SE AS Se ,
+      h.QA AS Qa ,
+      h.AbnormalStage AS AbnormalStage ,
+      h.RERVER1 AS Rerver1 ,
+      h.RERVER2 AS Rerver2 ,
+      h.RERVER3 AS Rerver3 ,
+      h.RERVER4 AS Rerver4 ,
+      h.RERVER5 AS Rerver5 ,
+      h.CreateDate AS CreateDate ,
+      h.Creator AS Creator ,
+      h.SDPConfirmDate AS SDPConfirmDate,
+      h.MaintainDate AS MaintainDate ,
+      h.MaintainUser AS MaintainUser ,
+      h.NeedSTP AS NeedSTP ,
+      h.NeedSTC AS NeedSTC ,
+      h.OwnerDept AS OwnerDept ,
+      h.RelatedCrNo AS RelatedCrNo
+      FROM    pms_head h
+      WHERE   1 = 1 AND h.VID='PM'
+      <isNotEmpty prepend="AND" property="PmsId">h.PMSId<![CDATA[<>]]> #PmsId#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="System">h.System=#System#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="Domain">h.Domain=#Domain#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="Site">h.Site=#Site#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="NewVersion">h.NewVersion=#NewVersion#</isNotEmpty>
+      ORDER BY PMSId DESC
+    </select>
+
+    <!--Modified by Ename Wang 20111115 -->
+    <!-- CRId=#CrId# to CRId LIKE CONCAT('%',CONCAT(#CrId#,'%'))-->
+    <!--Modified begin -->
+    <select id="SelectPmsHeadOther" parameterClass="PmsHead" resultClass="PmsHead">
+
+      SELECT tmp.CrId,tmp.Type,tmp.PmsId,tmp.PmsName,tmp.StageName,tmp.CreateDate,
+      tmp.NewVersion,
+      tmp.OldVersion,
+      tmp.System,tmp.Pm,tmp.Sd,tmp.Site,tmp.DueDate,tmp.ReleaseDate,tmp.Se,tmp.Qa,
+      IFNULL(sdp.Progress,0) as Progress,tmp.Priority,tmp.BugFreeProject,tmp.BugFreeModule
+      FROM
+      (
+      SELECT DISTINCT pi.CRId AS CrId,ph.Type AS Type,ph.PMSId AS PmsId,ph.PMSName as PmsName,
+      ps.StageName AS StageName,ph.CreateDate AS CreateDate,ph.System AS System,ph.PM AS Pm,
+      ph.NewVersion AS NewVersion ,
+      ph.OldVersion AS OldVersion ,
+      ph.SD AS Sd,ph.SE AS Se,ph.QA AS Qa,ph.Site AS Site,ph.DueDate AS DueDate,ph.ReleaseDate AS ReleaseDate,ph.Priority
+      ,IFNULL(Fun_GetBugFreeModule(ph.System,ph.Domain,ph.Site),'') AS BugFreeModule,IFNULL(Fun_GetBugFreeProject(ph.System,ph.Domain,ph.Site),'') AS BugFreeProject
+      FROM PMS_Head ph,PMS_ITARM_Mapping pi,PMS_Stage ps
+      WHERE ph.VID=#Vid# AND ph.PMSID=pi.PMSID
+      AND ps.VID=ph.VID AND ph.Stage=Ps.StageID
+
+      <!--<isNotEmpty prepend="AND" property="Domain">ph.Domain in (select DISTINCT systemdomain from pms_system_version where vid='PM'and teamdomain=#Domain#)</isNotEmpty>-->
+      <isNotEmpty prepend="AND" property="Domain">
+        exists (select DISTINCT systemdomain from pms_system_version where
+        vid='PM'and teamdomain=#Domain#
+        and systemdomain =ph.domain
+        and system = ph.system
+        )
+      </isNotEmpty>
+
+
+      <isNotEmpty prepend="AND" property="System">ph.System LIKE CONCAT('%',CONCAT(#System#,'%'))</isNotEmpty>
+      <!--<isNotEmpty prepend="AND" property="CrId">CRId=#CrId#</isNotEmpty>-->
+      <isNotEmpty prepend="AND" property="CrId">CRId LIKE CONCAT('%',CONCAT(#CrId#,'%'))</isNotEmpty>
+      <isNotEmpty prepend="AND" property="PmsId">ph.PMSId=#PmsId#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="PmsName">PMSName LIKE CONCAT('%',CONCAT(#PmsName#,'%'))</isNotEmpty>
+      <isNotEmpty prepend="AND" property="Type">Type=#Type#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="Site">Site=#Site#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="StageName">ps.StageName=#StageName#</isNotEmpty>
+      <isNotEmpty prepend="AND" property="Priority">Priority LIKE CONCAT('%',CONCAT(#Priority#,'%'))</isNotEmpty>
+      <isNotEmpty prepend="AND" property="NoStageName">StageName NOT IN ( $NoStageName$ )</isNotEmpty>
+
+      <isNotEmpty prepend="AND" property="UserName">
+        (  PM LIKE CONCAT('%',CONCAT(#UserName#,'%'))
+        OR SD LIKE CONCAT('%',CONCAT(#UserName#,'%'))
+        OR SE LIKE CONCAT('%',CONCAT(#UserName#,'%'))
+        OR QA LIKE CONCAT('%',CONCAT(#UserName#,'%')))
+      </isNotEmpty>
+      <!--Modified end -->
+      <dynamic>
+        <isNotEqual prepend="AND" property="CreateDateFrom" compareValue="0001-01-01 0:00:00" >
+          ph.CreateDate >= #CreateDateFrom#
+        </isNotEqual>
+
+        <isNotEqual prepend="AND" property="CreateDateTo" compareValue="0001-01-01 0:00:00" >
+          ph.CreateDate <![CDATA[<=]]> #CreateDateTo#
+        </isNotEqual>
+
+        <isNotEqual prepend="AND" property="ReleaseDateFrom" compareValue="0001-01-01 0:00:00" >
+          ph.ReleaseDate >= #ReleaseDateFrom#
+        </isNotEqual>
+
+        <isNotEqual prepend="AND" property="ReleaseDateTo" compareValue="0001-01-01 0:00:00" >
+          ph.ReleaseDate <![CDATA[<=]]> #ReleaseDateTo#
+        </isNotEqual>
+
+        <isNotEqual prepend="AND" property="DueDateFrom" compareValue="0001-01-01 0:00:00" >
+          ph.DueDate >= #DueDateFrom#
+        </isNotEqual>
+
+        <isNotEqual prepend="AND" property="DueDateTo" compareValue="0001-01-01 0:00:00" >
+          ph.DueDate <![CDATA[<=]]> #DueDateTo#
+        </isNotEqual>
+      </dynamic>
+
+      ) tmp
+      LEFT JOIN
+      (
+      <!--SELECT PmsId,ROUND(SUM(IFNULL(sdp.actualcost,0))/IF(SUM(IFNULL(sdp.plancost,0))=0,1,SUM(IFNULL(sdp.plancost,0)))*100,2) as Progress
+      FROM sdp_detail sdp
+      GROUP BY PmsID-->
+
+      SELECT
+      PmsId,
+
+      ROUND(
+      SUM(IFNULL(sdp.plancost,0)*IFNULL(sdp.completedpercent,0))
+      /
+      IF(SUM(IFNULL(sdp.plancost,0))=0,1,SUM(IFNULL(sdp.plancost,0)))
+      ,2) as Progress
+
+      FROM sdp_detail sdp
+
+      GROUP BY PmsID
+
+      ) sdp
+      ON  tmp.PMSID = sdp.PMSID
+      ORDER BY tmp.CrId
+
+    </select>
+
+    <!--<select id="SelectPmsHeadByPmsId" parameterClass="Hashtable" resultClass="PmsHead">
+      SELECT VID AS Vid,PMSId AS PmsId,PMSName AS PmsName,Type AS Type,Description AS Description,
+      System AS System,Domain AS Domain,Priority AS Priority,Site AS Site,ImpactSite AS ImpactSite,
+      NewVersion AS NewVersion,OldVersion AS OldVersion,DueDate AS DueDate,PlanStartDate AS PlanStartDate,
+      ActualStartDate AS ActualStartDate,ReleaseDate AS ReleaseDate,CloseDate AS CloseDate,Stage AS Stage,
+      PM AS Pm,SD AS Sd,SE AS Se,QA AS Qa,AbnormalStage AS AbnormalStage,RERVER1 AS Rerver1,RERVER2 AS Rerver2,
+      RERVER3 AS Rerver3,RERVER4 AS Rerver4,RERVER5 AS Rerver5,CreateDate AS CreateDate,Creator AS Creator,
+      MaintainDate AS MaintainDate,MaintainUser AS MaintainUser,NeedSTP AS NeedSTP,NeedSTC AS NeedSTC,
+      OwnerDept AS OwnerDept,RelatedCrNo AS RelatedCrNo
+      FROM pms_head
+      WHERE 1=1
+      <isNotEmpty prepend="AND" property="PmsIdPart">PMSId LIKE CONCAT(#PmsIdPart#,'%')</isNotEmpty>
+      ORDER BY PMSId DESC
+    </select>-->
+    <!--Add By Ename Wang on 20111216 10:39-->
+    <select id="SelectPmsHeadCount" parameterClass="string" resultClass="int">
+      SELECT COUNT(*)
+      FROM  pms_head
+      WHERE 1=1
+      <isNotEmpty prepend="AND">PMSId=#value#</isNotEmpty>
+
+    </select>
+    <!--add Progress by Ename Wang on 20140123-->
+    <select id="SelectPmsHeadByPmsId" parameterClass="Hashtable" resultClass="PmsHead">
+      SELECT VID AS Vid,pms_head.PMSId AS PmsId,PMSName AS PmsName,Type AS Type,Description AS Description,ResolveDescription AS ResolveDescription,
+      System AS System,Domain AS Domain,Priority AS Priority,Site AS Site,ImpactSite AS ImpactSite,
+      NewVersion AS NewVersion,OldVersion AS OldVersion,DueDate AS DueDate,PlanStartDate AS PlanStartDate,
+      ActualStartDate AS ActualStartDate,ReleaseDate AS ReleaseDate,CloseDate AS CloseDate,SDPConfirmDate AS SDPConfirmDate,
+      Stage AS Stage,PM AS Pm,SD AS Sd,SE AS Se,QA AS Qa,RERVER1 AS Rerver1,RERVER2 AS Rerver2,
+      RERVER3 AS Rerver3,RERVER4 AS Rerver4,RERVER5 AS Rerver5,CreateDate AS CreateDate,Creator AS Creator,
+      MaintainDate AS MaintainDate,MaintainUser AS MaintainUser,NeedSTP AS NeedSTP,NeedSTC AS NeedSTC,Category AS Category,
+      CodeReview AS CodeReview,SelfTesting AS SelfTesting,
+      IFNULL(sdp.Progress,0) as Progress,TotalManpower as TotalManpower,
+      OwnerDept AS OwnerDept,RelatedCrNo AS RelatedCrNo
+      FROM pms_head
+
+      LEFT JOIN
+      (
+      SELECT
+      PmsId,
+      ROUND(
+      SUM(IFNULL(sdp.plancost,0)*IFNULL(sdp.completedpercent,0))
+      /
+      IF(SUM(IFNULL(sdp.plancost,0))=0,1,SUM(IFNULL(sdp.plancost,0)))
+      ,2) as Progress,
+      IFNULL(SUM(IFNULL(actualcost,0)),0) as TotalManpower
+      FROM sdp_detail sdp
+      GROUP BY PmsID
+      ) sdp
+      ON  pms_head.PMSID = sdp.PMSID
+      WHERE 1=1 AND VID='PM'
+      <isNotEmpty prepend="AND" property="PmsIdPart">pms_head.PMSID LIKE CONCAT(#PmsIdPart#,'%')</isNotEmpty>
+      ORDER BY pms_head.PMSID DESC
+    </select>
+    <!--end add-->
+    <select id="SelectPmSdSeQA" parameterClass="string" resultClass="PmsHead">
+      SELECT
+      PM AS Pm,SD AS Sd,SE AS Se,QA AS Qa
+      FROM pms_head
+      WHERE 1=1 AND PMSId=#value#
+    </select>
+
+    <select id="SelectCrIdSystemVersionByPmsId" parameterClass="string" resultClass="PmsHead">
+      SELECT h.PMSId AS PmsId,h.System AS System ,  h.NewVersion AS NewVersion ,m.CRId AS CrId
+      FROM pms_head h ,pms_itarm_mapping m
+      WHERE h.PMSId=#value# and m.PMSId=#value# limit 1
+    </select>
+
+
+    <!--<select id="SelectPmsHeadByTempCrIdPart" parameterClass="Hashtable" resultClass="PmsHead">
+      SELECT VID AS Vid,PMSId AS PmsId,PMSName AS PmsName,Type AS Type,Description AS Description,
+      System AS System,Domain AS Domain,Priority AS Priority,Site AS Site,ImpactSite AS ImpactSite,
+      NewVersion AS NewVersion,OldVersion AS OldVersion,DueDate AS DueDate,PlanStartDate AS PlanStartDate,
+      ActualStartDate AS ActualStartDate,ReleaseDate AS ReleaseDate,CloseDate AS CloseDate,Stage AS Stage,
+      PM AS Pm,SD AS Sd,SE AS Se,QA AS Qa,AbnormalStage AS AbnormalStage,RERVER1 AS Rerver1,RERVER2 AS Rerver2,
+      RERVER3 AS Rerver3,RERVER4 AS Rerver4,RERVER5 AS Rerver5,CreateDate AS CreateDate,Creator AS Creator,
+      MaintainDate AS MaintainDate,MaintainUser AS MaintainUser,NeedSTP AS NeedSTP,NeedSTC AS NeedSTC,
+      OwnerDept AS OwnerDept,RelatedCrNo AS RelatedCrNo
+      FROM pms_head
+      WHERE 1=1 AND VID='PM'
+      <isNotEmpty prepend="AND" property="TempCrIdPart">RelatedCrNo LIKE CONCAT(#TempCrIdPart#,'%')</isNotEmpty>
+      ORDER BY PMSId DESC
+    </select>-->
+
+    <select id="SelectSystemInforByCrId" parameterClass="string" resultClass="PmsHead">
+      SELECT  System AS System ,  Site AS Site,   Domain AS Domain, ImpactSite AS ImpactSite
+      FROM pms_head
+      WHERE PMSID IN ( SELECT PMSID FROM pms_itarm_mapping WHERE CRID=#value#) LIMIT 1
+    </select>
+
+
+
+    <select id="SelectProcessByPmsID" parameterClass="string" resultClass="string">
+      SELECT
+      ROUND(
+      SUM(IFNULL(sdp.plancost,0)*IFNULL(sdp.completedpercent,0))
+      /
+      IF(SUM(IFNULL(sdp.plancost,0))=0,1,SUM(IFNULL(sdp.plancost,0)))
+      ,2) as Progress
+      FROM sdp_detail sdp where  PMSId=#value#
+    </select>
+
+    <select id="SelectManPowerByPmsID" parameterClass="string" resultClass="string">
+      SELECT IFNULL(SUM(IFNULL(actualcost,0)),0) as TotalManpower
+      FROM sdp_detail
+      WHERE  PMSId=#value#
+    </select>
+
+    <!--Modified by ITO.Abel.Li 2014-01-06     : add Category CodeReview SelfTesting -->
+    <insert id="InsertPmsHead" parameterClass="PmsHead">
+      INSERT INTO  pms_head
+      (VID,PMSId,PMSName,Type,Description,ResolveDescription,System,Domain,Priority,Site,ImpactSite,NewVersion,OldVersion,
+      DueDate,PlanStartDate,ActualStartDate,ReleaseDate,CloseDate,SDPConfirmDate,Stage,PM,SD,SE,QA,AbnormalStage,RERVER1,
+      RERVER2,RERVER3,RERVER4,RERVER5,CreateDate,Creator,MaintainDate,MaintainUser,NeedSTP,NeedSTC,Category,OwnerDept,RelatedCrNo)
+      VALUES(#Vid#,#PmsId#,#PmsName#,#Type#,#Description#,#ResolveDescription#,#System#,#Domain#,#Priority#,#Site#,#ImpactSite#,
+      #NewVersion#,#OldVersion#,#DueDate#,#PlanStartDate#,#ActualStartDate#,#ReleaseDate#,#CloseDate#,#SDPConfirmDate#,
+      #Stage#,#Pm#,#Sd#,#Se#,#Qa#,#AbnormalStage#,#Rerver1#,#Rerver2#,#Rerver3#,#Rerver4#,#Rerver5#,
+      #CreateDate#,#Creator#,#MaintainDate#,#MaintainUser#,#NeedSTP#,#NeedSTC#,#Category#,#OwnerDept#,#RelatedCrNo#)
+    </insert>
+
+    <update id="UpdatePmsHead" parameterClass="PmsHead">
+      UPDATE  pms_head
+      SET
+      VID=#Vid#,PMSId=#PmsId#,PMSName=#PmsName#,Type=#Type#,Description=#Description#,System=#System#,
+      Domain=#Domain#,Priority=#Priority#,Site=#Site#,ImpactSite=#ImpactSite#,NewVersion=#NewVersion#,
+      OldVersion=#OldVersion#,DueDate=#DueDate#,PlanStartDate=#PlanStartDate#,ActualStartDate=#ActualStartDate#,
+      ReleaseDate=#ReleaseDate#,CloseDate=#CloseDate#,SDPConfirmDate=#SDPConfirmDate#,Stage=#Stage#,PM=#Pm#,SD=#Sd#,SE=#Se#,QA=#Qa#,
+      AbnormalStage=#AbnormalStage#,RERVER1=#Rerver1#,RERVER2=#Rerver2#,RERVER3=#Rerver3#,RERVER4=#Rerver4#,
+      RERVER5=#Rerver5#,CreateDate=#CreateDate#,Creator=#Creator#,MaintainDate=#MaintainDate#,MaintainUser=#MaintainUser#,
+      NeedSTP=#NeedSTP#,NeedSTC=#NeedSTC#,OwnerDept=#OwnerDept#,RelatedCrNo=#RelatedCrNo#
+      WHERE PMSId = #PmsId#
+    </update>
+
+    <update id="UpdatePmsHeadVID" parameterClass="PmsHead">
+      UPDATE  pms_head
+      SET
+      VID=#Vid#
+      WHERE PMSId = #PmsId#
+    </update>
+
+    <update id="UpdatePmsHeadRerver1ByPmsId" parameterClass="Hashtable">
+      UPDATE  pms_head
+      SET
+      RERVER1=#Rerver1#
+      WHERE PMSId = #PmsId#
+    </update>
+    <!--add by Abel on 2014-01-24-->
+    <update id="UpdatePmsHeadPlanStartDate" parameterClass="string">
+      UPDATE pms_head h
+      SET PlanStartDate=
+      (SELECT IFNULL(min(planstartday),'1900-01-01 00:00:00') AS PlanStartDate
+      FROM sdp_detail d
+      WHERE d.pmsid=#value# AND d.planstartday <![CDATA[<>]]> '1900-01-01 00:00:00'
+      and d.actualstartday <![CDATA[<>]]> '0001-01-01 00:00:00'
+      and d.actualstartday <![CDATA[<>]]> '0000-01-01 00:00:00'
+      )
+      where h.PMSId =#value#
+    </update>
+    <!--end add-->
+
+    <update id="UpdatePmsHeadActualStartDate" parameterClass="string">
+      UPDATE pms_head h
+      SET ActualStartDate=
+      (SELECT IFNULL(min(actualstartday),'1900-01-01 00:00:00') AS ActualStartDate
+      FROM sdp_detail d
+      WHERE d.pmsid=#value# AND d.actualstartday <![CDATA[<>]]> '1900-01-01 00:00:00'
+      and d.actualstartday <![CDATA[<>]]> '0001-01-01 00:00:00'
+      and d.actualstartday <![CDATA[<>]]> '0000-01-01 00:00:00'
+      )
+      where h.PMSId =#value#
+    </update>
+
+    <update id="UpdatePmsHeadCloseDate" parameterClass="Hashtable">
+      UPDATE  pms_head
+      SET
+      CloseDate=#CloseDate#,MaintainDate=#MaintainDate#,MaintainUser=#MaintainUser#
+      WHERE PMSId = #PmsId#
+    </update>
+
+    <update id="UpdatePmsHeadForOK" parameterClass="PmsHead">
+      UPDATE  pms_head
+      SET MaintainDate=#MaintainDate#,MaintainUser=#MaintainUser#
+      <isNotEmpty prepend="," property="Vid">VID=#Vid#</isNotEmpty>
+      ,PMSName=#PmsName#,Type=#Type#,Description=#Description#,ResolveDescription=#ResolveDescription#,System=#System#,Domain=#Domain#
+      ,Priority=#Priority#,Site=#Site#,ImpactSite=#ImpactSite#
+      ,NewVersion=#NewVersion#,OldVersion=#OldVersion#
+      <isNotEqual prepend="," property="DueDate" compareValue="0001-01-01 0:00:00" >
+        DueDate=#DueDate#
+      </isNotEqual>
+
+      <isNotEqual prepend="," property="PlanStartDate" compareValue="0001-01-01 0:00:00" >
+        PlanStartDate=#PlanStartDate#
+      </isNotEqual>
+
+      <isNotEqual prepend="," property="ActualStartDate" compareValue="0001-01-01 0:00:00" >
+        ActualStartDate=#ActualStartDate#
+      </isNotEqual>
+
+      <isNotEqual prepend="," property="ReleaseDate" compareValue="0001-01-01 0:00:00" >
+        ReleaseDate=#ReleaseDate#
+      </isNotEqual>
+
+      <isNotEqual prepend="," property="CloseDate" compareValue="0001-01-01 0:00:00" >
+        CloseDate=#CloseDate#
+      </isNotEqual>
+
+      ,Stage=#Stage#,PM=#Pm#,SD=#Sd#,SE=#Se#,QA=#Qa#
+      <isGreaterThan prepend="," property="AbnormalStage" compareValue="0">AbnormalStage=#AbnormalStage#</isGreaterThan>
+
+      <isNotEqual prepend="," property="CreateDate" compareValue="0001-01-01 0:00:00" >
+        CreateDate=#CreateDate#
+      </isNotEqual>
+
+      ,NeedSTP=#NeedSTP#,NeedSTC=#NeedSTC#,Category=#Category#,CodeReview=#CodeReview#,SelfTesting=#SelfTesting#
+      <isNotEmpty prepend="," property="OwnerDept">OwnerDept=#OwnerDept#</isNotEmpty>
+      ,RelatedCrNo=#RelatedCrNo#
+      WHERE PMSId = #PmsId#
+    </update>
+
+
+
+    <update id="UpdatePmsHeadOther" parameterClass="PmsHead">
+      UPDATE  pms_head
+      SET MaintainDate=#MaintainDate#,MaintainUser=#MaintainUser#
+      <isNotEmpty prepend="," property="Vid">VID=#Vid#</isNotEmpty>
+      <isNotEmpty prepend="," property="PmsName">PMSName=#PmsName#</isNotEmpty>
+      <isNotEmpty prepend="," property="Description">Description=#Description#</isNotEmpty>
+      <isNotEmpty prepend="," property="System">System=#System#</isNotEmpty>
+      <isNotEmpty prepend="," property="Priority">Priority=#Priority#</isNotEmpty>
+      <isNotEmpty prepend="," property="Site">Site=#Site#</isNotEmpty>
+      <isNotEmpty prepend="," property="ImpactSite">ImpactSite=#ImpactSite#</isNotEmpty>
+      <isNotEmpty prepend="," property="NewVersion">NewVersion=#NewVersion#</isNotEmpty>
+      <isNotEmpty prepend="," property="OldVersion">OldVersion=#OldVersion#</isNotEmpty>
+      <!--<isNotEmpty prepend="," property="DueDate">DueDate=#DueDate#</isNotEmpty>
+       <isNotEqual prepend="," property="DueDate" compareValue="0001-01-01 0:00:00" >
+        DueDate=#DueDate#
+      </isNotEqual>
+      <isNotEmpty prepend="," property="PlanStartDate">PlanStartDate=#PlanStartDate#</isNotEmpty>
+      <isNotEqual prepend="," property="DueDate" compareValue="0001-01-01 0:00:00" >
+        DueDate=#DueDate#
+      </isNotEqual>-->
+      <isNotEmpty prepend="," property="Pm">PM=#Pm#</isNotEmpty>
+      <isNotEmpty prepend="," property="Sd">SD=#Sd#</isNotEmpty>
+      <isNotEmpty prepend="," property="Se">SE=#Se#</isNotEmpty>
+      <isNotEmpty prepend="," property="Qa">QA=#Qa#</isNotEmpty>
+      <isGreaterThan prepend="," property="Stage" compareValue="0">Stage=#Stage#</isGreaterThan>
+      <isGreaterThan prepend="," property="AbnormalStage" compareValue="0">AbnormalStage=#AbnormalStage#</isGreaterThan>
+      WHERE PMSId = #PmsId#
+    </update>
+
+    <delete id="DeletePmsHead" parameterClass="string">
+      DELETE FROM pms_head
+      WHERE PMSId = #value#
+    </delete>
+
+    <!--Add by Abel Li on 2014-02-06-->
+    <select id="SelectPmsHeadForAuditor" parameterClass="PmsHead" resultClass="PmsHead">
+
+      SELECT DISTINCT tmp.CrId,tmp.Type,tmp.PmsId,tmp.PmsName,tmp.StageName,tmp.CreateDate,
+      tmp.NewVersion,
+      tmp.OldVersion,
+      tmp.System,tmp.Pm,tmp.Sd,tmp.Site,tmp.DueDate,tmp.ReleaseDate,tmp.Se,tmp.Qa,
+      IFNULL(sdp.Progress,0) as Progress,tmp.Priority,tmp.BugFreeProject,tmp.BugFreeModule
+      FROM
+      (
+      SELECT DISTINCT pi.CRId AS CrId,ph.Type AS Type,ph.PMSId AS PmsId,ph.PMSName as PmsName,
+      ps.StageName AS StageName,ph.CreateDate AS CreateDate,ph.System AS System,ph.PM AS Pm,
+      ph.NewVersion AS NewVersion ,
+      ph.OldVersion AS OldVersion ,
+      ph.SD AS Sd,ph.SE AS Se,ph.QA AS Qa,ph.Site AS Site,ph.DueDate AS DueDate,ph.ReleaseDate AS ReleaseDate,ph.Priority
+      ,IFNULL(Fun_GetBugFreeModule(ph.System,ph.Domain,ph.Site),'') AS BugFreeModule,IFNULL(Fun_GetBugFreeProject(ph.System,ph.Domain,ph.Site),'') AS BugFreeProject
+      FROM PMS_Head ph,PMS_ITARM_Mapping pi,PMS_Stage ps
+      WHERE ph.VID=#Vid# AND ph.PMSID=pi.PMSID
+      AND ps.VID=ph.VID AND ph.Stage=Ps.StageID
+      <isNotEmpty prepend="AND" property="PmsId">ph.PMSId=#PmsId#</isNotEmpty>
+
+      ) tmp
+      LEFT JOIN
+      (
+      SELECT
+      PmsId,
+
+      ROUND(
+      SUM(IFNULL(sdp.plancost,0)*IFNULL(sdp.completedpercent,0))
+      /
+      IF(SUM(IFNULL(sdp.plancost,0))=0,1,SUM(IFNULL(sdp.plancost,0)))
+      ,2) as Progress
+
+      FROM sdp_detail sdp
+
+      GROUP BY PmsID
+
+      ) sdp
+      ON  tmp.PMSID = sdp.PMSID
+      LEFT JOIN
+      sdp_detail
+      ON tmp.PMSID=sdp_detail.pmsid
+
+      where
+      sdp_detail.auditstatus=2
+      and sdp_detail.Auditor =#Creator#
+    </select>
+    <select id="SelectPmsHeadForAgent" parameterClass="PmsHead" resultClass="PmsHead">
+
+      SELECT DISTINCT tmp.CrId,tmp.Type,tmp.PmsId,tmp.PmsName,tmp.StageName,tmp.CreateDate,
+      tmp.NewVersion,
+      tmp.OldVersion,
+      tmp.System,tmp.Pm,tmp.Sd,tmp.Site,tmp.DueDate,tmp.ReleaseDate,tmp.Se,tmp.Qa,
+      IFNULL(sdp.Progress,0) as Progress,tmp.Priority,tmp.BugFreeProject,tmp.BugFreeModule
+      FROM
+      (
+      SELECT DISTINCT pi.CRId AS CrId,ph.Type AS Type,ph.PMSId AS PmsId,ph.PMSName as PmsName,
+      ps.StageName AS StageName,ph.CreateDate AS CreateDate,ph.System AS System,ph.PM AS Pm,
+      ph.NewVersion AS NewVersion ,
+      ph.OldVersion AS OldVersion ,
+      ph.SD AS Sd,ph.SE AS Se,ph.QA AS Qa,ph.Site AS Site,ph.DueDate AS DueDate,ph.ReleaseDate AS ReleaseDate,ph.Priority
+      ,IFNULL(Fun_GetBugFreeModule(ph.System,ph.Domain,ph.Site),'') AS BugFreeModule,IFNULL(Fun_GetBugFreeProject(ph.System,ph.Domain,ph.Site),'') AS BugFreeProject
+      FROM PMS_Head ph,PMS_ITARM_Mapping pi,PMS_Stage ps
+      WHERE ph.VID=#Vid# AND ph.PMSID=pi.PMSID
+      AND ps.VID=ph.VID AND ph.Stage=Ps.StageID
+      <isNotEmpty prepend="AND" property="PmsId">ph.PMSId=#PmsId#</isNotEmpty>
+
+      ) tmp
+      LEFT JOIN
+      (
+      SELECT
+      PmsId,
+
+      ROUND(
+      SUM(IFNULL(sdp.plancost,0)*IFNULL(sdp.completedpercent,0))
+      /
+      IF(SUM(IFNULL(sdp.plancost,0))=0,1,SUM(IFNULL(sdp.plancost,0)))
+      ,2) as Progress
+
+      FROM sdp_detail sdp
+
+      GROUP BY PmsID
+
+      ) sdp
+      ON  tmp.PMSID = sdp.PMSID
+      LEFT JOIN
+      sdp_detail
+      ON tmp.PMSID=sdp_detail.pmsid
+
+      where
+      sdp_detail.auditstatus=2
+      and sdp_detail.Auditor <![CDATA[<>]]>  #Creator#
+      and IFNULL((select data2 from pms_sys where type='AuditAgent' and data1=sdp_detail.Auditor),'') = #Creator#
+    </select>
+    <!--end add-->
+
+  </statements>
+</sqlMap>

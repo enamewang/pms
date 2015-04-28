@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="PmsSdpVersionMap" xmlns="http://ibatis.apache.org/mapping"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <alias>
+    <typeAlias alias="PmsSdpVersion" assembly="Qisda.PMS.Entity.dll" type="Qisda.PMS.Entity.PmsSdpVersion" />
+  </alias>
+  <resultMaps>
+    <resultMap id="PmsSdpVersionResult" class="PmsSdpVersion">
+      <result property="Serial" column="serial" type="int" dbType="Int"/>
+      <result property="Taskno" column="taskno" type="int" dbType="Int"/>
+      <result property="Pmsid" column="pmsid" type="string" dbType="varchar"/>
+      <result property="PlanStartDay" column="PlanStartDay" type="DateTime" dbType="DateTime"/>
+      <result property="PlanEndDay" column="PlanEndDay" type="DateTime" dbType="DateTime"/>
+      <result property="PlanCost" column="PlanCost" type="single" dbType="Real"/>
+      <result property="RefCost" column="RefCost" type="single" dbType="Real"/>
+      <result property="Version" column="version" type="single" dbType="Real"/>
+      <result property="CreateDate" column="CreateDate" type="DateTime" dbType="DateTime"/>
+      <result property="Creator" column="Creator" type="string" dbType="varchar"/>
+    </resultMap>
+  </resultMaps>
+  <statements>
+
+    <select id="SelectPmsSdpVersion" parameterClass="string" resultClass="PmsSdpVersion">
+      SELECT serial AS Serial,taskno AS Taskno,pmsid AS Pmsid,PlanStartDay AS PlanStartDay,PlanEndDay AS PlanEndDay,PlanCost AS PlanCost,RefCost AS RefCost,version AS Version,CreateDate AS CreateDate,Creator AS Creator
+      FROM
+      <dynamic prepend="WHERE">
+        <isParameterPresent>
+          serial = #value#
+        </isParameterPresent>
+      </dynamic>
+    </select>
+    <select id="SelectPmsSdpVersionByTaskno" parameterClass="Hashtable" resultClass="PmsSdpVersion">
+      SELECT serial AS Serial,taskno AS Taskno,pmsid AS Pmsid,PlanStartDay AS PlanStartDay,PlanEndDay AS PlanEndDay,PlanCost AS PlanCost,RefCost AS RefCost,version AS Version,CreateDate AS CreateDate,Creator AS Creator
+      FROM pms_sdp_version
+      WHERE taskno=#Taskno#
+    </select>
+    <insert id="InsertPmsSdpVersion" parameterClass="PmsSdpVersion">
+      INSERT INTO  pms_sdp_version
+      (taskno,pmsid,PlanStartDay,PlanEndDay,PlanCost,RefCost,version,CreateDate,Creator)
+      VALUES(#Taskno#,#Pmsid#,#PlanStartDay:DateTime:1/1/0001 12:00:00 AM#,#PlanEndDay:DateTime:1/1/0001 12:00:00 AM#,#PlanCost#,#RefCost#,#Version#,#CreateDate:DateTime:1/1/0001 12:00:00 AM#,#Creator#)
+      <selectKey resultClass="int" type="post" property="Serial">
+        SELECT @@IDENTITY as value
+      </selectKey>
+    </insert>
+    <update id="UpdatePmsSdpVersion" parameterClass="PmsSdpVersion">
+      UPDATE
+      SET taskno=#Taskno#,pmsid=#Pmsid#,PlanStartDay=#PlanStartDay#,PlanEndDay=#PlanEndDay#,PlanCost=#PlanCost#,RefCost=#RefCost#,version=#Version#,CreateDate=#CreateDate#,Creator=#Creator#
+      WHERE serial = #Serial#
+    </update>
+    <delete id="DeletePmsSdpVersion" parameterClass="string">
+      DELETE FROM
+      WHERE serial = #value#
+    </delete>
+  </statements>
+</sqlMap>
